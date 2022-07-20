@@ -168,7 +168,7 @@
         <div class="row bg-white rounded overflow-hidden shadow-lg">
             <div class="col-sm-6 d-flex justify-content-center align-items-center flex-column py-5 px-5">
                 <div class="title mb-4">
-                    <h4 class="mb-4 fw-bold fs-2">Login Siphp</h4>
+                    <h4 class="mb-4 fw-bold fs-2">Login Portal Berita</h4>
                 </div>
                 <form class="mb-4" action="<?= base_url('/login') ?>" method="post">
                     <div class="form-group">

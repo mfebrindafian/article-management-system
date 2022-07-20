@@ -3,42 +3,31 @@
 namespace App\Controllers;
 
 use App\Models\MasterUserModel;
-use App\Models\MasterPegawaiModel;
-use App\Models\MasterEs3Model;
-use App\Models\MasterEs4Model;
 
 class masterUser extends BaseController
 {
     protected $masterUserModel;
-    protected $masterPegawaiModel;
-    protected $masterEs3Model;
-    protected $masterEs4Model;
+
+
 
 
     public function __construct()
     {
         $this->masterUserModel = new masterUserModel();
-        $this->masterPegawaiModel = new masterPegawaiModel();
-        $this->masterEs3Model = new MasterEs3Model();
-        $this->masterEs4Model = new MasterEs4Model();
     }
 
     public function profile()
     {
         $data_profil_user = $this->masterUserModel->getProfilUser(session('user_id'));
-        $data_pegawai_user = $this->masterPegawaiModel->getProfilPegawai($data_profil_user['nip_lama_user']);
 
         $data = [
             'title' => 'Profile User',
             'menu' => '',
             'subMenu' => '',
             'list_level' => session('list_user_level'),
-            'data_profil_user' => $data_profil_user,
-            'data_pegawai_user' => $data_pegawai_user,
-            'list_bidang' => $this->masterEs3Model->getAllBidang(),
-            'list_seksi' => $this->masterEs4Model->getAllSeksi()
+            'data_profil_user' => $data_profil_user
         ];
-        // dd($data);
+
 
         return view('Profile/index', $data);
     }
