@@ -37,7 +37,7 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
 //Routes Ke views dan controller Akses
-$routes->get('/', 'masterAkses::index');
+$routes->get('/', 'masterAkses::index'); ///ubahhhh disiniii untuk ke halaman under construction buat jadi $routes->get('/', 'Home::index');
 //routes Akses Aplikasi
 $routes->post('/login', 'masterAkses::open');
 // routes Ke ganti Password default
