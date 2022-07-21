@@ -57,4 +57,16 @@ class masterBerita extends BaseController
             $file_berita->move('/berkas/draft', $nama_file);
         }
     }
+
+
+    public function reviewBerita()
+    {
+        $data = [
+            'title' => 'Review Berita',
+            'menu' => 'Berita',
+            'subMenu' => 'Review Berita',
+
+        ];
+        return view('Berita/reviewBerita', $data);
+    }
 }

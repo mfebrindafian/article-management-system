@@ -89,6 +89,7 @@ $routes->post('/switchLevel', 'masterAkses::switchLevel');
 ///batas routes khusus aplikasi portal berita
 // route ke entry Berita
 $routes->get('/entryBerita', 'masterBerita::entryBerita');
+$routes->get('/reviewBerita', 'masterBerita::reviewBerita');
 $routes->get('/tambahBerita', 'masterBerita::tambahBerita');
 
 $routes->post('/uploadBerita', 'masterBerita::uploadBerita');
