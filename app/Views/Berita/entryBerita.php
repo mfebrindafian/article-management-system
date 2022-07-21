@@ -40,78 +40,50 @@
                                         <th>Penulis</th>
                                         <th>Satker</th>
                                         <th>Status</th>
-                                        <th>Publish</th>
+                                        <th>Tanggal Publish</th>
                                         <th>Link</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <p class="text-muted mb-0">Nilai Tukar Petani (NTP) Provinsi Jambi Juni 2022 sebesar 127,31 </p>
-                                        </td>
-                                        <td>
-                                            <p class="text-muted mb-0">John Doe</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-muted mb-0">BPS Kota Jambi</p>
-                                        </td>
-                                        <td>
-                                            <span class="published">Published</span>
-                                        </td>
-                                        <td>Rabu, 20 Juli 2022</td>
-                                        <td><a href="#">https://jambi.bps.go.id/brs.html</a></td>
-                                        <td>
-                                            <a href="#" class="btn btn-link btn-sm btn-rounded edit">
-                                                Edit
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <p class="text-muted mb-0">Nilai Tukar Petani (NTP) Provinsi Jambi Juni 2022 sebesar 127,31 </p>
-                                        </td>
-                                        <td>
-                                            <p class="text-muted mb-0">John Doe</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-muted mb-0">BPS Kota Jambi</p>
-                                        </td>
-                                        <td>
-                                            <span class="reviewing">Reviewing</span>
-                                        </td>
-                                        <td>Rabu, 20 Juli 2022</td>
-                                        <td><a href="#">https://jambi.bps.go.id/brs.html</a></td>
-                                        <td>
-                                            <a href="#" class="btn btn-link btn-sm btn-rounded edit">
-                                                Edit
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <p class="text-muted mb-0">Nilai Tukar Petani (NTP) Provinsi Jambi Juni 2022 sebesar 127,31 </p>
-                                        </td>
-                                        <td>
-                                            <p class="text-muted mb-0">John Doe</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-muted mb-0">BPS Kota Jambi</p>
-                                        </td>
-                                        <td>
-                                            <span class="uploaded">Uploaded</span>
-                                        </td>
-                                        <td>Rabu, 20 Juli 2022</td>
-                                        <td><a href="#">https://jambi.bps.go.id/brs.html</a></td>
-                                        <td>
-                                            <a href="#" class="btn btn-link btn-sm btn-rounded edit">
-                                                Edit
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    <?php $no = 1; ?>
+                                    <?php if ($list_berita != null) : ?>
+                                        <?php foreach ($list_berita as $berita) : ?>
+                                            <tr>
+                                                <td><?= $no++; ?></td>
+                                                <td>
+                                                    <p class="text-muted mb-0"><?= $berita['judul_berita']; ?> </p>
+                                                </td>
+                                                <td>
+                                                    <p class="text-muted mb-0"><?= $berita['penulis']; ?></p>
+                                                </td>
+                                                <td>
+                                                    <?php foreach ($list_satker as $satker) : ?>
+                                                        <?php if ($satker['kd_satker'] == $berita['satker_kd']) : ?>
+                                                            <p class="text-muted mb-0">[<?= $satker['kd_satker']; ?>] <?= $satker['satker']; ?></p>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; ?>
+                                                </td>
+                                                <td>
+                                                    <?php if ($berita['status_kd'] == 1) {
+                                                        echo '<span class="uploaded">Uploaded</span>';
+                                                    } elseif ($berita['status_kd'] == 1) {
+                                                        echo '<span class="reviewing">Reviewing</span>';
+                                                    } else {
+                                                        echo '<span class="published">Published</span>';
+                                                    } ?>
+                                                </td>
+                                                <td><?= $berita['tgl_publish']; ?></td>
+                                                <td><a href="<?= $berita['link_publish']; ?>"><?= $berita['link_publish']; ?></a></td>
+                                                <td>
+                                                    <a href="#" class="btn btn-link btn-sm btn-rounded edit">
+                                                        Edit
+                                                    </a>
+                                                </td>
+                                            </tr>
+
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>

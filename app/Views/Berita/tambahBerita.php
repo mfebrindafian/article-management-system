@@ -37,12 +37,12 @@
                                 <div class="col-md-7">
                                     <div class="form-group">
                                         <label class="text-gray-dark" style="font-size: 14px;" for="judul">Judul Berita</label>
-                                        <input type="text" class="form-control" id="judul" name="judul" placeholder="Ketikkan judul berita" />
+                                        <input type="text" class="form-control" id="judul" name="judul" placeholder="Ketikkan judul berita" required />
                                     </div>
                                     <div class="form-group">
                                         <label class="text-gray-dark" style="font-size: 14px;">File Berita</label><br>
                                         <label style="width: 120px;" class="choose-btn fa-w-1 ripple mt-1" id="chooseBtn" for="file_berita">Pilih word file</label>
-                                        <input type="file" class="form-control d-none" id="file_berita" name="file_berita" accept=".doc, .docx" />
+                                        <input type="file" class="form-control d-none" id="file_berita" name="file_berita" accept=".doc, .docx" required />
                                         <label style="width: 80px;" class="choose-btn fa-w-1 ripple mt-1" id="chooseBtn2" for="foto_berita1">Foto 1</label>
                                         <input type="file" class="form-control d-none" id="foto_berita1" name="foto_berita1" accept=".jpg, .jpeg, .png" />
                                         <label style="width: 80px;" class="choose-btn fa-w-1 ripple mt-1" id="chooseBtn3" for="foto_berita2">Foto 2</label>
@@ -61,11 +61,11 @@
                                 <div class="col-md-7">
                                     <div class="form-group">
                                         <label class="text-gray-dark" style="font-size: 14px;" for="nama_penulis">Penulis</label>
-                                        <input type="text" class="form-control" id="nama_penulis" name="nama_penulis" placeholder="Ketikkan nama penulis" />
+                                        <input type="text" class="form-control" id="nama_penulis" name="nama_penulis" placeholder="Ketikkan nama penulis" required />
                                     </div>
                                     <div class="form-group">
                                         <label class="text-gray-dark" style="font-size: 14px;">Satuan Kerja</label>
-                                        <select class="form-control filter mr-2" name="satker" style="border-radius: 5px;">
+                                        <select class="form-control filter mr-2" name="satker" style="border-radius: 5px;" required>
                                             <option selected value="">- Pilih Satuan Kerja -</option>
                                             <?php if ($list_satker != null) : ?>
                                                 <?php foreach ($list_satker as $satker) : ?>
