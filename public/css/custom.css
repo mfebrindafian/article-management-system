@@ -347,3 +347,116 @@
 .pw-eye:hover {
      color: gray;
 }
+
+/* BERITA */
+.reviewing {
+     font-size: 12px;
+     font-weight: bold;
+     padding: 5px 10px 5px 10px;
+     color: #e89300;
+     border-radius: 5px;
+     background-color: #fff0d6;
+}
+.uploaded {
+     font-size: 12px;
+     font-weight: bold;
+     padding: 5px 10px 5px 10px;
+     color: #214594;
+     border-radius: 5px;
+     background-color: #e0eaff;
+}
+.published {
+     font-size: 12px;
+     font-weight: bold;
+     padding: 5px 10px 5px 10px;
+     color: #219438;
+     border-radius: 5px;
+     background-color: #e3ffe9;
+}
+
+.edit {
+     font-weight: semibold;
+     padding: 3px 13px 3px 13px;
+     border-radius: 5px;
+}
+
+.edit:hover {
+     background-color: #d9e5ff;
+     color: #335fbd;
+}
+
+.tombol-tambah {
+     padding: 6px 20px 6px 20px;
+     background-color: #4174e0;
+     font-size: 14px;
+     font-weight: semibold;
+     color: white;
+     border-radius: 4px;
+     border: none;
+}
+
+.tombol-tambah:hover {
+     background-color: #5384ed;
+     color: white;
+}
+
+.cancel-btn {
+     padding: 6px 20px 6px 20px;
+     font-size: 14px;
+     font-weight: bold;
+     background: none;
+     color: #154c94;
+     border-radius: 4px;
+     border: none;
+}
+.cancel-btn:hover {
+     background-color: #e0f2ff;
+}
+.cancel-btn:active {
+     background-color: #cee4f5;
+}
+
+.ripple {
+     position: relative;
+     overflow: hidden;
+}
+
+.ripple:before {
+     border-radius: 50%;
+     background-color: rgba(255, 255, 255, 0.6);
+     content: '';
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     width: 0;
+     height: 0;
+}
+
+.ripple:focus:before {
+     transition: all 0.5s ease-out;
+     opacity: 0;
+     width: 160px;
+     height: 160px;
+     margin-top: -80px;
+     margin-left: -80px;
+}
+
+.choose-btn {
+     padding: 6px 20px 6px 20px;
+     background-color: #cc9254;
+     font-size: 12px;
+     font-weight: light;
+     color: white;
+     border-radius: 4px;
+     border: none;
+     cursor: pointer;
+     white-space: nowrap;
+     text-overflow: ellipsis;
+}
+
+.choose-btn:hover {
+     background-color: #d49c61;
+}
+.choose-btn:active {
+     background-color: #dba770;
+}

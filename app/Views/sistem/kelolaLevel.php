@@ -4,7 +4,7 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
@@ -18,10 +18,10 @@
                 </div>
             </div>
         </div><!-- /.container-fluid -->
-    </section>
+    </div>
 
     <!-- Main content -->
-    <section class="content">
+    <div class="content">
         <div class="container-fluid">
             <!-- TABLE HEADER-->
             <div class="card card-primary card-outline" style="border: #3c4b64;">
@@ -85,7 +85,7 @@
             </div>
             <!-- /.row -->
         </div>
-    </section>
+    </div>
     <!-- MODAL HAK AKSES -->
     <div class="modal fade" id="<?= $id_modal; ?>" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog modal-dialog-scrollable modal-xl">

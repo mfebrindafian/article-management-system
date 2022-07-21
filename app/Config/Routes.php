@@ -129,6 +129,10 @@ $routes->post('/saveSubmenu', 'masterSistem::saveSubmenu');
 $routes->post('/switchLevel', 'masterAkses::switchLevel');
 
 
+// route ke entry Berita
+$routes->get('/entryBerita', 'Berita::entryBerita');
+$routes->get('/tambahBerita', 'Berita::tambahBerita');
+
 
 
 
