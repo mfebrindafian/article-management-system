@@ -18,4 +18,14 @@ class MasterSatkerModel extends Model
             ->get()
             ->getResultArray();
     }
+
+    public function getNamaSatker($kd_satker)
+    {
+        return $this
+            ->table('mst_satker')
+            ->select('satker')
+            ->where('kd_satker', $kd_satker)
+            ->get()
+            ->getRowArray();
+    }
 }

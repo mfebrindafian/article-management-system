@@ -18,7 +18,6 @@ class masterDashboard extends BaseController
     {
 
         $this->masterUserModel = new masterUserModel();
-        $this->masterSatuanModel = new masterSatuanModel();
     }
 
     public function index()

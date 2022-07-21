@@ -27,7 +27,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <form class="card-body px-5">
+                        <form action="<?= base_url('/uploadBerita'); ?>" method="post" class="card-body px-5" enctype="multipart/form-data">
+
                             <div class="row">
                                 <div class="col-md-5 d-flex flex-column">
                                     <span><strong style="font-size: 20px;">Tentang Berita</strong></span>
@@ -66,6 +67,11 @@
                                         <label class="text-gray-dark" style="font-size: 14px;">Satuan Kerja</label>
                                         <select class="form-control filter mr-2" name="satker" style="border-radius: 5px;">
                                             <option selected value="">- Pilih Satuan Kerja -</option>
+                                            <?php if ($list_satker != null) : ?>
+                                                <?php foreach ($list_satker as $satker) : ?>
+                                                    <option value="<?= $satker['kd_satker']; ?>">[<?= $satker['kd_satker']; ?>] <?= $satker['satker']; ?></option>
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
                                         </select>
                                     </div>
                                 </div>
@@ -128,6 +134,38 @@
         }
     });
 </script>
+
+
+<!-- <script>
+    var Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+    });
+
+
+    $(document).on('input', '#file_berita', function() {
+        if (this.files[0].size > 250000) { // ini untuk ukuran 500 Kb
+            Toast.fire({
+                icon: "warning",
+                title: "Ukuran File Word Melebihi 250Kb!",
+            });
+            this.value = "";
+            return false;
+        };
+        var pathFile = this.value;
+        var ekstensiOk = /(\.docx|\.doc)$/i;
+        if (!ekstensiOk.exec(pathFile)) {
+            Toast.fire({
+                icon: "warning",
+                title: "Silakan upload file hanya dengan ekstensi .docx atau .doc",
+            });
+            this.value = "";
+            return false;
+        }
+    })
+</script> -->
 
 
 

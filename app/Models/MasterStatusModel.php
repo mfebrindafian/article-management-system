@@ -4,19 +4,19 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class MasterSatuanModel extends Model
+class MasterStatusModel extends Model
 {
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
-    protected $table = 'mst_satuan';
-    protected $allowedFields = ['nama_satuan'];
+    protected $table = 'mst_status';
+    protected $allowedFields = ['status'];
 
-    public function getAll()
+    public function getListStatus()
     {
         return $this
             ->table($this->table)
-            ->select('kd_satuan')
-            ->select('nama_satuan')
+            ->select('id')
+            ->select('status')
             ->get()
             ->getResultArray();
     }

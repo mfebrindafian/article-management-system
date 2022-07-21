@@ -46,41 +46,14 @@ $routes->post('/gantiPasswordDefault', 'masterAkses::gantiPasswordDefault');
 $routes->get('/logout', 'masterAkses::logout');
 //Routes Ke views dan controller Dashboard
 $routes->get('/dashboard', 'masterDashboard::index');
-//Routes Ke views dan controller Dashboard Data Pegawai
-$routes->get('/dataPegawai', 'masterDashboard::dataPegawai');
-//routes untuk membuka detail di dashboard
-$routes->get('/showDetailLaporanHarianOnDashboard/(:segment)', 'masterDashboard::showDetailLaporanHarianOnDashboard/$1');
 //Routes Ke views dan controller Dashboard
 $routes->get('/profile', 'masterUser::profile');
-
-
 //routes ke update data user by user
 $routes->post('/updateProfileByUser', 'masterUser::updateProfileByUser');
 //Routes ke ganti password user
 $routes->post('/gantiPasswordByUser', 'masterUser::gantiPasswordByUser');
-
-
-//Routes Ke views dan controller list Laporan dan Input Kegiatan
-$routes->get('/listLaporan', 'masterLaporanHarian::listLaporan');
-$routes->get('/inputKegiatan', 'masterLaporanHarian::inputKegiatan');
-$routes->get('/detailKegiatan', 'masterLaporanHarian::detailKegiatan');
-//Routes ke save laporan harian dan controller save laporan harian
-$routes->post('/saveLaporanHarian', 'masterLaporanHarian::saveLaporanHarian');
-//Routes ke save laporan harian dan controller save laporan harian
-$routes->post('/updateLaporanHarian', 'masterLaporanHarian::updateLaporanHarian');
-//routes ke edit laporan
-$routes->get('/showEditLaporanHarian/(:segment)', 'masterLaporanHarian::showEditLaporanHarian/$1');
-//routes ke detail laporan
-$routes->get('/showDetailLaporanHarian/(:segment)', 'masterLaporanHarian::showDetailLaporanHarian/$1');
-//Routes hapus Bukti Dukung
-$routes->post('/hapusBuktiDukung', 'masterLaporanHarian::hapusBuktiDukung');
-
-
 //Routes Ke views dan controller Kelola Master
 $routes->get('/masterUser', 'masterKelolaMaster::masterUser');
-$routes->get('/masterPegawai', 'masterKelolaMaster::masterPegawai');
-$routes->get('/masterKegiatan', 'masterKelolaMaster::masterKegiatan');
-$routes->get('/masterUser/get_autofillPegawai', 'masterKelolaMaster::get_autofillPegawai');
 //Routes untuk menampilkan data berdasarkan data user yang dipilih
 $routes->get('/showDataUser/(:segment)', 'masterKelolaMaster::showDataUser/$1');
 //routes update level dan aktivasi pada user
@@ -91,18 +64,8 @@ $routes->post('/tambahLevelUser', 'masterKelolaMaster::tambahLevelUser');
 $routes->post('/resetPasswordUser', 'masterKelolaMaster::resetPasswordUser');
 //routes untuk hapus level user
 $routes->post('/hapusLevelUser', 'masterKelolaMaster::hapusLevelUser');
-
 //Routes Ke views dan controller Kelola Master Tambah
 $routes->get('/tambahUser', 'masterKelolaMaster::tambahUser');
-//rotes ke save data pegawai baru
-$routes->post('/savePegawai', 'masterKelolaMaster::savePegawai');
-//routes ke update pegawai
-$routes->post('/updatePegawai', 'masterKelolaMaster::updatePegawai');
-//routes ke views edit pegawai
-$routes->get('/showEditPegawai/(:segment)', 'masterKelolaMaster::showEditPegawai/$1');
-//routes ke views detail pegawai
-$routes->get('/showDetailPegawai/(:segment)', 'masterKelolaMaster::showDetailPegawai/$1');
-
 //Routes Ke views dan controller Sistem
 $routes->get('/kelolaLevel', 'masterSistem::kelolaLevel');
 //routes ke editKelolaMenu bagi level tertentu
@@ -112,26 +75,23 @@ $routes->post('/updateKelolaLevel/(:segment)', 'masterSistem::updateKelolaLevel/
 $routes->post('/saveLevel', 'masterSistem::saveLevel');
 //routes ke update nama level yang ada di list
 $routes->post('/updateNamaLevel', 'masterSistem::updateNamaLevel');
-
 $routes->get('/kelolaMenu', 'masterSistem::kelolaMenu');
 $routes->get('/kelolaSubMenu', 'masterSistem::kelolaSubMenu');
-
 //Routes ke update dan controller sistem
 $routes->post('/updateMenu', 'masterSistem::updateMenu');
 $routes->post('/updateSubmenu', 'masterSistem::updateSubmenu');
-
 //Routes ke save dan controller sistem
 $routes->post('/saveMenu', 'masterSistem::saveMenu');
 $routes->post('/saveSubmenu', 'masterSistem::saveSubmenu');
-
-
 //routes ke switch level akun dan controller master akses
 $routes->post('/switchLevel', 'masterAkses::switchLevel');
 
-
+///batas routes khusus aplikasi portal berita
 // route ke entry Berita
-$routes->get('/entryBerita', 'Berita::entryBerita');
-$routes->get('/tambahBerita', 'Berita::tambahBerita');
+$routes->get('/entryBerita', 'masterBerita::entryBerita');
+$routes->get('/tambahBerita', 'masterBerita::tambahBerita');
+
+$routes->post('/uploadBerita', 'masterBerita::uploadBerita');
 
 
 
