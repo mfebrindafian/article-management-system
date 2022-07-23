@@ -20,12 +20,6 @@
     <title>Login</title>
 
     <style>
-        body {
-            font-family: 'Andika', sans-serif;
-        }
-
-
-
         html,
         body {
             height: 100%;
@@ -42,19 +36,19 @@
         }
 
         .button {
-            background-color: #3C4B64;
+            background-color: #4174e0;
             padding: 10px;
             border: none;
             color: white;
         }
 
         .button:hover {
-            background-color: #1A2B48;
+            background-color: #5384ed;
             color: white;
         }
 
         .button:focus {
-            background-color: #3C4B64;
+            background-color: #5384ed;
             color: white;
         }
 
@@ -104,6 +98,31 @@
 
         .pw-eye:hover {
             color: gray;
+        }
+
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple:before {
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.6);
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+        }
+
+        .ripple:focus:before {
+            transition: all 0.5s ease-out;
+            opacity: 0;
+            width: 160px;
+            height: 160px;
+            margin-top: -80px;
+            margin-left: -80px;
         }
 
         textarea:focus,
@@ -166,9 +185,9 @@
     <div class="min-vh-100 min-vw-100 d-flex justify-content-center align-items-center">
 
         <div class="row bg-white rounded overflow-hidden shadow-lg">
-            <div class="col-sm-6 d-flex justify-content-center align-items-center flex-column py-5 px-5">
-                <div class="title mb-4">
-                    <h4 class="mb-4 fw-bold fs-2">Login Portal Berita</h4>
+            <div class="col-sm-12 d-flex justify-content-center align-items-center flex-column py-5 px-5">
+                <div class="title mb-4 mx-5">
+                    <h4 class="mb-4 fw-bold">Login Portal Berita</h4>
                 </div>
                 <form class="mb-4" action="<?= base_url('/login') ?>" method="post">
                     <div class="form-group">
@@ -185,12 +204,10 @@
                         </div>
                     </div>
 
-                    <button type="submit" id="liveAlertBtn" class="w-100 btn button mt-3 fw-semibold d-flex justify-content-center"><span>Login</span><span class="arc d-none"></span></button>
+                    <button type="submit" id="liveAlertBtn" class="w-100 btn button mt-3 fw-semibold d-flex justify-content-center ripple"><span>Login</span><span class="arc d-none"></span></button>
                 </form>
             </div>
-            <div class="col-sm-6 test2">
-                <img src="<?= base_url('/images/1.png') ?>" class="card-img" style="object-fit: cover;" height="100%">
-            </div>
+
         </div>
     </div>
 

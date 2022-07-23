@@ -11,7 +11,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('/dashboard') ?>">Home</a></li>
                         <li class="breadcrumb-item active">Entry Berita</li>
                     </ol>
                 </div><!-- /.col -->
@@ -23,8 +23,14 @@
     <!-- Main content -->
     <div class="content">
         <div class="container">
-            <div class="row">
-                <div class="col-12 mb-3">
+            <div class="row mb-3">
+                <div class="col-3">
+                    <form action="" method="POST" class=" input-group input-group-md">
+                        <input type="search" name="table_search" class="form-control" style="padding: 6px 20px 6px 20px;" placeholder="Search" />
+                    </form>
+                </div>
+                <div class="col-3"></div>
+                <div class="col-6">
                     <a href="<?= base_url('/tambahBerita') ?>" class="tombol-tambah float-right ripple">Tambah</a>
                 </div>
             </div>
@@ -36,13 +42,14 @@
                                 <thead class="bg-light">
                                     <tr>
                                         <th>#</th>
-                                        <th>Judul Berita</th>
+                                        <th style="min-width: 200px;">Judul</th>
                                         <th>Penulis</th>
                                         <th>Satker</th>
                                         <th>Status</th>
-                                        <th>Tanggal Publish</th>
+                                        <th>Publish</th>
+                                        <th>Editor</th>
                                         <th>Link</th>
-                                        <th>Aksi</th>
+                                        <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -74,11 +81,14 @@
                                                     } ?>
                                                 </td>
                                                 <td><?= $berita['tgl_publish']; ?></td>
+                                                <td></td>
                                                 <td><a href="<?= $berita['link_publish']; ?>"><?= $berita['link_publish']; ?></a></td>
                                                 <td>
-                                                    <a href="#" class="btn btn-link btn-sm btn-rounded edit">
+                                                    <a href="<?= base_url('/editBerita') ?>" class="btn btn-link btn-sm btn-rounded edit">
                                                         Edit
                                                     </a>
+
+                                                    <!-- <button class="btn btn-link btn-sm btn-rounded px-2 text-gray">Edit</button> -->
                                                 </td>
                                             </tr>
 

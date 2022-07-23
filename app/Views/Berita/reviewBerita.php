@@ -56,9 +56,12 @@
                                     <span class="uploaded">Ready to review</span>
                                 </div>
 
-                                <div>
+                                <div class="row">
+                                    <div class="col-4"></div>
+                                    <div class="col-8 d-flex justify-content-end">
 
-                                    <button class="tombol-tambah float-right ripple">Review</button>
+                                        <button class="tombol-tambah float-right ripple">Review</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -80,11 +83,12 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-6">
-                                        <small class="text-gray">Direview oleh <strong>Budi</strong></small>
+                                    <div class="col-4 d-flex align-items-center">
+                                        <small class="text-gray judul-berita">Direview oleh <strong>Budi</strong></small>
                                     </div>
-                                    <div class="col-6">
-                                        <a href="#" class="edit float-right ripple">Download</a>
+                                    <div class="col-8 d-flex justify-content-end">
+                                        <a href="#" class="edit float-right ripple mr-3">Download</a>
+                                        <button class="tombol-tambah float-right ripple">Done</button>
                                     </div>
                                 </div>
                             </div>
@@ -107,11 +111,11 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-6">
-                                        <small class="text-gray">Direview oleh <strong>Budi</strong></small>
+                                    <div class="col-4 d-flex align-items-center">
+                                        <small class="text-gray judul-berita">Direview oleh <strong>Budi</strong></small>
                                     </div>
-                                    <div class="col-6">
-                                        <a href="#" class="edit float-right ripple">Visit</a>
+                                    <div class="col-8 d-flex justify-content-end">
+                                        <a href="#" class="edit float-right ripple mr-3">visit</a>
                                     </div>
                                 </div>
                             </div>

@@ -7,6 +7,7 @@ use App\Models\MasterBeritaModel;
 use CodeIgniter\HTTP\Request;
 use CodeIgniter\Session\Session;
 use PHPUnit\Framework\Test;
+use Config\Validation;
 
 class masterBerita extends BaseController
 {
@@ -41,6 +42,7 @@ class masterBerita extends BaseController
         $data = [
             'title' => 'Tambah Berita',
             'menu' => 'Berita',
+            'validation' => \Config\Services::validation(),
             'subMenu' => 'Entry Berita',
             'list_satker' => $list_satker
         ];
@@ -49,6 +51,58 @@ class masterBerita extends BaseController
 
     public function uploadBerita()
     {
+        //validation
+        if (!$this->validate([
+            'judul' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Judul berita harus diisi',
+                ]
+            ],
+            'file_berita' => [
+                'rules' => 'max_size[file_berita,258]|ext_in[file_berita,doc,docx]',
+                'errors' => [
+                    'max_size' => 'Ukuran maksimal file adalah 250Kb',
+                    'ext_in' => 'Jenis File yang diterima hanya doc & docx',
+                ]
+            ],
+            'foto_berita1' => [
+                'rules' => 'max_size[foto_berita1,512]|ext_in[foto_berita1,jpg,jpeg,png]',
+                'errors' => [
+                    'max_size' => 'Ukuran maksimal foto adalah 500Kb',
+                    'ext_in' => 'Jenis Foto yang diterima hanya jpg/jpeg/png',
+                ]
+            ],
+            'foto_berita2' => [
+                'rules' => 'max_size[foto_berita2,512]|ext_in[foto_berita2,jpg,jpeg,png]',
+                'errors' => [
+                    'max_size' => 'Ukuran maksimal foto adalah 500Kb',
+                    'ext_in' => 'Jenis Foto yang diterima hanya jpg/jpeg/png',
+                ]
+            ],
+            'foto_berita3' => [
+                'rules' => 'max_size[foto_berita3,512]|ext_in[foto_berita3,jpg,jpeg,png]',
+                'errors' => [
+                    'max_size' => 'Ukuran maksimal foto adalah 500Kb',
+                    'ext_in' => 'Jenis Foto yang diterima hanya jpg/jpeg/png',
+                ]
+            ],
+            'nama_penulis' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Nama penulis harus diisi',
+                ]
+            ],
+            'satker' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Pilih Satuan Kerja',
+                ]
+            ]
+        ])) {
+            return redirect()->to('/tambahBerita')->withInput();
+        }
+
 
 
         $user = session('data_user');
@@ -65,7 +119,7 @@ class masterBerita extends BaseController
         date_default_timezone_set('Asia/Jakarta');
         $tanggal = date('d-m-Y');
         $jam = date('h-i-s');
-
+        $image_upload = [];
 
         if ($foto_berita1->getError() != 4) {
             $ekstensi_foto = $foto_berita1->getExtension();
@@ -93,9 +147,13 @@ class masterBerita extends BaseController
         $nama_file = ($kd_satker . '_' . $username . '_'   . $tanggal . '_' . $jam . '.' . $ekstensi_file);
         $file_berita->move('berkas/draft', $nama_file);
 
+        if ($image_upload != NULL) {
+            $all_image = array('image' => $image_upload);
+            $json_image = json_encode($all_image);
+        } else {
+            $json_image = '';
+        }
 
-        $all_image = array('image' => $image_upload);
-        $json_image = json_encode($all_image);
 
         $this->masterBeritaModel->save([
             'user_id' => $user_id,
@@ -118,8 +176,22 @@ class masterBerita extends BaseController
     }
 
 
+    public function editBerita()
+    {
+        $list_satker = $this->masterSatkerModel->getAllSatker();
+        $data = [
+            'title' => 'Edit Berita',
+            'menu' => 'Berita',
+            'subMenu' => 'Entry Berita',
+            'validation' => \Config\Services::validation(),
+            'list_satker' => $list_satker
+
+        ];
+        return view('Berita/editBerita', $data);
+    }
     public function reviewBerita()
     {
+
         $data = [
             'title' => 'Review Berita',
             'menu' => 'Berita',

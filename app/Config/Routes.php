@@ -91,6 +91,7 @@ $routes->post('/switchLevel', 'masterAkses::switchLevel');
 $routes->get('/entryBerita', 'masterBerita::entryBerita');
 $routes->get('/reviewBerita', 'masterBerita::reviewBerita');
 $routes->get('/tambahBerita', 'masterBerita::tambahBerita');
+$routes->get('/editBerita', 'masterBerita::editBerita');
 
 $routes->post('/uploadBerita', 'masterBerita::uploadBerita');
 

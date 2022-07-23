@@ -7,13 +7,13 @@
         <div class="container">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0"> Tambah berita </h1>
+                    <h1 class="m-0"> Edit berita </h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?= base_url('/dashboard') ?>">Home</a></li>
                         <li class="breadcrumb-item"><a href="<?= base_url('/entryBerita') ?>">Entry Berita</a></li>
-                        <li class="breadcrumb-item active">Tambah Berita</li>
+                        <li class="breadcrumb-item active">Edit Berita</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <form action="<?= base_url('/uploadBerita'); ?>" method="post" class="card-body px-5" enctype="multipart/form-data">
+                        <form action="<?= base_url(''); ?>" method="post" class="card-body px-5" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
                             <div class="row">
                                 <div class="col-md-5 d-flex flex-column">
