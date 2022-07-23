@@ -65,7 +65,7 @@ $routes->post('/resetPasswordUser', 'masterKelolaMaster::resetPasswordUser');
 //routes untuk hapus level user
 $routes->post('/hapusLevelUser', 'masterKelolaMaster::hapusLevelUser');
 //Routes Ke views dan controller Kelola Master Tambah
-$routes->get('/tambahUser', 'masterKelolaMaster::tambahUser');
+$routes->post('/tambahUser', 'masterKelolaMaster::tambahUser');
 //Routes Ke views dan controller Sistem
 $routes->get('/kelolaLevel', 'masterSistem::kelolaLevel');
 //routes ke editKelolaMenu bagi level tertentu

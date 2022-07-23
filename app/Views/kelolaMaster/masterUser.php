@@ -68,7 +68,8 @@
                     </div>
                 </div>
                 <div class="<?= $class_modal_setup; ?>">
-                    <div class="card">
+                    <div class="card position-relative">
+                        <a href="<?= base_url('/masterUser') ?>" class="delete-kegiatan"><i class="fas fa-times"></i></a>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6 text-center">
@@ -294,8 +295,7 @@
 <!-- MODAL TAMBAH USER -->
 <div class="modal fade" id="modal-tambah-user">
     <div class="modal-dialog modal-xl">
-        <form action="<?= base_url('') ?>" method="POST" class="modal-content">
-            <input type="text" class="d-none" name="id_pegawai" id="id_pegawai">
+        <form action="<?= base_url('/tambahUser') ?>" method="POST" class="modal-content">
             <div class="modal-header border-0">
                 <h4 class="modal-title">Tambah User</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -311,7 +311,7 @@
                                 <?php foreach ($level_tersedia as $tersedia) : ?>
                                     <div class="pilih-level">
                                         <label for="level<?= $no ?>" class="checkbox-level active">
-                                            <input class="d-none" type="checkbox" name="level" id="level<?= $no ?>">
+                                            <input class="d-none" type="checkbox" name="level_pick<?= $no ?>" id="level<?= $no ?>">
                                             <i class="far fa-square"></i>
                                             <?= $tersedia['nama_level']; ?>
                                         </label>
@@ -322,48 +322,34 @@
                         </div>
                         <div class="form-group mt-3">
                             <label>Username</label>
-                            <input type="text" name="username" class="form-control" placeholder="Username ...">
+                            <input type="text" name="username_tambah" class="form-control" placeholder="Username ...">
+                        </div>
+                        <div class="form-group mt-3">
+                            <label>Nip Lama</label>
+                            <input type="text" name="nip_lama_tambah" class="form-control" placeholder="Nip Lama ...">
+                        </div>
+                        <div class="form-group mt-3">
+                            <label>Fullname</label>
+                            <input type="text" name="fullname_tambah" class="form-control" placeholder="Fullname ...">
+                        </div>
+                        <div class="form-group mt-3">
+                            <label>Email</label>
+                            <input type="text" name="email_tambah" class="form-control" placeholder="Email ...">
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="1 2 3 4 5 6" disabled>
+                            <input type="password" name="password_tambah" class="form-control" placeholder="123456" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Is Active</label>
+                            <select id="is_active" name="is_active_tambah" class="form-control mr-2" style="border-radius: 5px;">
+                                <option value="Y">Active</option>
+                                <option value="N">Non-active</option>
+                            </select>
                         </div>
                     </div>
+
                     <div class="col-lg-6 px-4 border-left">
-
-                        <div class="form-group position-relative">
-                            <label>Cari Pegawai</label>
-                            <input type="text" id="cari_pegawai" class="form-control" placeholder="Search ...">
-                            <div class="option-kegiatan-wrapper w-100 mt-2 bg-white py-2 rounded shadow-lg position-absolute d-none">
-                                <?php if ($list_pegawai != NULL) : ?>
-                                    <?php foreach ($list_pegawai as $pegawai) : ?>
-                                        <option data-id="<?= $pegawai['id'] ?>" data-nip_lama="<?= $pegawai['nip_lama'] ?>" data-nama_pegawai="<?= $pegawai['nama_pegawai'] ?>" class="option-kegiatan border-bottom d-none"><?= $pegawai['nama_pegawai'] ?></option>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-
-                        <div class="row px-2">
-                            <!-- KETERANGAN -->
-                            <div class="col-md-12 py-2 border rounded">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <img class="img-fluid rounded" style="width: 100%;" src="<?= base_url('/images/default.jpg') ?>">
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <strong>Nama Lengkap</strong>
-                                        <p id="nama_pegawai_tambah" class="text-muted">
-                                            -
-                                        </p>
-
-                                        <strong>NIP Lama</strong>
-                                        <p id="nip_lama_tambah" class="text-muted">
-                                            -
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
