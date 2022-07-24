@@ -55,4 +55,13 @@ class MasterUserModel extends Model
             ->get()
             ->getRowArray();
     }
+    public function getLastId()
+    {
+        return $this
+            ->table('tbl_user')
+            ->select('id')
+            ->orderBy('id', 'DESC')
+            ->get()
+            ->getRowArray();
+    }
 }
