@@ -74,14 +74,14 @@
                                                 <td>
                                                     <?php if ($berita['status_kd'] == 1) {
                                                         echo '<span class="uploaded">Uploaded</span>';
-                                                    } elseif ($berita['status_kd'] == 1) {
+                                                    } elseif ($berita['status_kd'] == 2) {
                                                         echo '<span class="reviewing">Reviewing</span>';
                                                     } else {
                                                         echo '<span class="published">Published</span>';
                                                     } ?>
                                                 </td>
                                                 <td><?= $berita['tgl_publish']; ?></td>
-                                                <td></td>
+                                                <td><?= $berita['editor']; ?></td>
                                                 <td><a href="<?= $berita['link_publish']; ?>"><?= $berita['link_publish']; ?></a></td>
                                                 <td>
                                                     <?php if ($berita['status_kd'] == 1 && $berita['user_id'] == session('user_id')) : ?>

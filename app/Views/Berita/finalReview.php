@@ -31,47 +31,54 @@
                             <div class="col-md-5 text-center">
                                 <img class="mb-4" src="<?= base_url('/images/beritadefault.jpg') ?>" alt="">
                             </div>
-                            <div class="col-md-7 px-5">
-                                <div class="mt-2 d-flex flex-column">
-                                    <h4><strong class="judul-berita">Nilai Tukar Petani (NTP) Provinsi Jambi Juni 2022 sebesar 127,31</strong></h4>
-                                    <small>John Doe | [1500] BPS Provinsi Jambi</small>
-                                    <div class="mt-2">
-                                        <span class="reviewing">Reviewing</span>
-                                    </div>
-                                    <!-- <a href="" class="my-3"><small>Download File Berita</small></a> -->
-                                </div>
-                                <div class="row">
-                                    <div class="col-5">
-                                        <hr>
-                                    </div>
-                                    <div class="col-2 text-center text-gray opsional">
-                                        <small>
-                                            <em>Hasil Review</em>
-                                        </small>
-                                    </div>
-                                    <div class="col-5">
-                                        <hr>
-                                    </div>
-                                </div>
-                                <form method="" action="" class="form-group mt-2">
-                                    <div class="row">
-                                        <!-- <div class="col-md-4"></div> -->
-                                        <div class="col-md-12">
-                                            <label style="width: 100%;" class="choose-btn ripple mt-1 text-center" id="chooseBtn" for="file_berita">Upload Hasil Review</label>
-                                            <input type="file" class="form-control d-none" id="file_berita" name="file_berita" accept=".doc, .docx" required />
+                            <?php if ($berita != null) : ?>
+                                <div class="col-md-7 px-5">
+                                    <div class="mt-2 d-flex flex-column">
+                                        <h4><strong class="judul-berita"><?= $berita['judul_berita']; ?></strong></h4>
+                                        <small><?= $berita['penulis']; ?>| [<?= $berita['satker_kd']; ?>] <?php foreach ($list_satker as $satker) {
+                                                                                                                if ($satker['kd_satker'] == $berita['satker_kd']) {
+                                                                                                                    echo $satker['satker'];
+                                                                                                                }
+                                                                                                            } ?></small>
+                                        <div class="mt-2">
+                                            <span class="reviewing">Reviewing</span>
                                         </div>
+                                        <!-- <a href="" class="my-3"><small>Download File Berita</small></a> -->
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <hr>
+                                        </div>
+                                        <div class="col-2 text-center text-gray opsional">
+                                            <small>
+                                                <em>Hasil Review</em>
+                                            </small>
+                                        </div>
+                                        <div class="col-5">
+                                            <hr>
+                                        </div>
+                                    </div>
+                                    <form action="<?= base_url('/uploadHasiReview'); ?>" method="post" class="form-group mt-2" enctype="multipart/form-data">
+                                        <input type="hidden" name="id_berita_review" value="<?= $berita['id']; ?>">
+                                        <div class="row">
+                                            <!-- <div class="col-md-4"></div> -->
+                                            <div class="col-md-12">
+                                                <label style="width: 100%;" class="choose-btn ripple mt-1 text-center" id="chooseBtn" for="file_berita">Upload Hasil Review</label>
+                                                <input type="file" class="form-control d-none" id="file_berita" name="file_berita" accept=".doc, .docx" required />
+                                            </div>
 
-                                        <!-- <div class="col-md-4"></div> -->
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-5"></div>
-                                        <div class="col-md-2">
-                                            <button type="submit" id="btn-submit" class="tombol-tambah float-right ripple shadow">Simpan</button>
+                                            <!-- <div class="col-md-4"></div> -->
                                         </div>
-                                        <div class="col-md-5"></div>
-                                    </div>
-                                </form>
-                            </div>
+                                        <div class="row">
+                                            <div class="col-md-5"></div>
+                                            <div class="col-md-2">
+                                                <button type="submit" id="btn-submit" class="tombol-tambah float-right ripple shadow">Simpan</button>
+                                            </div>
+                                            <div class="col-md-5"></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -82,26 +89,6 @@
     <!-- /.content -->
 </div>
 
-<div class="modal fade" id="modal-review" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document" style="top: 13%;">
-        <div class="modal-content">
-            <div class="modal-header border-0">
-                <h5 class="modal-title" id="exampleModalLabel">Review Berita</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <input type="text" id="id_berita">
-                Yakin Ingin Mereview Berita Ini?
-            </div>
-            <div class="modal-footer border-0">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                <button type="submit" class="btn btn-primary" data-dismiss="modal">Oke</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script src="<?= base_url('/plugins/jquery/jquery.min.js') ?>"></script>
 <script src="<?= base_url('/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
