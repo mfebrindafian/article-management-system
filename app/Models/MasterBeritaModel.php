@@ -20,4 +20,23 @@ class MasterBeritaModel extends Model
             ->get()
             ->getResultArray();
     }
+
+    public function getBeritaById($id_berita)
+    {
+        return $this
+            ->table('mst_berita')
+            ->select('*')
+            ->where('id', $id_berita)
+            ->get()
+            ->getRowArray();
+    }
+
+    public function getAllBerita()
+    {
+        return $this
+            ->table('mst_berita')
+            ->select('*')
+            ->get()
+            ->getResultArray();
+    }
 }

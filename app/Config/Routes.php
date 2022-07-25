@@ -92,9 +92,11 @@ $routes->get('/entryBerita', 'masterBerita::entryBerita');
 $routes->get('/reviewBerita', 'masterBerita::reviewBerita');
 $routes->get('/finalReview', 'masterBerita::finalReview');
 $routes->get('/tambahBerita', 'masterBerita::tambahBerita');
-$routes->get('/editBerita', 'masterBerita::editBerita');
+$routes->get('/editBerita/(:segment)', 'masterBerita::editBerita/$1');
+
 
 $routes->post('/uploadBerita', 'masterBerita::uploadBerita');
+$routes->post('/updateBerita', 'masterBerita::updateBerita');
 
 
 

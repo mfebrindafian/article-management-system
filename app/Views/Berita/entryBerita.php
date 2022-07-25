@@ -84,9 +84,11 @@
                                                 <td></td>
                                                 <td><a href="<?= $berita['link_publish']; ?>"><?= $berita['link_publish']; ?></a></td>
                                                 <td>
-                                                    <a href="<?= base_url('/editBerita') ?>" class="btn btn-link btn-sm btn-rounded edit">
-                                                        Edit
-                                                    </a>
+                                                    <?php if ($berita['status_kd'] == 1 && $berita['user_id'] == session('user_id')) : ?>
+                                                        <a href="<?= base_url('/editBerita/' . $berita['id']) ?>" class="btn btn-link btn-sm btn-rounded edit">
+                                                            Edit
+                                                        </a>
+                                                    <?php endif; ?>
 
                                                     <!-- <button class="btn btn-link btn-sm btn-rounded px-2 text-gray">Edit</button> -->
                                                 </td>
