@@ -90,7 +90,7 @@ $routes->post('/switchLevel', 'masterAkses::switchLevel');
 // route ke entry Berita
 $routes->get('/entryBerita', 'masterBerita::entryBerita');
 $routes->get('/reviewBerita', 'masterBerita::reviewBerita');
-$routes->get('/finalReview', 'masterBerita::finalReview');
+$routes->get('/finalReview/(:segment)', 'masterBerita::finalReview/$1');
 $routes->get('/tambahBerita', 'masterBerita::tambahBerita');
 $routes->get('/editBerita/(:segment)', 'masterBerita::editBerita/$1');
 
@@ -99,8 +99,11 @@ $routes->post('/uploadBerita', 'masterBerita::uploadBerita');
 $routes->post('/updateBerita', 'masterBerita::updateBerita');
 
 
+$routes->post('/ubahStatusReview', 'masterBerita::ubahStatusReview');
+$routes->get('/downloadBerita/(:segment)', 'masterBerita::downloadBerita/$1');
 
-
+$routes->post('/uploadHasiReview', 'masterBerita::uploadHasiReview');
+$routes->post('/sendLinkBerita', 'masterBerita::sendLinkBerita');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

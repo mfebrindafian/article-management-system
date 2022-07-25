@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\MasterSatkerModel;
 use App\Models\MasterBeritaModel;
+use App\Models\MasterStatusModel;
 use CodeIgniter\HTTP\Request;
 use CodeIgniter\Session\Session;
 use PHPUnit\Framework\Test;
@@ -13,11 +14,13 @@ class masterBerita extends BaseController
 {
     protected $masterSatkerModel;
     protected $masterBeritaModel;
+    protected $masterStatusModel;
 
     public function __construct()
     {
         $this->masterSatkerModel = new masterSatkerModel();
         $this->masterBeritaModel = new masterBeritaModel();
+        $this->masterStatusModel = new masterStatusModel();
     }
 
     public function entryBerita()
@@ -118,7 +121,7 @@ class masterBerita extends BaseController
 
         date_default_timezone_set('Asia/Jakarta');
         $tanggal = date('d-m-Y');
-        $jam = date('h-i-s');
+        $jam = date('H-i-s');
         $image_upload = [];
 
         if ($foto_berita1->getError() != 4) {
@@ -297,30 +300,151 @@ class masterBerita extends BaseController
     public function reviewBerita()
     {
         $list_berita_all = $this->masterBeritaModel->getAllBerita();
+        $list_berita_upload = [];
+        $list_berita_review = [];
+        $list_berita_publish = [];
+        $list_status = $this->masterStatusModel->getListStatus();
+        $list_satker = $this->masterSatkerModel->getAllSatker();
 
-
+        foreach ($list_berita_all as $berita) {
+            if ($berita['status_kd'] == "1") {
+                $list_berita_upload[] =  $berita;
+            } elseif ($berita['status_kd'] == "2") {
+                $list_berita_review[] =  $berita;
+            } else {
+                $list_berita_publish[] =  $berita;
+            }
+        }
 
         $data = [
             'title' => 'Review Berita',
             'menu' => 'Berita',
             'subMenu' => 'Review Berita',
-
-
+            'berita_semua' => $list_berita_all,
+            'berita_upload' => $list_berita_upload,
+            'berita_review' => $list_berita_review,
+            'berita_publish' => $list_berita_publish,
+            'list_status' => $list_status,
+            'list_satker' => $list_satker
         ];
+        // dd($data);
         return view('Berita/reviewBerita', $data);
+    }
+    public function ubahStatusReview()
+    {
+        $id_berita = $this->request->getVar('id_berita');
+        $data_berita = $this->masterBeritaModel->getBeritaById($id_berita);
+
+        $data_user = session('data_user');
+
+        $this->masterBeritaModel->save([
+            'id' => $id_berita,
+            'user_id' => $data_berita['user_id'],
+            'judul_berita' => $data_berita['judul_berita'],
+            'penulis' => $data_berita['penulis'],
+            'satker_kd' => $data_berita['satker_kd'],
+            'tgl_upload' => $data_berita['tgl_upload'],
+            'status_kd' => 2,
+            'tgl_publish' => null,
+            'link_publish' => '',
+            'editor' => $data_user['username'],
+            'tgl_mulai_review' => date("Y-m-d h:i:s"),
+            'tgl_selesai_review' => null,
+            'file_draft' => $data_berita['file_draft'],
+            'file_review' => null,
+            'image_upload' => $data_berita['image_upload']
+        ]);
+
+        return redirect()->to('/reviewBerita');
+    }
+
+    public function downloadBerita($id_berita)
+    {
+        $data_berita = $this->masterBeritaModel->getBeritaById($id_berita);
+        $file_draft = $data_berita['file_draft'];
+
+        return $this->response->download('berkas/draft/' . $file_draft, null);
     }
 
 
-
-    public function finalReview()
+    public function finalReview($id_berita)
     {
-
+        $data_berita = $this->masterBeritaModel->getBeritaById($id_berita);
+        $list_satker = $this->masterSatkerModel->getAllSatker();
         $data = [
             'title' => 'Final Review',
             'menu' => 'Berita',
             'subMenu' => 'Final Review',
+            'berita' => $data_berita,
+            'list_satker' => $list_satker
 
         ];
         return view('Berita/finalReview', $data);
+    }
+
+    public function uploadHasiReview()
+    {
+        $id_berita = $this->request->getVar('id_berita_review');
+        $data_berita = $this->masterBeritaModel->getBeritaById($id_berita);
+        $data_user = session('data_user');
+
+
+        date_default_timezone_set('Asia/Jakarta');
+        $tanggal = date('d-m-Y');
+        $jam = date('H-i-s');
+
+        $file_berita = $this->request->getFile('file_berita');
+
+        $ekstensi_file = $file_berita->getExtension();
+        $nama_file = ($data_berita['satker_kd'] . '_' .  $data_user['username'] . '_'   . $tanggal . '_' . $jam . '.' . $ekstensi_file);
+        $file_berita->move('berkas/final', $nama_file);
+
+
+        $this->masterBeritaModel->save([
+            'id' => $id_berita,
+            'user_id' => $data_berita['user_id'],
+            'judul_berita' => $data_berita['judul_berita'],
+            'penulis' => $data_berita['penulis'],
+            'satker_kd' => $data_berita['satker_kd'],
+            'tgl_upload' => $data_berita['tgl_upload'],
+            'status_kd' => 3,
+            'tgl_publish' => null,
+            'link_publish' => '',
+            'editor' => $data_user['username'],
+            'tgl_mulai_review' => $data_berita['tgl_mulai_review'],
+            'tgl_selesai_review' => date("Y-m-d h:i:s"),
+            'file_draft' => $data_berita['file_draft'],
+            'file_review' => $nama_file,
+            'image_upload' => $data_berita['image_upload']
+        ]);
+
+        return redirect()->to('/reviewBerita');
+    }
+
+    public function sendLinkBerita()
+    {
+        $id_berita = $this->request->getVar('id_berita_link');
+        $link_berita = $this->request->getVar('link_berita');
+        $data_berita = $this->masterBeritaModel->getBeritaById($id_berita);
+        $data_user = session('data_user');
+
+        $this->masterBeritaModel->save([
+            'id' => $id_berita,
+            'user_id' => $data_berita['user_id'],
+            'judul_berita' => $data_berita['judul_berita'],
+            'penulis' => $data_berita['penulis'],
+            'satker_kd' => $data_berita['satker_kd'],
+            'tgl_upload' => $data_berita['tgl_upload'],
+            'status_kd' => 3,
+            'tgl_publish' => date("Y-m-d h:i:s"),
+            'link_publish' => $link_berita,
+            'editor' => $data_user['username'],
+            'tgl_mulai_review' => $data_berita['tgl_mulai_review'],
+            'tgl_selesai_review' => $data_berita['tgl_selesai_review'],
+            'file_draft' => $data_berita['file_draft'],
+            'file_review' => $data_berita['file_review'],
+            'image_upload' => $data_berita['image_upload']
+        ]);
+        return redirect()->to('/reviewBerita');
     }
 }
