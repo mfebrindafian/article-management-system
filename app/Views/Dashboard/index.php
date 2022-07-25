@@ -157,9 +157,23 @@
 <script>
   var beritaChartBulan = document.getElementById('berita-chart-bulan').getContext('2d');
   var beritaChartTahun = document.getElementById('berita-chart-tahun').getContext('2d');
-  var dataBeritaBulan = [1, 3, 3, 0, 1, 2, 3, 0, 3, 1, 2, 3, 2, 1, 1]
-  var dataBeritaTahun = [12, 25, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 5, 9, 6]
-  var labelSatker = ['BPS RI', 'Provinsi Jambi', 'Kabupaten Kerinci', 'Kabupaten Merangin', 'Kabupaten Sarolangun', 'Kabupaten Batang Hari', 'Kabupaten Muaro Jambi', 'Kabupaten Tanjab Timur', 'Kabupaten Tanjab Barat', 'Kabupaten Tebo', 'Kabupaten Bungo', 'Kota Jambi', 'Kota Sungai Penuh', 'Provinsi Jawa Barat', 'Eksternal BPS']
+  var dataBeritaBulan = [<?php if ($bulan_satker != null) : ?>
+      <?php foreach ($bulan_satker as $bulan) : ?>
+        <?= $bulan; ?>,
+      <?php endforeach; ?>
+    <?php endif; ?>
+  ]
+  var dataBeritaTahun = [<?php if ($tahun_satker != null) : ?>
+      <?php foreach ($tahun_satker as $tahun) : ?>
+        <?= $tahun; ?>,
+      <?php endforeach; ?>
+    <?php endif; ?>
+  ]
+  var labelSatker = [<?php if ($list_satker != null) : ?>
+      <?php foreach ($list_satker as $satker) : ?> "<?= $satker['satker']; ?>",
+      <?php endforeach; ?>
+    <?php endif; ?>
+  ]
   let sumBulan = 0;
   let sumTahun = 0;
   for (let i = 0; i < dataBeritaBulan.length; i++) {
