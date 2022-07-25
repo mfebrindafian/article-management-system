@@ -91,13 +91,13 @@
   var s = (new Date()).getSeconds();
 
   if (h >= 4 && h < 10) {
-    $('#ucapan').html('Selamat Pagi')
+    $('#ucapan').html('Selamat Pagi, ')
   } else if (h >= 10 && h < 15) {
-    $('#ucapan').html('Selamat Siang')
+    $('#ucapan').html('Selamat Siang, ')
   } else if (h >= 15 && h < 18) {
-    $('#ucapan').html('Selamat Sore')
+    $('#ucapan').html('Selamat Sore, ')
   } else if (h >= 18 || h < 4) {
-    $('#ucapan').html('Selamat Malam')
+    $('#ucapan').html('Selamat Malam, ')
   }
 </script>
 <?= $this->endSection(); ?>
