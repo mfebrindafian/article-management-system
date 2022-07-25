@@ -76,7 +76,13 @@
                                             <div class="row opsional-row">
                                                 <?php $image_upload = $berita['image_upload']; ?>
                                                 <?php $data = json_decode($image_upload); ?>
-                                                <?php $foto_all = $data->image; ?>
+                                                <?php if ($data != null) {
+                                                    $foto_all = $data->image;
+                                                } else {
+                                                    $foto_all[0] = 'Foto 1';
+                                                    $foto_all[1] = 'Foto 2';
+                                                    $foto_all[2] = 'Foto 3';
+                                                } ?>
                                                 <div class="col-4">
                                                     <?php if (count($foto_all) == 3) {
                                                         $foto_1 = $foto_all[0];
