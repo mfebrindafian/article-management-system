@@ -42,7 +42,9 @@ class Filters extends BaseConfig
 
         'after' => [
             //'toolbar',
-            'authFilter'  => ['except' => ['/logout', '/logout/*', '/dashboard', '/dashboard/*', '/profile', '/profile/*', '/masterUser', '/masterUser/*',  '/tambahUser', '/tambahUser/*',  '/kelolaLevel', '/kelolaLevel/*', '/kelolaMenu', '/kelolaMenu/*', '/kelolaSubMenu', '/kelolaSubMenu/*',  '/updateMenu', '/updateSubmenu', '/saveMenu', '/savesubmenu', '/editKelolaLevel/*', '/updateKelolaLevel/*', '/saveLevel', '/updateNamaLevel', '/switchLevel', '/showDataUser/*', '/savePegawai',  '/gantiPasswordByUser',  '/updateProfileByUser', '/updateRoleAktivasi', '/tambahLevelUser', '/resetPasswordUser', '/hapusLevelUser', '/entryBerita', '/reviewBerita', '/tambahBerita', '/editBerita/*', '/uploadBerita', '/updateBerita']],
+
+            'authFilter'  => ['except' => ['/logout', '/logout/*', '/dashboard', '/dashboard/*', '/profile', '/profile/*', '/masterUser', '/masterUser/*',  '/tambahUser', '/tambahUser/*',  '/kelolaLevel', '/kelolaLevel/*', '/kelolaMenu', '/kelolaMenu/*', '/kelolaSubMenu', '/kelolaSubMenu/*',  '/updateMenu', '/updateSubmenu', '/saveMenu', '/savesubmenu', '/editKelolaLevel/*', '/updateKelolaLevel/*', '/saveLevel', '/updateNamaLevel', '/switchLevel', '/showDataUser/*', '/savePegawai',  '/gantiPasswordByUser',  '/updateProfileByUser', '/updateRoleAktivasi', '/tambahLevelUser', '/resetPasswordUser', '/hapusLevelUser', '/entryBerita', '/reviewBerita', '/finalReview', '/tambahBerita', '/editBerita', '/uploadBerita', '/updateBerita']],
+
             // 'honeypot',
             // 'secureheaders',
         ],

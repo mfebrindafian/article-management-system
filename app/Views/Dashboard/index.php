@@ -7,13 +7,12 @@
     <div class="container">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0"> Top Navigation <small>Example 3.0</small></h1>
+          <h1 class="m-0"><strong><small id="ucapan"></small> <?= session('fullname'); ?></strong></h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Layout</a></li>
-            <li class="breadcrumb-item active">Top Navigation</li>
+            <li class="breadcrumb-item"><a href="#">...</a></li>
+            <li class="breadcrumb-item active">Home</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -25,65 +24,80 @@
   <div class="content">
     <div class="container">
       <div class="row">
-        <div class="col-lg-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-
-              <p class="card-text">
-                Some quick example text to build on the card title and make up the bulk of the card's
-                content.
-              </p>
-
-              <a href="#" class="card-link">Card link</a>
-              <a href="#" class="card-link">Another link</a>
+        <div class="col-md-12">
+          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block w-100" src="http://res.cloudinary.com/hurricane10/image/upload/v1499778218/img-26_aw9alb.jpg">
+                <div class="carousel-caption d-none d-block w-50">
+                  <h5 class="text-left judul-berita"><strong>Nilai Tukar Petani (NTP) Provinsi Jambi Juni 2022 sebesar 127,31</strong></h5>
+                  <p class="text-left judul-berita">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit, dolorum repellendus enim eveniet laboriosam ab aspernatur consectetur ipsa id magni.</p>
+                  <button href="" class="baca ripple float-left">Baca</button>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="http://res.cloudinary.com/hurricane10/image/upload/v1499778117/img-23_pumtse.jpg">
+                <div class="carousel-caption d-none d-block w-50">
+                  <h5 class="text-left judul-berita"><strong>Nilai Tukar Petani (NTP) Provinsi Jambi Juni 2022 sebesar 127,31</strong></h5>
+                  <p class="text-left judul-berita">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit, dolorum repellendus enim eveniet laboriosam ab aspernatur consectetur ipsa id magni.</p>
+                  <button href="" class="baca ripple float-left">Baca</button>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="http://res.cloudinary.com/hurricane10/image/upload/v1499778109/img-20_ljchnk.jpg">
+                <div class="carousel-caption d-none d-block w-50">
+                  <h5 class="text-left judul-berita"><strong>Nilai Tukar Petani (NTP) Provinsi Jambi Juni 2022 sebesar 127,31</strong></h5>
+                  <p class="text-left judul-berita">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit, dolorum repellendus enim eveniet laboriosam ab aspernatur consectetur ipsa id magni.</p>
+                  <button href="" class="baca ripple float-left">Baca</button>
+                </div>
+              </div>
             </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
+          <!-- <div class="image-container-container">
+            <div class="image-carousel-wrapper">
 
-          <div class="card card-primary card-outline">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
+              <div class="slide">
 
-              <p class="card-text">
-                Some quick example text to build on the card title and make up the bulk of the card's
-                content.
-              </p>
-              <a href="#" class="card-link">Card link</a>
-              <a href="#" class="card-link">Another link</a>
+              </div>
+
+              <div class="slide">
+                
+              </div>
+
+              <div class="slide">
+                
+              </div>
             </div>
-          </div><!-- /.card -->
+          </div> -->
         </div>
-        <!-- /.col-md-6 -->
-        <div class="col-lg-6">
-          <div class="card">
-            <div class="card-header">
-              <h5 class="card-title m-0">Featured</h5>
-            </div>
-            <div class="card-body">
-              <h6 class="card-title">Special title treatment</h6>
-
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-
-          <div class="card card-primary card-outline">
-            <div class="card-header">
-              <h5 class="card-title m-0">Featured</h5>
-            </div>
-            <div class="card-body">
-              <h6 class="card-title">Special title treatment</h6>
-
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <!-- /.col-md-6 -->
       </div>
       <!-- /.row -->
     </div><!-- /.container-fluid -->
   </div>
   <!-- /.content -->
 </div>
+
+<script type="text/javascript">
+  var h = (new Date()).getHours();
+  var m = (new Date()).getMinutes();
+  var s = (new Date()).getSeconds();
+
+  if (h >= 4 && h < 10) {
+    $('#ucapan').html('Selamat Pagi')
+  } else if (h >= 10 && h < 15) {
+    $('#ucapan').html('Selamat Siang')
+  } else if (h >= 15 && h < 18) {
+    $('#ucapan').html('Selamat Sore')
+  } else if (h >= 18 || h < 4) {
+    $('#ucapan').html('Selamat Malam')
+  }
+</script>
 <?= $this->endSection(); ?>

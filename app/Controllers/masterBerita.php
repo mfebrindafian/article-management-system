@@ -309,4 +309,18 @@ class masterBerita extends BaseController
         ];
         return view('Berita/reviewBerita', $data);
     }
+
+
+
+    public function finalReview()
+    {
+
+        $data = [
+            'title' => 'Final Review',
+            'menu' => 'Berita',
+            'subMenu' => 'Final Review',
+
+        ];
+        return view('Berita/finalReview', $data);
+    }
 }

@@ -1,28 +1,29 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<!-- Content Wrapper. Contains page content -->
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <div class="container-fluid">
+    <div class="content-header">
+        <div class="container">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Master User</h1>
-                </div>
+                    <h1 class="m-0">Master User</h1>
+                </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('/dashboard') ?>">Home</a></li>
                         <li class="breadcrumb-item active">Master User</li>
                     </ol>
-                </div>
-            </div>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
         </div><!-- /.container-fluid -->
-    </section>
+    </div>
+    <!-- /.content-header -->
 
-    <!-- Main Content -->
-    <section class="content">
-        <div class="container-fluid">
+    <!-- Main content -->
+    <div class="content">
+        <div class="container">
             <div class="row">
                 <div class="<?= $class_modal_default; ?>">
                     <div class="card">
@@ -128,7 +129,7 @@
                                                     <div class="row">
                                                         <div class="col-12 ">
                                                             <div class="float-right">
-                                                                <button type="button" data-toggle="modal" data-target="#modal-tambah-role" class="btn btn-success btn-sm tombol" data-id style="background-color: #3c4b64; border: none;">Tambah Role</button>
+                                                                <button type="button" data-toggle="modal" data-target="#modal-tambah-role" class="tombol-tambah float-right ripple">Tambah Role</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -235,7 +236,7 @@
                                     <option value="active">Active</option>
                                     <option value="non-active">Non-active</option>
                                 </select>
-                                <button type="button" data-toggle="modal" data-target="#modal-tambah-user" class="btn btn-info tombol" style="background-color: #3c4b64; border:none;"><i class="fas fa-plus mr-2"></i> Tambah</button>
+                                <button type="button" data-toggle="modal" data-target="#modal-tambah-user" class="tombol-tambah float-right ripple"><i class="fas fa-plus mr-2"></i> Tambah</button>
                             </div>
                         </form>
                     </div>
@@ -288,13 +289,16 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
 </div>
+
 
 <!-- MODAL TAMBAH USER -->
 <div class="modal fade" id="modal-tambah-user">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-dialog-scrollable modal-md">
         <form action="<?= base_url('/tambahUser') ?>" method="POST" class="modal-content">
             <div class="modal-header border-0">
                 <h4 class="modal-title">Tambah User</h4>
@@ -304,7 +308,7 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-lg-6 px-4"><label>Pilih Level</label>
+                    <div class="col-lg-12 px-4"><label>Pilih Level</label>
                         <div class="d-flex flex-wrap">
                             <?php $no = 0; ?>
                             <?php if ($level_tersedia != NULL) : ?>
@@ -348,14 +352,11 @@
                             </select>
                         </div>
                     </div>
-
-                    <div class="col-lg-6 px-4 border-left">
-                    </div>
                 </div>
             </div>
             <div class="modal-footer justify-content-between border-0">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn btn-info tombol" style="background-color: #3c4b64; border:none;">Simpan</button>
+                <button type="submit" class="tombol-tambah float-right ripple">Simpan</button>
             </div>
         </form>
         <!-- /.modal-content -->
@@ -391,7 +392,7 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn btn-info tombol" style="background-color: #3c4b64; border:none;">Simpan</button>
+                <button type="submit" class="tombol-tambah float-right ripple">Simpan</button>
             </div>
         </form>
         <!-- /.modal-content -->
