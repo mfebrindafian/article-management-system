@@ -1,33 +1,34 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<!-- Content Wrapper. Contains page content -->
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <div class="container-fluid">
+    <div class="content-header">
+        <div class="container">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Profile</h1>
-                </div>
+                    <h1 class="m-0"> Profile </h1>
+                </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">User Profile</li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('/dashboard') ?>">Home</a></li>
+                        <li class="breadcrumb-item active">Profile</li>
                     </ol>
-                </div>
-            </div>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
         </div><!-- /.container-fluid -->
-    </section>
+    </div>
+    <!-- /.content-header -->
+
     <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
+    <div class="content">
+        <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <!-- Profile Image -->
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
                     <div class="card card-primary">
                         <form action="<?= base_url('/updateProfileByUser'); ?>" method="POST" enctype="multipart/form-data" class="card-body box-profile">
-
                             <input type="hidden" name="id_profile_user" value="<?= $data_profil_user['id']; ?>">
                             <input type="hidden" name="password_user" value="<?= $data_profil_user['password']; ?>">
                             <input type="hidden" name="token" value="<?= $data_profil_user['token']; ?>">
@@ -90,18 +91,16 @@
                         </form>
                         <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
                 </div>
-                <!-- /.col -->
-                <div class="col-md-8">
+                <div class="col-md-1"></div>
 
-
-                </div>
-                <!-- /.col -->
             </div>
-        </div>
-    </section>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
 </div>
+
 <!-- MODAL UBAH PASSWORD -->
 <div class="modal fade" style="padding-top: 8%;" id="modal-ubah-password">
     <div class="modal-dialog">

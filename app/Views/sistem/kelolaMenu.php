@@ -1,28 +1,28 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <div class="container-fluid">
+    <div class="content-header">
+        <div class="container">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Kelola Menu</h1>
-                </div>
+                    <h1 class="m-0">Kelola Menu</h1>
+                </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('/dashboard') ?>">Home</a></li>
                         <li class="breadcrumb-item active">Kelola Menu</li>
                     </ol>
-                </div>
-            </div>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
         </div><!-- /.container-fluid -->
-    </section>
+    </div>
+    <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
+    <div class="content">
+        <div class="container">
             <!-- TABLE HEADER-->
             <div class="card card-primary card-outline" style="border: #3c4b64;">
                 <div class="card-body box-profile">
@@ -30,8 +30,7 @@
                         <form method="" action="" class="col-md-5 py-1">
                             <div class="float-left">
                                 <div class="input-group">
-                                    <button type="button" class="btn btn-info tombol" style="background-color: #3c4b64; border:none;" data-toggle="modal" data-target="#modal-tambah"><i class="fas fa-plus mr-2"></i> Tambah</button>
-                                    <button type="button" class="btn btn-info tombol ml-2" style="background-color: #3c4b64; border:none;"><i class="fas fa-download"></i></button>
+                                    <button type="button" class="tombol-tambah float-right ripple" data-toggle="modal" data-target="#modal-tambah"><i class="fas fa-plus mr-2"></i> Tambah</button>
                                 </div>
                             </div>
                         </form>
@@ -100,114 +99,113 @@
                     <!-- /.card -->
                 </div>
             </div>
-            <!-- /.row -->
-        </div>
-    </section>
-
-
-
-
-    <!-- MODAL TAMBAH MENU -->
-    <div class="modal fade" id="modal-tambah">
-        <div class="modal-dialog">
-            <form action="<?= base_url('/saveMenu') ?>" method="POST" class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Tambah Menu</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>Nama</label>
-                        <input type="nama_menu" name="nama_menu" class="form-control" placeholder="Nama Menu ...">
-                    </div>
-                    <div class="form-group">
-                        <label>Link</label>
-                        <input type="text" name="link" class="form-control" placeholder="Link ...">
-                    </div>
-                    <div class="form-group">
-                        <label>Icon</label>
-                        <input type="text" name="icon" class="form-control" placeholder="Nama Icon ...">
-                    </div>
-                    <div class="form-group">
-                        <label>Urutan</label>
-                        <input type="number" name="urutan" class="form-control" placeholder="Urutan ...">
-                    </div>
-                    <div class="form-group">
-                        <label>Is Active</label>
-                        <select name="is_active" class="form-control mr-2" style="border-radius: 5px;">
-                            <option selected disabled>- Is Active -</option>
-                            <option value="Y">Active</option>
-                            <option value="N">Non-active</option>
-                        </select>
-                    </div>
-
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-info tombol" style="background-color: #3c4b64; border:none;">Simpan</button>
-                </div>
-            </form>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
+        </div><!-- /.container-fluid -->
     </div>
-    <!-- /.modal -->
+    <!-- /.content -->
+</div>
 
 
 
 
-    <!-- MODAL EDIT MENU -->
 
-    <div class="modal fade" id="modal-edit">
-        <div class="modal-dialog">
-            <form action="<?= base_url('/updateMenu') ?>" method="POST" class="modal-content">
-                <input type="text" name="id" id="id_menu" class="d-none form-control">
-                <div class="modal-header">
-                    <h4 class="modal-title">Edit Menu</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+<!-- MODAL TAMBAH MENU -->
+<div class="modal fade" id="modal-tambah">
+    <div class="modal-dialog">
+        <form action="<?= base_url('/saveMenu') ?>" method="POST" class="modal-content">
+            <div class="modal-header border-0">
+                <h4 class="modal-title">Tambah Menu</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Nama</label>
+                    <input type="nama_menu" name="nama_menu" class="form-control" placeholder="Nama Menu ...">
+                </div>
+                <div class="form-group">
+                    <label>Link</label>
+                    <input type="text" name="link" class="form-control" placeholder="Link ...">
+                </div>
+                <div class="form-group">
+                    <label>Icon</label>
+                    <input type="text" name="icon" class="form-control" placeholder="Nama Icon ...">
+                </div>
+                <div class="form-group">
+                    <label>Urutan</label>
+                    <input type="number" name="urutan" class="form-control" placeholder="Urutan ...">
+                </div>
+                <div class="form-group">
+                    <label>Is Active</label>
+                    <select name="is_active" class="form-control mr-2" style="border-radius: 5px;">
+                        <option selected disabled>- Is Active -</option>
+                        <option value="Y">Active</option>
+                        <option value="N">Non-active</option>
+                    </select>
                 </div>
 
-                <div id="modal" class="modal-body">
-                    <div class="form-group">
-                        <label>Nama</label>
-                        <input type="nama_menu" id="nama_menu" name="nama_menu" class="form-control" placeholder="Nama Menu ...">
-                    </div>
-                    <div class="form-group">
-                        <label>Link</label>
-                        <input type="text" id="link" name="link" class="form-control" placeholder="Link ...">
-                    </div>
-                    <div class="form-group">
-                        <label>Icon</label>
-                        <input type="text" id="icon" name="icon" class="form-control" placeholder="Icon ...">
-                    </div>
-                    <div class="form-group">
-                        <label>Urutan</label>
-                        <input type="number" id="urutan" name="urutan" class="form-control" placeholder="Urutan ...">
-                    </div>
-                    <div class="form-group">
-                        <label>Is Active</label>
-                        <select id="is_active" name="is_active" class="form-control mr-2" style="border-radius: 5px;">
-                            <option value="Y">Active</option>
-                            <option value="N">Non-active</option>
-                        </select>
-                    </div>
-
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-info tombol" style="background-color: #3c4b64; border:none;">Simpan</button>
-                </div>
-            </form>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
+            </div>
+            <div class="modal-footer justify-content-between border-0">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                <button type="submit" class="tombol-tambah float-right ripple">Simpan</button>
+            </div>
+        </form>
+        <!-- /.modal-content -->
     </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 
-    <!-- /.modal -->
+
+
+
+<!-- MODAL EDIT MENU -->
+
+<div class="modal fade" id="modal-edit">
+    <div class="modal-dialog">
+        <form action="<?= base_url('/updateMenu') ?>" method="POST" class="modal-content">
+            <input type="text" name="id" id="id_menu" class="d-none form-control">
+            <div class="modal-header border-0">
+                <h4 class="modal-title">Edit Menu</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div id="modal" class="modal-body">
+                <div class="form-group">
+                    <label>Nama</label>
+                    <input type="nama_menu" id="nama_menu" name="nama_menu" class="form-control" placeholder="Nama Menu ...">
+                </div>
+                <div class="form-group">
+                    <label>Link</label>
+                    <input type="text" id="link" name="link" class="form-control" placeholder="Link ...">
+                </div>
+                <div class="form-group">
+                    <label>Icon</label>
+                    <input type="text" id="icon" name="icon" class="form-control" placeholder="Icon ...">
+                </div>
+                <div class="form-group">
+                    <label>Urutan</label>
+                    <input type="number" id="urutan" name="urutan" class="form-control" placeholder="Urutan ...">
+                </div>
+                <div class="form-group">
+                    <label>Is Active</label>
+                    <select id="is_active" name="is_active" class="form-control mr-2" style="border-radius: 5px;">
+                        <option value="Y">Active</option>
+                        <option value="N">Non-active</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="modal-footer justify-content-between border-0">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                <button type="submit" class="tombol-tambah float-right ripple">Simpan</button>
+            </div>
+        </form>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div>
 <!-- SweetAlert2 -->
 <script src="<?= base_url('/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>

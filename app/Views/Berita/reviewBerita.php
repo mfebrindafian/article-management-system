@@ -59,8 +59,8 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-4"></div>
-                                    <div class="col-8 d-flex justify-content-end">
+                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-8 pt-2 d-flex justify-content-end">
                                         <button id="btn-review" class="tombol-tambah float-right ripple" data-toggle="modal" data-target="#modal-review" data-id_berita="<?= 1 ?>">Review</button>
                                     </div>
                                 </div>
@@ -86,10 +86,10 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-4 d-flex align-items-center">
+                                    <div class="col-sm-4 d-flex align-items-center">
                                         <small class="text-gray judul-berita">Direview oleh <strong>Budi</strong></small>
                                     </div>
-                                    <div class="col-8 d-flex justify-content-end">
+                                    <div class="col-sm-8 pt-2 d-flex justify-content-end">
                                         <a href="#" class="edit float-right ripple mr-3">Download</a>
                                         <button class="tombol-tambah float-right ripple">Publish</button>
                                     </div>
@@ -116,17 +116,37 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-4 d-flex align-items-center">
+                                    <div class="col-sm-4 d-flex align-items-center">
                                         <small class="text-gray judul-berita">Direview oleh <strong>Budi</strong></small>
                                     </div>
-                                    <div class="col-8 d-flex justify-content-end">
-                                        <a href="#" class="edit float-right ripple mr-3">visit</a>
+                                    <div class="col-sm-8 pt-2 d-flex justify-content-end">
+                                        <a href="#" class="edit float-right ripple mr-3">Visit</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- JIKA BELOM PUNYO LINK -->
+                        <hr class="mt-4">
+                        <div class="row ">
+                            <div class="col-12 pb-0 mb-0">
+                                <input type="text" name="id_berita" class="d-none" value="">
+                                <div class="row">
+                                    <div class="col-12 ">
+                                        <div class="form-group mb-0">
+                                            <div class="row">
+                                                <div class="col-9"><input type="link" class="form-control" id="link" name="link" placeholder="Masukkan link berita" /></div>
+                                                <div class="col-3"> <button type="submit" class="tombol-tambah float-right ripple h-100">Simpan</button></div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- JIKA BELOM PUNYO LINK -->
                     </div>
                 </div>
+
             </div>
             <!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -135,11 +155,11 @@
 </div>
 
 
-<!-- MODAL revieberita -->
+<!-- MODAL reviewberita -->
 <div class="modal fade" id="modal-review" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document" style="top: 13%;">
         <form class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header border-0">
                 <h5 class="modal-title" id="exampleModalLabel">Review Berita</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -149,9 +169,9 @@
                 <input type="text" id="id_berita">
                 Yakin Ingin Mereview Berita Ini?
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                <button type="submit" class="btn btn-primary">Oke</button>
+            <div class="modal-footer border-0">
+                <button type="submit" class="tombol-tambah float-right ripple h-100" data-dismiss="modal" style="background-color: gray;">Batal</button>
+                <button type="submit" class="tombol-tambah float-right ripple h-100">Oke</button>
             </div>
         </form>
     </div>
