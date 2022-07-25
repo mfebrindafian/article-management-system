@@ -26,7 +26,7 @@
             <div class="row mb-3">
                 <div class="col-3">
                     <form action="" method="POST" class=" input-group input-group-md">
-                        <input type="search" name="table_search" class="form-control" style="padding: 6px 20px 6px 20px;" placeholder="Search" />
+                        <input type="search" id="pencarian" name="table_search" class="form-control" style="padding: 6px 20px 6px 20px;" placeholder="Search" />
                     </form>
                 </div>
                 <div class="col-3"></div>
@@ -38,7 +38,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body overflow-auto">
-                            <table class="table align-middle mb-0 bg-white">
+                            <table class="table align-middle mb-0 bg-white" id="tabelData">
                                 <thead class="bg-light">
                                     <tr>
                                         <th>#</th>
@@ -108,6 +108,35 @@
     <!-- /.content -->
 </div>
 
+<script type="text/javascript">
+    $('#tabelData').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": true,
+        'ordering': false,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "pageLength": 10
 
+    });
+
+    $('.filter').on('change', function() {
+        $('#tabelData').DataTable().search(
+            $(this).val()
+        ).draw();
+    });
+
+    $('#tabelData_wrapper').children().first().addClass('d-none')
+    $('.dataTables_paginate').addClass('Pager2').addClass('float-right')
+    $('.dataTables_info').addClass('text-sm text-gray py-2')
+    $('.dataTables_paginate').parent().parent().addClass('card-footer clearfix')
+
+    $(document).on('keyup', '#pencarian', function() {
+        $('#tabelData').DataTable().search(
+            $(this).val()
+        ).draw();
+    })
+</script>
 
 <?= $this->endSection(); ?>

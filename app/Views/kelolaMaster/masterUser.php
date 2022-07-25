@@ -247,9 +247,9 @@
                                     <input type="search" id="pencarian" name="table_search" class="form-control float-right" placeholder="Search ..." />
                                 </div>
 
-                                <form action="/showDataUser" method="POST">
+                                <form action="<?= base_url('/showDataUser') ?>" method="POST">
                                     <!-- /.card-header -->
-                                    <div class="card-body table-responsive px-0 overflow-hidden">
+                                    <div class="card-body table-responsive px-0 pb-0 overflow-hidden">
                                         <table class="table table-hover text-nowrap" id="tabelData">
                                             <thead>
                                                 <tr>
