@@ -25,58 +25,76 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img class="d-block w-100" src="http://res.cloudinary.com/hurricane10/image/upload/v1499778218/img-26_aw9alb.jpg">
-                <div class="carousel-caption d-none d-block w-50">
-                  <h5 class="text-left judul-berita"><strong>Nilai Tukar Petani (NTP) Provinsi Jambi Juni 2022 sebesar 127,31</strong></h5>
-                  <p class="text-left judul-berita">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit, dolorum repellendus enim eveniet laboriosam ab aspernatur consectetur ipsa id magni.</p>
-                  <button href="" class="baca ripple float-left">Baca</button>
+          <?php if ($berita_publish != null) : ?>
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+              <?php if ($berita_publish[count($berita_publish) - 1] != null) : ?>
+                <?php $image_upload1 = $berita_publish[count($berita_publish) - 1]['image_upload']; ?>
+                <?php $data1 = json_decode($image_upload1); ?>
+                <?php if ($data1 != null) {
+                  $foto_1 = $data1->image;
+                } else {
+                  $foto_1[0] = 'default.jpg';
+                } ?>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img class="d-block w-100" src="<?= base_url('/berkas/foto/' . $foto_1[0]); ?>">
+                    <div class="carousel-caption d-none d-block w-50">
+                      <h5 class="text-left judul-berita"><strong><?= $berita_publish[count($berita_publish) - 1]['judul_berita']; ?></strong></h5>
+                      <!-- <p class="text-left judul-berita">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit, dolorum repellendus enim eveniet laboriosam ab aspernatur consectetur ipsa id magni.</p> -->
+                      <a target="_blank" href="<?= $berita_publish[count($berita_publish) - 1]['link_publish']; ?>" class="baca ripple float-left">Baca</a>
+                    </div>
+                  </div>
+                <?php endif; ?>
+                <?php if (count($berita_publish) > 1) : ?>
+                  <?php if ($berita_publish[count($berita_publish) - 2] != null) : ?>
+                    <?php $image_upload2 = $berita_publish[count($berita_publish) - 2]['image_upload']; ?>
+                    <?php $data2 = json_decode($image_upload2); ?>
+                    <?php if ($data2 != null) {
+                      $foto_2 = $data2->image;
+                    } else {
+                      $foto_2[0] = 'default.jpg';
+                    } ?>
+                    <div class="carousel-item">
+                      <img class="d-block w-100" src="<?= base_url('/berkas/foto/' . $foto_2[0]); ?>">
+                      <div class="carousel-caption d-none d-block w-50">
+                        <h5 class="text-left judul-berita"><strong><?= $berita_publish[count($berita_publish) - 2]['judul_berita']; ?></strong></h5>
+                        <!-- <p class="text-left judul-berita">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit, dolorum repellendus enim eveniet laboriosam ab aspernatur consectetur ipsa id magni.</p> -->
+                        <a target="_blank" href="<?= $berita_publish[count($berita_publish) - 2]['link_publish']; ?>" class="baca ripple float-left">Baca</a>
+                      </div>
+                    </div>
+                  <?php endif; ?>
+                <?php endif; ?>
+                <?php if (count($berita_publish) > 2) : ?>
+                  <?php if ($berita_publish[count($berita_publish) - 3] != null) : ?>
+                    <?php $image_upload3 = $berita_publish[count($berita_publish) - 3]['image_upload']; ?>
+                    <?php $data3 = json_decode($image_upload3); ?>
+                    <?php if ($data3 != null) {
+                      $foto_3 = $data3->image;
+                    } else {
+                      $foto_3[0] = 'default.jpg';
+                    } ?>
+                    <div class="carousel-item">
+                      <img class="d-block w-100" src="<?= base_url('/berkas/foto/' . $foto_3[0]); ?>">
+                      <div class="carousel-caption d-none d-block w-50">
+                        <h5 class="text-left judul-berita"><strong><?= $berita_publish[count($berita_publish) - 3]['judul_berita']; ?></strong></h5>
+                        <!-- <p class="text-left judul-berita">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit, dolorum repellendus enim eveniet laboriosam ab aspernatur consectetur ipsa id magni.</p> -->
+                        <a target="_blank" href="<?= $berita_publish[count($berita_publish) - 3]['link_publish']; ?>" class="baca ripple float-left">Baca</a>
+                      </div>
+                    </div>
+                  <?php endif; ?>
+                <?php endif; ?>
                 </div>
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src="http://res.cloudinary.com/hurricane10/image/upload/v1499778117/img-23_pumtse.jpg">
-                <div class="carousel-caption d-none d-block w-50">
-                  <h5 class="text-left judul-berita"><strong>Nilai Tukar Petani (NTP) Provinsi Jambi Juni 2022 sebesar 127,31</strong></h5>
-                  <p class="text-left judul-berita">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit, dolorum repellendus enim eveniet laboriosam ab aspernatur consectetur ipsa id magni.</p>
-                  <button href="" class="baca ripple float-left">Baca</button>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src="http://res.cloudinary.com/hurricane10/image/upload/v1499778109/img-20_ljchnk.jpg">
-                <div class="carousel-caption d-none d-block w-50">
-                  <h5 class="text-left judul-berita"><strong>Nilai Tukar Petani (NTP) Provinsi Jambi Juni 2022 sebesar 127,31</strong></h5>
-                  <p class="text-left judul-berita">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit, dolorum repellendus enim eveniet laboriosam ab aspernatur consectetur ipsa id magni.</p>
-                  <button href="" class="baca ripple float-left">Baca</button>
-                </div>
-              </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
-          </div>
-          <!-- <div class="image-container-container">
-            <div class="image-carousel-wrapper">
+          <?php endif; ?>
 
-              <div class="slide">
-
-              </div>
-
-              <div class="slide">
-                
-              </div>
-
-              <div class="slide">
-                
-              </div>
-            </div>
-          </div> -->
         </div>
       </div>
 
@@ -96,7 +114,7 @@
             <div class="card px-5">
               <div class="card-header border-0">
                 <div class="d-flex justify-content-between mt-2">
-                  <h4><strong>Chart Berita Bulan ini</strong></h4>
+                  <h4><strong>Chart Berita Bulan <?= date('F'); ?></strong></h4>
                   <h5 class="float-right"><small>total</small> <strong class="text-cyan" id="total-bulan"></strong></h5>
                 </div>
               </div>

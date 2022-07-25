@@ -63,7 +63,18 @@ class masterDashboard extends BaseController
                 $jml_tahun_satker[$i] = 0;
             }
         }
-       // dd($jml_tahun_satker);
+        // dd($jml_tahun_satker);
+
+        $list_berita_all = $this->masterBeritaModel->getAllBerita();
+        $list_berita_publish = [];
+
+
+
+        foreach ($list_berita_all as $berita) {
+            if ($berita['status_kd'] == "3") {
+                $list_berita_publish[] =  $berita;
+            }
+        }
 
         $data = [
             'title' => 'Dashboard',
@@ -71,8 +82,10 @@ class masterDashboard extends BaseController
             'subMenu' => '',
             'list_satker' => $list_satker,
             'bulan_satker' => $jml_bulan_satker,
-            'tahun_satker' => $jml_tahun_satker
+            'tahun_satker' => $jml_tahun_satker,
+            'berita_publish' => $list_berita_publish,
         ];
+        //dd($data);
 
         return view('Dashboard/index', $data);
     }
