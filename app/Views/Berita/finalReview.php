@@ -29,7 +29,17 @@
                     <div class="card py-5">
                         <div class="row">
                             <div class="col-md-5 text-center">
-                                <img class="mb-4" src="<?= base_url('/images/beritadefault.jpg') ?>" alt="">
+                                <img id="show-gallery" class="mb-4" src="<?= base_url('/images/beritadefault.jpg') ?>" alt="">
+                                <div id="galley" class="d-none">
+                                    <ul class="pictures">
+                                        <li>
+                                            <img data-original="<?= base_url('/images/beritadefault.jpg') ?>" src="<?= base_url('/images/beritadefault.jpg') ?>">
+                                        </li>
+                                        <li>
+                                            <img data-original="http://res.cloudinary.com/hurricane10/image/upload/v1499778109/img-20_ljchnk.jpg" src="http://res.cloudinary.com/hurricane10/image/upload/v1499778109/img-20_ljchnk.jpg">
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                             <?php if ($berita != null) : ?>
                                 <div class="col-md-7 px-5">
@@ -92,7 +102,40 @@
 
 <script src="<?= base_url('/plugins/jquery/jquery.min.js') ?>"></script>
 <script src="<?= base_url('/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
+<!-- GALERY IMAGE -->
+<script src="<?= base_url('/js/viewer.min.js') ?>"></script>
+<script>
+    var viewer = new Viewer(document.getElementById('galley'), {
+        url: 'data-original',
+        toolbar: {
+            oneToOne: true,
 
+            prev: function() {
+                viewer.prev(true);
+            },
+
+            play: true,
+
+            next: function() {
+                viewer.next(true);
+            },
+
+            download: function() {
+                const a = document.createElement('a');
+
+                a.href = viewer.image.src;
+                a.download = viewer.image.alt;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            },
+        },
+    });
+
+    $(document).on('click', '#show-gallery', function() {
+        viewer.show()
+    })
+</script>
 
 <script>
     var chooseBtn = document.getElementById('chooseBtn');

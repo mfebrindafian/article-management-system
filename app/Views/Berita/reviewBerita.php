@@ -1,6 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -19,7 +20,6 @@
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
 
     <!-- Main content -->
     <div class="content pb-5">
@@ -46,15 +46,15 @@
                         <div class="col-lg-6 mb-4">
                             <div class="bg-white rounded shadow p-3">
                                 <div class="row">
-                                    <div class="col-4">
-                                        <div class=" gambar-container shadow">
-                                            <img class="" src="<?= base_url('/images/beritadefault.jpg') ?>" alt="">
+                                    <div data-foto1="<?= base_url('/images/beritadefault.jpg') ?>" class="col-4 border-0 bg-transparent">
+                                        <div class="gambar-container shadow pistures">
+                                            <img data-original="<?= base_url('/images/beritadefault.jpg') ?>" src="<?= base_url('/images/beritadefault.jpg') ?>">
                                         </div>
                                     </div>
                                     <div class="col-8 d-flex flex-column justify-content-between">
                                         <div class="mt-2 d-flex flex-column">
                                             <h5><strong class="judul-berita"><?= $berita['judul_berita']; ?></strong></h5>
-                                            <small><?= $berita['penulis']; ?>| [<?= $berita['satker_kd']; ?>] <?php foreach ($list_satker as $satker) {
+                                            <small><?= $berita['penulis']; ?> | [<?= $berita['satker_kd']; ?>] <?php foreach ($list_satker as $satker) {
                                                                                                                     if ($satker['kd_satker'] == $berita['satker_kd']) {
                                                                                                                         echo $satker['satker'];
                                                                                                                     }
@@ -121,14 +121,11 @@
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
-
-
             </div>
-
         </div>
     </div>
-
 </div>
+
 
 
 <!-- MODAL reviewberita -->
@@ -154,12 +151,14 @@
     </div>
 </div>
 
+
 <script>
     $(document).on('click', '#btn-review', function() {
         $('#id_berita').val($(this).data('id_berita'));
         $('#judul_berita').text($(this).data('judul_berita'));
     })
 </script>
+
 
 
 <?= $this->endSection(); ?>
