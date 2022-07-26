@@ -39,4 +39,14 @@ class MasterBeritaModel extends Model
             ->get()
             ->getResultArray();
     }
+
+    public function getAllBeritaBySatker($satker_kd)
+    {
+        return $this
+            ->table('mst_berita')
+            ->select('*')
+            ->where('satker_kd', $satker_kd)
+            ->get()
+            ->getResultArray();
+    }
 }
