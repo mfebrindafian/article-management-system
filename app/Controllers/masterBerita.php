@@ -311,6 +311,8 @@ class masterBerita extends BaseController
                 $list_berita_upload[] =  $berita;
             } elseif ($berita['status_kd'] == "2") {
                 $list_berita_review[] =  $berita;
+            } elseif ($berita['status_kd'] == "3" && $berita['link_publish'] == '') {
+                $list_berita_siap_publish[] =  $berita;
             } else {
                 $list_berita_publish[] =  $berita;
             }
@@ -324,6 +326,7 @@ class masterBerita extends BaseController
             'berita_upload' => $list_berita_upload,
             'berita_review' => $list_berita_review,
             'berita_publish' => $list_berita_publish,
+            'berita_siap_publish' => $list_berita_siap_publish,
             'list_status' => $list_status,
             'list_satker' => $list_satker
         ];

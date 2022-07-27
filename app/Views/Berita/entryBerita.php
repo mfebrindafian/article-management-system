@@ -72,10 +72,12 @@
                                                     <?php endforeach; ?>
                                                 </td>
                                                 <td>
-                                                    <?php if ($berita['status_kd'] == 1) {
-                                                        echo '<span class="uploaded">Uploaded</span>';
-                                                    } elseif ($berita['status_kd'] == 2) {
+                                                    <?php if ($berita['status_kd'] == "1") {
+                                                        echo '<span class="uploaded">Ready to review</span>';
+                                                    } elseif ($berita['status_kd'] == "2") {
                                                         echo '<span class="reviewing">Reviewing</span>';
+                                                    } elseif ($berita['status_kd'] == "3" && $berita['link_publish'] == '') {
+                                                        echo '<span class="ready-publish">Ready to publish</span>';
                                                     } else {
                                                         echo '<span class="published">Published</span>';
                                                     } ?>

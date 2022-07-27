@@ -28,23 +28,11 @@
                 <div class="col-lg-12">
                     <div class="card py-5">
                         <div class="row">
-                            <div class="col-md-5 text-center">
-                                <img id="show-gallery" class="mb-4" src="<?= base_url('/images/beritadefault.jpg') ?>" alt="">
-                                <div id="galley" class="d-none">
-                                    <ul class="pictures">
-                                        <li>
-                                            <img data-original="<?= base_url('/images/beritadefault.jpg') ?>" src="<?= base_url('/images/beritadefault.jpg') ?>">
-                                        </li>
-                                        <li>
-                                            <img data-original="http://res.cloudinary.com/hurricane10/image/upload/v1499778109/img-20_ljchnk.jpg" src="http://res.cloudinary.com/hurricane10/image/upload/v1499778109/img-20_ljchnk.jpg">
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                             <?php if ($berita != null) : ?>
-                                <div class="col-md-7 px-5">
+                                <form action="<?= base_url('/uploadHasiReview'); ?>" method="post" enctype="multipart/form-data" class="col-md-12 px-5">
                                     <div class="mt-2 d-flex flex-column">
-                                        <h4><strong class="judul-berita"><?= $berita['judul_berita']; ?></strong></h4>
+                                        <textarea name="judul_berita" rows="1"><?= $berita['judul_berita']; ?></textarea>
+
                                         <small><?= $berita['penulis']; ?>| [<?= $berita['satker_kd']; ?>] <?php foreach ($list_satker as $satker) {
                                                                                                                 if ($satker['kd_satker'] == $berita['satker_kd']) {
                                                                                                                     echo $satker['satker'];
@@ -68,26 +56,61 @@
                                             <hr>
                                         </div>
                                     </div>
-                                    <form action="<?= base_url('/uploadHasiReview'); ?>" method="post" class="form-group mt-2" enctype="multipart/form-data">
+                                    <div class="form-group mt-2">
+                                        <div class="col-sm-12 text-center px-5">
+                                            <div class="row mb-2 ">
+                                                <div class="col-12 text-center">
+                                                    <strong>Pilih Foto</strong>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 mb-3 px-5">
+                                                    <label for="foto1" id="toggle-pilih" class="pilih-gambar w-100">
+                                                        <i class="fas fa-check position-absolute d-none"></i>
+                                                        <img class="mb-4 " src="<?= base_url('/images/beritadefault.jpg') ?>" alt="">
+                                                        <input class="d-none" type="checkbox" name="foto1" id="foto1">
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4 mb-3 px-5">
+                                                    <label for="foto2" id="toggle-pilih" class="pilih-gambar w-100">
+                                                        <i class="fas fa-check position-absolute d-none"></i>
+                                                        <img class="mb-4 " src="<?= base_url('/images/beritadefault.jpg') ?>" alt="">
+                                                        <input class="d-none" type="checkbox" name="foto2" id="foto2">
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4 mb-3 px-5">
+                                                    <label for="foto3" id="toggle-pilih" class="pilih-gambar w-100">
+                                                        <i class="fas fa-check position-absolute d-none"></i>
+                                                        <img class="mb-4" src="<?= base_url('/images/beritadefault.jpg') ?>" alt="">
+                                                        <input class="d-none" type="checkbox" name="foto3" id="foto3">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-12 text-center">
+                                                    <a href="#showPreview" id="show-gallery">Lihat Preview</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <input type="hidden" name="id_berita_review" value="<?= $berita['id']; ?>">
+
                                         <div class="row">
-                                            <!-- <div class="col-md-4"></div> -->
-                                            <div class="col-md-12">
+                                            <div class="col-md-4"></div>
+                                            <div class="col-md-4">
                                                 <label style="width: 100%;" class="choose-btn ripple mt-1 text-center" id="chooseBtn" for="file_berita">Upload Hasil Review</label>
                                                 <input type="file" class="form-control d-none" id="file_berita" name="file_berita" accept=".doc, .docx" required />
                                             </div>
 
-                                            <!-- <div class="col-md-4"></div> -->
+                                            <div class="col-md-4"></div>
                                         </div>
+
                                         <div class="row">
-                                            <div class="col-md-5"></div>
-                                            <div class="col-md-2">
-                                                <button type="submit" id="btn-submit" class="tombol-tambah float-right ripple shadow">Simpan</button>
+                                            <div class="col-md-12 text-center">
+                                                <button type="submit" id="btn-submit" class="tombol-tambah ripple shadow">Simpan</button>
                                             </div>
-                                            <div class="col-md-5"></div>
                                         </div>
-                                    </form>
-                                </div>
+                                    </div>
+                                </form>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -99,6 +122,16 @@
     <!-- /.content -->
 </div>
 
+<div id="galley" class="d-none">
+    <ul class="pictures">
+        <li>
+            <img data-original="<?= base_url('/images/beritadefault.jpg') ?>" src="<?= base_url('/images/beritadefault.jpg') ?>">
+        </li>
+        <li>
+            <img data-original="http://res.cloudinary.com/hurricane10/image/upload/v1499778109/img-20_ljchnk.jpg" src="http://res.cloudinary.com/hurricane10/image/upload/v1499778109/img-20_ljchnk.jpg">
+        </li>
+    </ul>
+</div>
 
 <script src="<?= base_url('/plugins/jquery/jquery.min.js') ?>"></script>
 <script src="<?= base_url('/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
@@ -158,6 +191,25 @@
             icon: "warning",
             showConfirmButton: true,
         });
+    });
+</script>
+
+<script>
+    $(document).on('change', 'input[type="checkbox"]', function() {
+        if ($(this).prop('checked')) {
+            $(this).parent().addClass('terpilih')
+            $(this).prev().prev().removeClass('d-none')
+        } else {
+            $(this).parent().removeClass('terpilih')
+            $(this).prev().prev().addClass('d-none')
+        }
+    })
+
+    $('textarea').each(function() {
+        this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
+    }).on('input', function() {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
     });
 </script>
 

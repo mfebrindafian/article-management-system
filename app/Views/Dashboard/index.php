@@ -112,26 +112,66 @@
         <div class="col-md-12">
           <div class=" mb-3">
             <div class="card px-5">
-              <div class="card-header border-0">
-                <div class="d-flex justify-content-between mt-2">
-                  <h4><strong>Chart Berita Bulan <?= date('F'); ?></strong></h4>
-                  <h5 class="float-right"><small>total</small> <strong class="text-cyan" id="total-bulan"></strong></h5>
+              <div class="row my-4">
+                <div class="col-12">
+                  <a href="#ChartPerbulan" id="btnBulan" class="btn btn-link btn-sm btn-rounded ripple berita-active shadow mr-2">
+                    Chart Bulan Ini
+                  </a>
+                  <a href="#ChartPertahun" id="btnTahun" class="btn btn-link btn-sm btn-rounded ripple filter-berita mr-2">
+                    Chart Tahun Ini
+                  </a>
                 </div>
               </div>
-              <div class="card-body">
-                <div class="d-flex">
-                  <p class="d-flex flex-column">
-                    <span class="text-bold text-lg"></span>
-                    <span class="text-gray"><em>Total Berita Per Satuan Kerja BPS Bulan ini</em></span>
-                  </p>
+              <div id="containerBulan">
+                <div class="card-header border-0">
+                  <div class="d-flex justify-content-between mt-2">
+                    <h4><strong>Chart Berita Bulan <?= date('F'); ?></strong></h4>
+                    <h5 class="float-right"><small>total</small> <strong class="text-cyan" id="total-bulan"></strong></h5>
+                  </div>
                 </div>
+                <div class="card-body">
+                  <div class="d-flex">
+                    <p class="d-flex flex-column">
+                      <span class="text-bold text-lg"></span>
+                      <span class="text-gray"><em>Total Berita Per Satuan Kerja BPS Bulan ini</em></span>
+                    </p>
+                  </div>
 
-                <div class="position-relative mb-4">
-                  <canvas id="berita-chart-bulan" style="max-height: 540px;"></canvas>
-                </div>
-                <div class="d-flex flex-row justify-content-end">
+                  <div class="position-relative mb-4">
+                    <canvas id="berita-chart-bulan" style="max-height: 540px;"></canvas>
+                  </div>
+                  <div class="d-flex flex-row justify-content-end">
+                  </div>
                 </div>
               </div>
+
+              <!-- BATAS ANTAR CHART -->
+              <div id="containerTahun" class="d-none">
+                <div class="card-header border-0">
+                  <div class="d-flex justify-content-between mt-2">
+                    <h4><strong>Chart Berita Tahun <?= date('Y'); ?></strong></h4>
+                    <h5 class="float-right"><small>total</small> <strong class="text-cyan" id="total-tahun"></strong></h5>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="d-flex">
+                    <p class="d-flex flex-column">
+                      <span class="text-bold text-lg"></span>
+                      <span class="text-gray"><em>Total Berita Per Satuan Kerja BPS Tahun <?= date('Y'); ?></em></span>
+                    </p>
+                  </div>
+
+                  <div class="position-relative mb-4">
+                    <canvas id="berita-chart-tahun" style="max-height: 540px;"></canvas>
+                  </div>
+                  <div class="d-flex flex-row justify-content-end">
+                  </div>
+                </div>
+              </div>
+
+
+
+
             </div>
           </div>
         </div>
@@ -141,26 +181,7 @@
         <div class="col-md-12">
           <div class=" mb-3">
             <div class="card px-5">
-              <div class="card-header border-0">
-                <div class="d-flex justify-content-between mt-2">
-                  <h4><strong>Chart Berita Tahun <?= date('Y'); ?></strong></h4>
-                  <h5 class="float-right"><small>total</small> <strong class="text-cyan" id="total-tahun"></strong></h5>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="d-flex">
-                  <p class="d-flex flex-column">
-                    <span class="text-bold text-lg"></span>
-                    <span class="text-gray"><em>Total Berita Per Satuan Kerja BPS Tahun <?= date('Y'); ?></em></span>
-                  </p>
-                </div>
 
-                <div class="position-relative mb-4">
-                  <canvas id="berita-chart-tahun" style="max-height: 540px;"></canvas>
-                </div>
-                <div class="d-flex flex-row justify-content-end">
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -203,83 +224,105 @@
   $('#total-bulan').html(sumBulan)
   $('#total-tahun').html(sumTahun)
 
-  var chartTahun = new Chart(beritaChartBulan, {
-    type: 'horizontalBar',
-    data: {
-      labels: labelSatker,
-      datasets: [{
-        data: dataBeritaBulan,
-        backgroundColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(75, 192, 192, 1)',
-        ],
-      }]
-    },
-    options: {
-      legend: false,
-      responsive: true,
-      // maintainAspectRatio: true,
-      scales: {
-        xAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
-  });
+  bulan()
 
-  var chartTahun = new Chart(beritaChartTahun, {
-    type: 'horizontalBar',
-    data: {
-      labels: labelSatker,
-      datasets: [{
-        data: dataBeritaTahun,
-        backgroundColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(75, 192, 192, 1)',
-        ],
-      }]
-    },
-    options: {
-      legend: false,
-      responsive: true,
-      // maintainAspectRatio: true,
-      scales: {
-        xAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
+  function tahun() {
+    var chartTahun = new Chart(beritaChartTahun, {
+      type: 'horizontalBar',
+      data: {
+        labels: labelSatker,
+        datasets: [{
+          data: dataBeritaTahun,
+          backgroundColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(75, 192, 192, 1)',
+          ],
         }]
+      },
+      options: {
+        legend: false,
+        responsive: true,
+        // maintainAspectRatio: true,
+        scales: {
+          xAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
       }
-    }
-  });
+    });
+  }
+
+  function bulan() {
+    var chartBulan = new Chart(beritaChartBulan, {
+      type: 'horizontalBar',
+      data: {
+        labels: labelSatker,
+        datasets: [{
+          data: dataBeritaBulan,
+          backgroundColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(75, 192, 192, 1)',
+          ],
+        }]
+      },
+      options: {
+        legend: false,
+        responsive: true,
+        // maintainAspectRatio: true,
+        scales: {
+          xAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
+  }
+
+
+  $(document).on('click', '#btnBulan', function() {
+    $(this).addClass('berita-active shadow').removeClass('filter-berita')
+    $('#btnTahun').removeClass('berita-active shadow').addClass('filter-berita')
+    $('#containerBulan').removeClass('d-none')
+    $('#containerTahun').addClass('d-none')
+    bulan()
+  })
+  $(document).on('click', '#btnTahun', function() {
+    $(this).addClass('berita-active shadow').removeClass('filter-berita')
+    $('#btnBulan').removeClass('berita-active shadow').addClass('filter-berita')
+    $('#containerBulan').addClass('d-none')
+    $('#containerTahun').removeClass('d-none')
+    tahun()
+  })
 </script>
 
 <script type="text/javascript">

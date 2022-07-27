@@ -25,10 +25,10 @@
             height: 100%;
             width: 100%;
             background-color: #e3ecfa;
-            /* background-image: url('https://bpsjambi.id/perjadin/assets/image/bglandingpage.jpg');
+            background-image: url('<?= base_url('/images/bglogin2.jpg') ?>');
             background-repeat: no-repeat;
             background-size: cover;
-            background-attachment: fixed; */
+            background-attachment: fixed;
         }
 
         .login {
