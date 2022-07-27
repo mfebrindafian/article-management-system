@@ -37,20 +37,16 @@
                                 <div class="col-md-7">
                                     <div class="form-group">
                                         <label class="text-gray-dark" style="font-size: 14px;" for="judul">Judul Berita</label>
-                                        <input type="text" class="form-control <?= ($validation->hasError('judul')) ? 'is-invalid' : ''; ?>" id="judul" name="judul" placeholder="Ketikkan judul berita" value="<?= old('judul'); ?>" />
-                                        <div class="invalid-feedback">
-                                            <?= $validation->getError('judul'); ?>
-                                        </div>
+                                        <input type="text" class="form-control " id="judul" name="judul" placeholder="Ketikkan judul berita" />
+
                                     </div>
                                     <div class="form-group">
                                         <label class="text-gray-dark" style="font-size: 14px;">File Berita</label><br>
                                         <div class="row">
                                             <div class="col-4">
                                                 <label style="width: 100%;" class="choose-btn fa-w-1 ripple mt-1 text-center" id="chooseBtn" for="file_berita">Pilih word file</label>
-                                                <input type="file" class="form-control d-none <?= ($validation->hasError('file_berita')) ? 'is-invalid' : ''; ?>" id="file_berita" name="file_berita" accept=".doc, .docx" value="<?= old('file_berita'); ?>" required />
-                                                <div class="invalid-feedback">
-                                                    <?= $validation->getError('file_berita'); ?>
-                                                </div>
+                                                <input type="file" class="form-control d-none file" id="file_berita" name="file_berita" accept=".doc, .docx" required />
+
                                             </div>
                                             <div class="col-3 d-flex align-items-center pilih-files">
 
@@ -74,28 +70,21 @@
 
                                             <div class="col-4">
                                                 <label style="width:100%;" class="choose-btn-opsional fa-w-1 ripple mt-1 text-center" id="chooseBtn2" for="foto_berita1">Foto 1</label>
-                                                <input type="file" class="form-control d-none <?= ($validation->hasError('foto_berita1')) ? 'is-invalid' : ''; ?>" id="foto_berita1" name="foto_berita1" accept=".jpg, .jpeg, .png" />
-                                                <div class="invalid-feedback">
-                                                    <?= $validation->getError('foto_berita1'); ?>
-                                                </div>
+                                                <input type="file" class="form-control d-none foto" id="foto_berita1" name="foto_berita1" accept=".jpg, .jpeg, .png" />
+
                                             </div>
 
 
                                             <div class="col-4">
                                                 <label style="width:100%;" class="choose-btn-opsional fa-w-1 ripple mt-1 text-center" id="chooseBtn3" for="foto_berita2">Foto 2</label>
-                                                <input type="file" class="form-control d-none <?= ($validation->hasError('foto_berita2')) ? 'is-invalid' : ''; ?>" id="foto_berita2" name="foto_berita2" accept=".jpg, .jpeg, .png" />
-                                                <div class="invalid-feedback">
-                                                    <?= $validation->getError('foto_berita2'); ?>
-                                                </div>
+                                                <input type="file" class="form-control d-none foto" id="foto_berita2" name="foto_berita2" accept=".jpg, .jpeg, .png" />
                                             </div>
 
 
                                             <div class="col-4">
                                                 <label style="width:100%;" class="choose-btn-opsional fa-w-1 ripple mt-1 text-center" id="chooseBtn4" for="foto_berita3">Foto 3</label>
-                                                <input type="file" class="form-control d-none <?= ($validation->hasError('foto_berita3')) ? 'is-invalid' : ''; ?>" id="foto_berita3" name="foto_berita3" accept=".jpg, .jpeg, .png" />
-                                                <div class="invalid-feedback">
-                                                    <?= $validation->getError('foto_berita3'); ?>
-                                                </div>
+                                                <input type="file" class="form-control d-none foto" id="foto_berita3" name="foto_berita3" accept=".jpg, .jpeg, .png" />
+
                                             </div>
                                         </div>
 
@@ -127,9 +116,6 @@
                                                 <?php endforeach; ?>
                                             <?php endif; ?>
                                         </select>
-                                        <div class="invalid-feedback">
-                                            <?= $validation->getError('satker'); ?>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -211,36 +197,12 @@
 </script>
 
 
-<!-- <script>
-    var Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-    });
-
-
-    $(document).on('input', '#file_berita', function() {
-        if (this.files[0].size > 250000) { // ini untuk ukuran 500 Kb
-            Toast.fire({
-                icon: "warning",
-                title: "Ukuran File Word Melebihi 250Kb!",
-            });
-            this.value = "";
-            return false;
-        };
-        var pathFile = this.value;
-        var ekstensiOk = /(\.docx|\.doc)$/i;
-        if (!ekstensiOk.exec(pathFile)) {
-            Toast.fire({
-                icon: "warning",
-                title: "Silakan upload file hanya dengan ekstensi .docx atau .doc",
-            });
-            this.value = "";
-            return false;
-        }
+<!-- VALIDASI -->
+<script>
+    $(document).on('click', '#btn-submit', function() {
+        console.log($('select').val())
     })
-</script> -->
+</script>
 
 
 

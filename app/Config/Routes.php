@@ -90,6 +90,8 @@ $routes->post('/switchLevel', 'masterAkses::switchLevel');
 // route ke entry Berita
 $routes->get('/entryBerita', 'masterBerita::entryBerita');
 $routes->get('/reviewBerita', 'masterBerita::reviewBerita');
+$routes->get('/publishBerita', 'masterBerita::publishBerita');
+$routes->get('/detailBerita', 'masterBerita::detailBerita');
 $routes->get('/finalReview/(:segment)', 'masterBerita::finalReview/$1');
 $routes->get('/tambahBerita', 'masterBerita::tambahBerita');
 $routes->get('/editBerita/(:segment)', 'masterBerita::editBerita/$1');

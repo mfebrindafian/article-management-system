@@ -461,4 +461,26 @@ class masterBerita extends BaseController
         ]);
         return redirect()->to('/reviewBerita');
     }
+
+
+
+    public function publishBerita()
+    {
+        $data = [
+            'title' => 'Publish Berita',
+            'menu' => 'Berita',
+            'subMenu' => 'Publish Berita',
+
+        ];
+        return view('Berita/publishBerita', $data);
+    }
+    public function detailBerita()
+    {
+        $data = [
+            'title' => 'Detail Berita',
+            'menu' => 'Berita',
+            'subMenu' => 'Entry Berita',
+        ];
+        return view('Berita/detailBerita', $data);
+    }
 }
