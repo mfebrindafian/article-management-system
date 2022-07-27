@@ -36,6 +36,7 @@ class MasterBeritaModel extends Model
         return $this
             ->table('mst_berita')
             ->select('*')
+            ->orderBy('id', 'DESC')
             ->get()
             ->getResultArray();
     }

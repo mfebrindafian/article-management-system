@@ -53,9 +53,17 @@
                             <div class="col-lg-6 mb-4">
                                 <div class="bg-white rounded shadow p-3">
                                     <div class="row">
-                                        <div data-foto1="<?= base_url('/images/beritadefault.jpg') ?>" class="col-4 border-0 bg-transparent">
+                                        <?php $image_upload = $berita['image_upload']; ?>
+                                        <?php $data = json_decode($image_upload); ?>
+                                        <?php if ($data != null) {
+                                            $foto_pilih = $data->image;
+                                        } else {
+                                            $foto_pilih[0] = 'default.jpg';
+                                        } ?>
+
+                                        <div class="col-4 border-0 bg-transparent">
                                             <div class="gambar-container shadow pistures">
-                                                <img data-original="<?= base_url('/images/beritadefault.jpg') ?>" src="<?= base_url('/images/beritadefault.jpg') ?>">
+                                                <img src="<?= base_url('/berkas/foto/' . $foto_pilih[0]) ?>">
                                             </div>
                                         </div>
                                         <div class="col-8 d-flex flex-column justify-content-between">
@@ -138,9 +146,17 @@
                         <div class="col-lg-6 mb-4">
                             <div class="bg-white rounded shadow p-3">
                                 <div class="row">
-                                    <div data-foto1="<?= base_url('/images/beritadefault.jpg') ?>" class="col-4 border-0 bg-transparent">
+                                    <?php $image_upload = $berita['image_upload']; ?>
+                                    <?php $data = json_decode($image_upload); ?>
+                                    <?php if ($data != null) {
+                                        $foto_pilih = $data->image;
+                                    } else {
+                                        $foto_pilih[0] = 'default.jpg';
+                                    } ?>
+
+                                    <div class="col-4 border-0 bg-transparent">
                                         <div class="gambar-container shadow pistures">
-                                            <img data-original="<?= base_url('/images/beritadefault.jpg') ?>" src="<?= base_url('/images/beritadefault.jpg') ?>">
+                                            <img src="<?= base_url('/berkas/foto/' . $foto_pilih[0]) ?>">
                                         </div>
                                     </div>
                                     <div class="col-8 d-flex flex-column justify-content-between">
@@ -175,9 +191,17 @@
                         <div class="col-lg-6 mb-4">
                             <div class="bg-white rounded shadow p-3">
                                 <div class="row">
-                                    <div data-foto1="<?= base_url('/images/beritadefault.jpg') ?>" class="col-4 border-0 bg-transparent">
+                                    <?php $image_upload = $berita['image_upload']; ?>
+                                    <?php $data = json_decode($image_upload); ?>
+                                    <?php if ($data != null) {
+                                        $foto_pilih = $data->image;
+                                    } else {
+                                        $foto_pilih[0] = 'default.jpg';
+                                    } ?>
+
+                                    <div class="col-4 border-0 bg-transparent">
                                         <div class="gambar-container shadow pistures">
-                                            <img data-original="<?= base_url('/images/beritadefault.jpg') ?>" src="<?= base_url('/images/beritadefault.jpg') ?>">
+                                            <img src="<?= base_url('/berkas/foto/' . $foto_pilih[0]) ?>">
                                         </div>
                                     </div>
                                     <div class="col-8 d-flex flex-column justify-content-between">
@@ -214,9 +238,17 @@
                         <div class="col-lg-6 mb-4">
                             <div class="bg-white rounded shadow p-3">
                                 <div class="row">
-                                    <div data-foto1="<?= base_url('/images/beritadefault.jpg') ?>" class="col-4 border-0 bg-transparent">
+                                    <?php $image_upload = $berita['image_upload']; ?>
+                                    <?php $data = json_decode($image_upload); ?>
+                                    <?php if ($data != null) {
+                                        $foto_pilih = $data->image;
+                                    } else {
+                                        $foto_pilih[0] = 'default.jpg';
+                                    } ?>
+
+                                    <div class="col-4 border-0 bg-transparent">
                                         <div class="gambar-container shadow pistures">
-                                            <img data-original="<?= base_url('/images/beritadefault.jpg') ?>" src="<?= base_url('/images/beritadefault.jpg') ?>">
+                                            <img src="<?= base_url('/berkas/foto/' . $foto_pilih[0]) ?>">
                                         </div>
                                     </div>
                                     <div class="col-8 d-flex flex-column justify-content-between">
