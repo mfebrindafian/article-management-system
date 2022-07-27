@@ -29,27 +29,61 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
+                                <?php $image_upload = $berita['image_upload']; ?>
+                                <?php $data = json_decode($image_upload); ?>
+                                <?php if ($data != null) {
+                                    $foto_all = $data->image;
+                                    $foto_awal = $data->image;
+                                } else {
+                                    $foto_all[0] = null;
+                                    $foto_all[1] = null;
+                                    $foto_all[2] = null;
+                                    $foto_awal[0] = 'default.jpg';
+                                } ?>
+                                <?php if (count($foto_all) == 3) {
+                                    $foto_1 = $foto_all[0];
+                                    $foto_2 = $foto_all[1];
+                                    $foto_3 = $foto_all[2];
+                                } elseif (count($foto_all) == 2) {
+                                    $foto_1 = $foto_all[0];
+                                    $foto_2 = $foto_all[1];
+                                    $foto_3 = null;
+                                } elseif (count($foto_all) == 1) {
+                                    $foto_1 = $foto_all[0];
+                                    $foto_2 = null;
+                                    $foto_3 = null;
+                                } else {
+                                    $foto_1 = null;
+                                    $foto_2 = null;
+                                    $foto_3 = null;
+                                } ?>
                                 <div class="col-12 col-sm-4">
-                                    <h3 class="d-inline-block d-sm-none">LOWA Men’s Renegade GTX Mid Hiking Boots Review</h3>
+
                                     <div class="col-12 overflow-hidden" style="max-height: 400px;">
-                                        <img src="<?= base_url('/images/beritadefault.jpg') ?>" class="product-image" alt="Product Image">
+                                        <img src="<?= base_url('/berkas/foto/' . $foto_awal[0]) ?>" class="product-image" alt="Product Image">
                                     </div>
                                     <div class="col-12 product-image-thumbs">
-                                        <div class="d-flex flex-column">
-                                            <div class="product-image-thumb active" style="height: 90px; cursor: pointer; overflow:hidden;"><img src="<?= base_url('/images/1.jpg') ?>" alt="Product Image">
+                                        <?php if ($foto_1 != null) : ?>
+                                            <div class="d-flex flex-column">
+                                                <div class="product-image-thumb active" style="height: 90px; cursor: pointer; overflow:hidden;"><img src="<?= base_url('/berkas/foto/' . $foto_1) ?>" alt="Product Image">
+                                                </div>
+                                                <a href="<?= base_url('/downloadFoto/' . $foto_1); ?>">Download</a>
                                             </div>
-                                            <a href="">Download</a>
-                                        </div>
-                                        <div class="d-flex flex-column">
-                                            <div class="product-image-thumb" style="height: 90px; cursor: pointer; overflow:hidden;"><img src="<?= base_url('/images/beritadefault.jpg') ?>" alt="Product Image">
+                                        <?php endif; ?>
+                                        <?php if ($foto_2 != null) : ?>
+                                            <div class="d-flex flex-column">
+                                                <div class="product-image-thumb" style="height: 90px; cursor: pointer; overflow:hidden;"><img src="<?= base_url('/berkas/foto/' . $foto_2) ?>" alt="Product Image">
+                                                </div>
+                                                <a href="<?= base_url('/downloadFoto/' . $foto_2); ?>">Download</a>
                                             </div>
-                                            <a href="">Download</a>
-                                        </div>
-                                        <div class="d-flex flex-column">
-                                            <div class="product-image-thumb" style="height: 90px; cursor: pointer; overflow:hidden;"><img src="<?= base_url('/images/bpsbg.png') ?>" alt="Product Image">
+                                        <?php endif; ?>
+                                        <?php if ($foto_3 != null) : ?>
+                                            <div class="d-flex flex-column">
+                                                <div class="product-image-thumb" style="height: 90px; cursor: pointer; overflow:hidden;"><img src="<?= base_url('/berkas/foto/' . $foto_3) ?>" alt="Product Image">
+                                                </div>
+                                                <a href="<?= base_url('/downloadFoto/' . $foto_3); ?>">Download</a>
                                             </div>
-                                            <a href="">Download</a>
-                                        </div>
+                                        <?php endif; ?>
 
 
                                     </div>
@@ -62,32 +96,39 @@
                                         <div class="col-12">
                                             <h4 class="">
                                                 <strong class="judul-berita">
-                                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab nam maxime assumenda!
+                                                    <?= $berita['judul_berita']; ?>!
                                                 </strong>
                                             </h4>
                                         </div>
                                     </div>
                                     <div class="row">
+
                                         <div class="col-4">
-                                            <span class="published">Published</span>
+                                            <?php if ($berita['status_kd'] == "3" && $berita['link_publish'] == '') {
+                                                echo '<span class="ready-publish">Ready to publish</span>';
+                                            } else {
+                                                echo '<span class="published">Published</span>';
+                                            } ?>
                                         </div>
                                     </div>
                                     <div class="row mt-4">
                                         <div class="col-12">
                                             <strong class="">Penulis</strong>
-                                            <p class="text-muted">Budiawan</p>
-                                            <strong>Satuan Kerja</strong>
+                                            <p class="text-muted"><?= $berita['penulis']; ?></p>
+                                            <!-- <strong>Satuan Kerja</strong>
                                             <p class="text-muted">[1500] BPS Provinsi Jambi</p>
                                             <strong>Editor</strong>
-                                            <p class="text-muted">Budi</p>
+                                            <p class="text-muted">Budi</p> -->
                                             <strong>Tanggal Publikasi</strong>
-                                            <p class="text-muted">Senin, 25 Juli 2022</p>
+                                            <p class="text-muted"><?= $berita['tgl_publish']; ?></p>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-12">
-                                            <a href="#" class="float-right mr-4 mb-3">Kunjungi</a>
+                                            <?php if ($berita['link_publish'] != '') : ?>
+                                                <a href="<?= $berita['link_publish']; ?>" class="float-right mr-4 mb-3">Kunjungi</a>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
 

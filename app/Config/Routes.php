@@ -91,7 +91,9 @@ $routes->post('/switchLevel', 'masterAkses::switchLevel');
 $routes->get('/entryBerita', 'masterBerita::entryBerita');
 $routes->get('/reviewBerita', 'masterBerita::reviewBerita');
 $routes->get('/publishBerita', 'masterBerita::publishBerita');
-$routes->get('/detailBerita', 'masterBerita::detailBerita');
+$routes->get('/detailBerita/(:segment)', 'masterBerita::detailBerita/$1');
+
+$routes->get('/downloadFoto/(:segment)', 'masterBerita::downloadFoto/$1');
 $routes->get('/finalReview/(:segment)', 'masterBerita::finalReview/$1');
 $routes->get('/tambahBerita', 'masterBerita::tambahBerita');
 $routes->get('/editBerita/(:segment)', 'masterBerita::editBerita/$1');

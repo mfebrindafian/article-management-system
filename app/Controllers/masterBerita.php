@@ -371,6 +371,12 @@ class masterBerita extends BaseController
     }
 
 
+    public function downloadFoto($nama_foto)
+    {
+        return $this->response->download('berkas/foto/' . $nama_foto, null);
+    }
+
+
     public function finalReview($id_berita)
     {
         $data_berita = $this->masterBeritaModel->getBeritaById($id_berita);
@@ -488,27 +494,39 @@ class masterBerita extends BaseController
             'file_review' => $data_berita['file_review'],
             'image_upload' => $data_berita['image_upload']
         ]);
-        return redirect()->to('/reviewBerita');
+        return redirect()->to('/publishBerita');
     }
 
 
 
     public function publishBerita()
     {
+        $list_berita_siap_publish = $this->masterBeritaModel->getAllBeritaSiapPublish();
+        $list_status = $this->masterStatusModel->getListStatus();
+        $list_satker = $this->masterSatkerModel->getAllSatker();
+        $list_berita_publish = $this->masterBeritaModel->getAllBeritaPublish();
         $data = [
             'title' => 'Publish Berita',
             'menu' => 'Berita',
             'subMenu' => 'Publish Berita',
+            'berita_siap_publish' => $list_berita_siap_publish,
+            'list_status' => $list_status,
+            'list_satker' => $list_satker,
+            'berita_publish' => $list_berita_publish,
 
         ];
         return view('Berita/publishBerita', $data);
     }
-    public function detailBerita()
+    public function detailBerita($id_berita)
     {
+        $data_berita = $this->masterBeritaModel->getBeritaById($id_berita);
+        $list_status = $this->masterStatusModel->getListStatus();
         $data = [
             'title' => 'Detail Berita',
             'menu' => 'Berita',
             'subMenu' => 'Entry Berita',
+            'berita' => $data_berita,
+            'list_status' => $list_status,
         ];
         return view('Berita/detailBerita', $data);
     }
