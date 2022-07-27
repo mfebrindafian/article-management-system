@@ -36,14 +36,15 @@
                   $foto_1[0] = 'default.jpg';
                 } ?>
                 <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img class="d-block w-100" src="<?= base_url('/berkas/foto/' . $foto_1[0]); ?>">
-                    <div class="carousel-caption d-none d-block w-50">
-                      <h5 class="text-left judul-berita"><strong><?= $berita_publish[count($berita_publish) - 1]['judul_berita']; ?></strong></h5>
-                      <!-- <p class="text-left judul-berita">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit, dolorum repellendus enim eveniet laboriosam ab aspernatur consectetur ipsa id magni.</p> -->
-                      <a target="_blank" href="<?= $berita_publish[count($berita_publish) - 1]['link_publish']; ?>" class="baca ripple float-left">Baca</a>
+                  <?php if ($berita_publish[count($berita_publish) - 1]['link_publish'] != '') :  ?>
+                    <div class="carousel-item active">
+                      <img class="d-block w-100" src="<?= base_url('/berkas/foto/' . $foto_1[0]); ?>">
+                      <div class="carousel-caption d-none d-block w-50">
+                        <h5 class="text-left judul-berita"><strong><?= $berita_publish[count($berita_publish) - 1]['judul_berita']; ?></strong></h5>
+                        <a target="_blank" href="<?= $berita_publish[count($berita_publish) - 1]['link_publish']; ?>" class="baca ripple float-left">Baca</a>
+                      </div>
                     </div>
-                  </div>
+                  <?php endif ?>
                 <?php endif; ?>
                 <?php if (count($berita_publish) > 1) : ?>
                   <?php if ($berita_publish[count($berita_publish) - 2] != null) : ?>
@@ -54,14 +55,15 @@
                     } else {
                       $foto_2[0] = 'default.jpg';
                     } ?>
-                    <div class="carousel-item">
-                      <img class="d-block w-100" src="<?= base_url('/berkas/foto/' . $foto_2[0]); ?>">
-                      <div class="carousel-caption d-none d-block w-50">
-                        <h5 class="text-left judul-berita"><strong><?= $berita_publish[count($berita_publish) - 2]['judul_berita']; ?></strong></h5>
-                        <!-- <p class="text-left judul-berita">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit, dolorum repellendus enim eveniet laboriosam ab aspernatur consectetur ipsa id magni.</p> -->
-                        <a target="_blank" href="<?= $berita_publish[count($berita_publish) - 2]['link_publish']; ?>" class="baca ripple float-left">Baca</a>
+                    <?php if ($berita_publish[count($berita_publish) - 2]['link_publish'] != '') :  ?>
+                      <div class="carousel-item">
+                        <img class="d-block w-100" src="<?= base_url('/berkas/foto/' . $foto_2[0]); ?>">
+                        <div class="carousel-caption d-none d-block w-50">
+                          <h5 class="text-left judul-berita"><strong><?= $berita_publish[count($berita_publish) - 2]['judul_berita']; ?></strong></h5>
+                          <a target="_blank" href="<?= $berita_publish[count($berita_publish) - 2]['link_publish']; ?>" class="baca ripple float-left">Baca</a>
+                        </div>
                       </div>
-                    </div>
+                    <?php endif; ?>
                   <?php endif; ?>
                 <?php endif; ?>
                 <?php if (count($berita_publish) > 2) : ?>
@@ -73,14 +75,15 @@
                     } else {
                       $foto_3[0] = 'default.jpg';
                     } ?>
-                    <div class="carousel-item">
-                      <img class="d-block w-100" src="<?= base_url('/berkas/foto/' . $foto_3[0]); ?>">
-                      <div class="carousel-caption d-none d-block w-50">
-                        <h5 class="text-left judul-berita"><strong><?= $berita_publish[count($berita_publish) - 3]['judul_berita']; ?></strong></h5>
-                        <!-- <p class="text-left judul-berita">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit, dolorum repellendus enim eveniet laboriosam ab aspernatur consectetur ipsa id magni.</p> -->
-                        <a target="_blank" href="<?= $berita_publish[count($berita_publish) - 3]['link_publish']; ?>" class="baca ripple float-left">Baca</a>
+                    <?php if ($berita_publish[count($berita_publish) - 3]['link_publish'] != '') :  ?>
+                      <div class="carousel-item">
+                        <img class="d-block w-100" src="<?= base_url('/berkas/foto/' . $foto_3[0]); ?>">
+                        <div class="carousel-caption d-none d-block w-50">
+                          <h5 class="text-left judul-berita"><strong><?= $berita_publish[count($berita_publish) - 3]['judul_berita']; ?></strong></h5>
+                          <a target="_blank" href="<?= $berita_publish[count($berita_publish) - 3]['link_publish']; ?>" class="baca ripple float-left">Baca</a>
+                        </div>
                       </div>
-                    </div>
+                    <?php endif; ?>
                   <?php endif; ?>
                 <?php endif; ?>
                 </div>

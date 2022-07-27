@@ -64,52 +64,88 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-4 mb-3 px-5">
-                                                    <label for="foto1" id="toggle-pilih" class="pilih-gambar w-100">
-                                                        <i class="fas fa-check position-absolute d-none"></i>
-                                                        <img class="mb-4 " src="<?= base_url('/images/beritadefault.jpg') ?>" alt="">
-                                                        <input class="d-none" type="checkbox" name="foto1" id="foto1">
-                                                    </label>
-                                                </div>
-                                                <div class="col-md-4 mb-3 px-5">
-                                                    <label for="foto2" id="toggle-pilih" class="pilih-gambar w-100">
-                                                        <i class="fas fa-check position-absolute d-none"></i>
-                                                        <img class="mb-4 " src="<?= base_url('/images/beritadefault.jpg') ?>" alt="">
-                                                        <input class="d-none" type="checkbox" name="foto2" id="foto2">
-                                                    </label>
-                                                </div>
-                                                <div class="col-md-4 mb-3 px-5">
-                                                    <label for="foto3" id="toggle-pilih" class="pilih-gambar w-100">
-                                                        <i class="fas fa-check position-absolute d-none"></i>
-                                                        <img class="mb-4" src="<?= base_url('/images/beritadefault.jpg') ?>" alt="">
-                                                        <input class="d-none" type="checkbox" name="foto3" id="foto3">
-                                                    </label>
-                                                </div>
+                                                <?php $image_upload = $berita['image_upload']; ?>
+                                                <?php $data = json_decode($image_upload); ?>
+                                                <?php if ($data != null) {
+                                                    $foto_all = $data->image;
+                                                } else {
+                                                    $foto_all[0] = null;
+                                                    $foto_all[1] = null;
+                                                    $foto_all[2] = null;
+                                                } ?>
+                                                <?php if (count($foto_all) == 3) {
+                                                    $foto_1 = $foto_all[0];
+                                                    $foto_2 = $foto_all[1];
+                                                    $foto_3 = $foto_all[2];
+                                                } elseif (count($foto_all) == 2) {
+                                                    $foto_1 = $foto_all[0];
+                                                    $foto_2 = $foto_all[1];
+                                                    $foto_3 = null;
+                                                } elseif (count($foto_all) == 1) {
+                                                    $foto_1 = $foto_all[0];
+                                                    $foto_2 = null;
+                                                    $foto_3 = null;
+                                                } else {
+                                                    $foto_1 = null;
+                                                    $foto_2 = null;
+                                                    $foto_3 = null;
+                                                } ?>
+
+                                                <?php if ($foto_1 != null) : ?>
+                                                    <div class=" col-md-4 mb-3 px-5">
+                                                        <label for="foto1" id="toggle-pilih" class="pilih-gambar w-100">
+                                                            <i class="fas fa-check position-absolute d-none"></i>
+                                                            <img class="mb-4 " src="<?= base_url('/berkas/foto/' . $foto_1) ?>" alt="">
+                                                            <input class="d-none" type="checkbox" name="check_foto1" id="foto1">
+                                                            <input type="hidden" name="nama_foto1" value="<?= $foto_1; ?>" ">
+                                                        </label>
+                                                    </div>
+                                                <?php endif; ?>
+                                                <?php if ($foto_2 != null) : ?>
+                                                    <div class=" col-md-4 mb-3 px-5">
+                                                            <label for="foto2" id="toggle-pilih" class="pilih-gambar w-100">
+                                                                <i class="fas fa-check position-absolute d-none"></i>
+                                                                <img class="mb-4 " src="<?= base_url('/berkas/foto/' . $foto_2) ?>" alt="">
+                                                                <input class="d-none" type="checkbox" name="check_foto2" id="foto2">
+                                                                <input type="hidden" name="nama_foto2" value="<?= $foto_2; ?>" ">
+                                                </label>
                                             </div>
-                                            <div class="row mb-4">
-                                                <div class="col-12 text-center">
-                                                    <a href="#showPreview" id="show-gallery">Lihat Preview</a>
+                                        <?php endif; ?>
+                                        <?php if ($foto_3 != null) : ?>
+                                            <div class=" col-md-4 mb-3 px-5">
+                                                                <label for="foto3" id="toggle-pilih" class="pilih-gambar w-100">
+                                                                    <i class="fas fa-check position-absolute d-none"></i>
+                                                                    <img class="mb-4" src="<?= base_url('/berkas/foto/' . $foto_3) ?>" alt="">
+                                                                    <input class="d-none" type="checkbox" name="check_foto3" id="foto3">
+                                                                    <input type="hidden" name="nama_foto3" value="<?= $foto_3; ?>" ">
+                                                                </label>
+                                                    </div>
+                                                <?php endif; ?>
+                                            </div>
+                                            <div class=" row mb-4">
+                                                                    <div class="col-12 text-center">
+                                                                        <a href="#showPreview" id="show-gallery">Lihat Preview</a>
+                                                                    </div>
+                                                    </div>
+                                            </div>
+                                            <input type="hidden" name="id_berita_review" value="<?= $berita['id']; ?>">
+
+                                            <div class="row">
+                                                <div class="col-md-4"></div>
+                                                <div class="col-md-4">
+                                                    <label style="width: 100%;" class="choose-btn ripple mt-1 text-center" id="chooseBtn" for="file_berita">Upload Hasil Review</label>
+                                                    <input type="file" class="form-control d-none" id="file_berita" name="file_berita" accept=".doc, .docx" required />
+                                                </div>
+
+                                                <div class="col-md-4"></div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12 text-center">
+                                                    <button type="submit" id="btn-submit" class="tombol-tambah ripple shadow">Simpan</button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <input type="hidden" name="id_berita_review" value="<?= $berita['id']; ?>">
-
-                                        <div class="row">
-                                            <div class="col-md-4"></div>
-                                            <div class="col-md-4">
-                                                <label style="width: 100%;" class="choose-btn ripple mt-1 text-center" id="chooseBtn" for="file_berita">Upload Hasil Review</label>
-                                                <input type="file" class="form-control d-none" id="file_berita" name="file_berita" accept=".doc, .docx" required />
-                                            </div>
-
-                                            <div class="col-md-4"></div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <button type="submit" id="btn-submit" class="tombol-tambah ripple shadow">Simpan</button>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </form>
                             <?php endif; ?>
                         </div>
@@ -124,12 +160,21 @@
 
 <div id="galley" class="d-none">
     <ul class="pictures">
-        <li>
-            <img data-original="<?= base_url('/images/beritadefault.jpg') ?>" src="<?= base_url('/images/beritadefault.jpg') ?>">
-        </li>
-        <li>
-            <img data-original="http://res.cloudinary.com/hurricane10/image/upload/v1499778109/img-20_ljchnk.jpg" src="http://res.cloudinary.com/hurricane10/image/upload/v1499778109/img-20_ljchnk.jpg">
-        </li>
+        <?php if ($foto_1 != null) : ?>
+            <li>
+                <img data-original="<?= base_url('/berkas/foto/' . $foto_1) ?>" src="<?= base_url('/berkas/foto/' . $foto_1) ?>">
+            </li>
+        <?php endif; ?>
+        <?php if ($foto_2 != null) : ?>
+            <li>
+                <img data-original="<?= base_url('/berkas/foto/' . $foto_2) ?>" src="<?= base_url('/berkas/foto/' . $foto_2) ?>">
+            </li>
+        <?php endif; ?>
+        <?php if ($foto_3 != null) : ?>
+            <li>
+                <img data-original="<?= base_url('/berkas/foto/' . $foto_3) ?>" src="<?= base_url('/berkas/foto/' . $foto_3) ?>">
+            </li>
+        <?php endif; ?>
     </ul>
 </div>
 

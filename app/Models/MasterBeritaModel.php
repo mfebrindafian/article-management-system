@@ -36,6 +36,50 @@ class MasterBeritaModel extends Model
         return $this
             ->table('mst_berita')
             ->select('*')
+            ->orderBy('id', 'DESC')
+            ->get()
+            ->getResultArray();
+    }
+
+    public function getAllBeritaUpload()
+    {
+        return $this
+            ->table('mst_berita')
+            ->select('*')
+            ->where('status_kd', '1')
+            ->orderBy('id', 'DESC')
+            ->get()
+            ->getResultArray();
+    }
+    public function getAllBeritaReview()
+    {
+        return $this
+            ->table('mst_berita')
+            ->select('*')
+            ->where('status_kd', '2')
+            ->orderBy('id', 'DESC')
+            ->get()
+            ->getResultArray();
+    }
+    public function getAllBeritaPublish()
+    {
+        return $this
+            ->table('mst_berita')
+            ->select('*')
+            ->where('status_kd', '3')
+            ->where('link_publish !=', '')
+            ->orderBy('id', 'DESC')
+            ->get()
+            ->getResultArray();
+    }
+    public function getAllBeritaSiapPublish()
+    {
+        return $this
+            ->table('mst_berita')
+            ->select('*')
+            ->where('status_kd', '3')
+            ->where('link_publish', '')
+            ->orderBy('id', 'DESC')
             ->get()
             ->getResultArray();
     }

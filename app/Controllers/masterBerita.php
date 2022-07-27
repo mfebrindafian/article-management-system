@@ -300,23 +300,13 @@ class masterBerita extends BaseController
     public function reviewBerita()
     {
         $list_berita_all = $this->masterBeritaModel->getAllBerita();
-        $list_berita_upload = [];
-        $list_berita_review = [];
-        $list_berita_publish = [];
+        $list_berita_upload = $this->masterBeritaModel->getAllBeritaUpload();
+        $list_berita_review = $this->masterBeritaModel->getAllBeritaReview();
+        $list_berita_publish = $this->masterBeritaModel->getAllBeritaPublish();
+        $list_berita_siap_publish = $this->masterBeritaModel->getAllBeritaSiapPublish();
         $list_status = $this->masterStatusModel->getListStatus();
         $list_satker = $this->masterSatkerModel->getAllSatker();
 
-        foreach ($list_berita_all as $berita) {
-            if ($berita['status_kd'] == "1") {
-                $list_berita_upload[] =  $berita;
-            } elseif ($berita['status_kd'] == "2") {
-                $list_berita_review[] =  $berita;
-            } elseif ($berita['status_kd'] == "3" && $berita['link_publish'] == '') {
-                $list_berita_siap_publish[] =  $berita;
-            } else {
-                $list_berita_publish[] =  $berita;
-            }
-        }
 
         $data = [
             'title' => 'Review Berita',
@@ -393,11 +383,50 @@ class masterBerita extends BaseController
             'list_satker' => $list_satker
 
         ];
+
         return view('Berita/finalReview', $data);
     }
 
     public function uploadHasiReview()
     {
+
+        $check_foto1 = $this->request->getVar('check_foto1');
+        $nama_foto1 = $this->request->getVar('nama_foto1');
+        $check_foto2 = $this->request->getVar('check_foto2');
+        $nama_foto2 = $this->request->getVar('nama_foto2');
+        $check_foto3 = $this->request->getVar('check_foto3');
+        $nama_foto3 = $this->request->getVar('nama_foto3');
+        $foto_publish = [];
+        if ($check_foto1 == null) {
+            if ($nama_foto1 != null) {
+                unlink('berkas/foto/' . $nama_foto1);
+            }
+        } elseif ($check_foto1 == 'on') {
+            $foto_publish[] = $nama_foto1;
+        }
+        if ($check_foto2 == null) {
+            if ($nama_foto2 != null) {
+                unlink('berkas/foto/' . $nama_foto2);
+            }
+        } elseif ($check_foto2 == 'on') {
+            $foto_publish[] = $nama_foto2;
+        }
+        if ($check_foto3 == null) {
+            if ($nama_foto3 != null) {
+                unlink('berkas/foto/' . $nama_foto3);
+            }
+        } elseif ($check_foto3 == 'on') {
+            $foto_publish[] = $nama_foto3;
+        }
+
+        if ($foto_publish != NULL) {
+            $all_image = array('image' => $foto_publish);
+            $json_image = json_encode($all_image);
+        } else {
+            $json_image = '';
+        }
+
+
         $id_berita = $this->request->getVar('id_berita_review');
         $data_berita = $this->masterBeritaModel->getBeritaById($id_berita);
         $data_user = session('data_user');
@@ -429,7 +458,7 @@ class masterBerita extends BaseController
             'tgl_selesai_review' => date("Y-m-d h:i:s"),
             'file_draft' => $data_berita['file_draft'],
             'file_review' => $nama_file,
-            'image_upload' => $data_berita['image_upload']
+            'image_upload' => $json_image
         ]);
 
         return redirect()->to('/reviewBerita');
