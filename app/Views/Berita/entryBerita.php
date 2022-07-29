@@ -1,7 +1,10 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<div class="content-wrapper">
+
+
+
+<div class="content-wrapper d-none">
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container">
@@ -42,10 +45,10 @@
                                 <thead class="bg-light">
                                     <tr>
                                         <th>#</th>
-                                        <th style="min-width: 200px;">Judul</th>
+                                        <th>Judul</th>
+                                        <th>Status</th>
                                         <th>Penulis</th>
                                         <th>Satker</th>
-                                        <th>Status</th>
                                         <th>Publish</th>
                                         <th>Editor</th>
                                         <th>Link</th>
@@ -62,16 +65,6 @@
                                                     <p class="text-muted mb-0"><?= $berita['judul_berita']; ?> </p>
                                                 </td>
                                                 <td>
-                                                    <p class="text-muted mb-0"><?= $berita['penulis']; ?></p>
-                                                </td>
-                                                <td>
-                                                    <?php foreach ($list_satker as $satker) : ?>
-                                                        <?php if ($satker['kd_satker'] == $berita['satker_kd']) : ?>
-                                                            <p class="text-muted mb-0">[<?= $satker['kd_satker']; ?>] <?= $satker['satker']; ?></p>
-                                                        <?php endif; ?>
-                                                    <?php endforeach; ?>
-                                                </td>
-                                                <td>
                                                     <?php if ($berita['status_kd'] == "1") {
                                                         echo '<span class="uploaded">Ready to review</span>';
                                                     } elseif ($berita['status_kd'] == "2") {
@@ -82,6 +75,17 @@
                                                         echo '<span class="published">Published</span>';
                                                     } ?>
                                                 </td>
+                                                <td>
+                                                    <p class="text-muted mb-0"><?= $berita['penulis']; ?></p>
+                                                </td>
+                                                <td>
+                                                    <?php foreach ($list_satker as $satker) : ?>
+                                                        <?php if ($satker['kd_satker'] == $berita['satker_kd']) : ?>
+                                                            <p class="text-muted mb-0">[<?= $satker['kd_satker']; ?>] <?= $satker['satker']; ?></p>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; ?>
+                                                </td>
+
                                                 <td><?= $berita['tgl_publish']; ?></td>
                                                 <td><?= $berita['editor']; ?></td>
                                                 <td><a href="<?= $berita['link_publish']; ?>"><?= $berita['link_publish']; ?></a></td>
@@ -142,4 +146,17 @@
     })
 </script>
 
+
+<script src="<?= base_url('/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
+<script>
+    $(document).ready(function() {
+        <?php if (session()->getFlashdata('pesan')) { ?>
+            Swal.fire({
+                title: "<?= session()->getFlashdata('pesan') ?>",
+                icon: "<?= session()->getFlashdata('icon') ?>",
+                showConfirmButton: true,
+            });
+        <?php } ?>
+    });
+</script>
 <?= $this->endSection(); ?>

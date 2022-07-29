@@ -7,8 +7,8 @@ use App\Models\MasterBeritaModel;
 use App\Models\MasterStatusModel;
 use CodeIgniter\HTTP\Request;
 use CodeIgniter\Session\Session;
+use PhpParser\Node\Expr\New_;
 use PHPUnit\Framework\Test;
-use Config\Validation;
 
 class masterBerita extends BaseController
 {
@@ -45,7 +45,6 @@ class masterBerita extends BaseController
         $data = [
             'title' => 'Tambah Berita',
             'menu' => 'Berita',
-            'validation' => \Config\Services::validation(),
             'subMenu' => 'Entry Berita',
             'list_satker' => $list_satker
         ];
@@ -54,59 +53,6 @@ class masterBerita extends BaseController
 
     public function uploadBerita()
     {
-        //validation
-        if (!$this->validate([
-            'judul' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Judul berita harus diisi',
-                ]
-            ],
-            'file_berita' => [
-                'rules' => 'max_size[file_berita,258]|ext_in[file_berita,doc,docx]',
-                'errors' => [
-                    'max_size' => 'Ukuran maksimal file adalah 250Kb',
-                    'ext_in' => 'Jenis File yang diterima hanya doc & docx',
-                ]
-            ],
-            'foto_berita1' => [
-                'rules' => 'max_size[foto_berita1,512]|ext_in[foto_berita1,jpg,jpeg,png]',
-                'errors' => [
-                    'max_size' => 'Ukuran maksimal foto adalah 500Kb',
-                    'ext_in' => 'Jenis Foto yang diterima hanya jpg/jpeg/png',
-                ]
-            ],
-            'foto_berita2' => [
-                'rules' => 'max_size[foto_berita2,512]|ext_in[foto_berita2,jpg,jpeg,png]',
-                'errors' => [
-                    'max_size' => 'Ukuran maksimal foto adalah 500Kb',
-                    'ext_in' => 'Jenis Foto yang diterima hanya jpg/jpeg/png',
-                ]
-            ],
-            'foto_berita3' => [
-                'rules' => 'max_size[foto_berita3,512]|ext_in[foto_berita3,jpg,jpeg,png]',
-                'errors' => [
-                    'max_size' => 'Ukuran maksimal foto adalah 500Kb',
-                    'ext_in' => 'Jenis Foto yang diterima hanya jpg/jpeg/png',
-                ]
-            ],
-            'nama_penulis' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nama penulis harus diisi',
-                ]
-            ],
-            'satker' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Pilih Satuan Kerja',
-                ]
-            ]
-        ])) {
-            return redirect()->to('/tambahBerita')->withInput();
-        }
-
-
 
         $user = session('data_user');
         $user_id = $user['id'];
@@ -174,7 +120,8 @@ class masterBerita extends BaseController
             'file_review' => null,
             'image_upload' => $json_image
         ]);
-
+        session()->setFlashdata('pesan', 'Berita baru berhasil ditambahkan');
+        session()->setFlashdata('icon', 'success');
         return redirect()->to('/entryBerita');
     }
 
@@ -188,7 +135,6 @@ class masterBerita extends BaseController
             'title' => 'Edit Berita',
             'menu' => 'Berita',
             'subMenu' => 'Entry Berita',
-            'validation' => \Config\Services::validation(),
             'list_satker' => $list_satker,
             'berita' => $data_berita
 
@@ -294,31 +240,63 @@ class masterBerita extends BaseController
             'file_review' => null,
             'image_upload' => $json_image
         ]);
-
+        session()->setFlashdata('pesan', 'Berita berhasil di update');
+        session()->setFlashdata('icon', 'success');
         return redirect()->to('/entryBerita');
     }
     public function reviewBerita()
     {
-        $list_berita_all = $this->masterBeritaModel->getAllBerita();
-        $list_berita_upload = $this->masterBeritaModel->getAllBeritaUpload();
-        $list_berita_review = $this->masterBeritaModel->getAllBeritaReview();
-        $list_berita_publish = $this->masterBeritaModel->getAllBeritaPublish();
-        $list_berita_siap_publish = $this->masterBeritaModel->getAllBeritaSiapPublish();
+        $keyword_semua = $this->request->getVar('keyword_semua');
+        if ($keyword_semua) {
+            $berita_semua_search = $keyword_semua;
+        } else {
+            $berita_semua_search = '';
+        }
+        $keyword_ready = $this->request->getVar('keyword_ready');
+        if ($keyword_ready) {
+            $berita_ready_search = $keyword_ready;
+        } else {
+            $berita_ready_search = '';
+        }
+        $keyword_review = $this->request->getVar('keyword_review');
+        if ($keyword_review) {
+            $berita_review_search = $keyword_review;
+        } else {
+            $berita_review_search = '';
+        }
+        $keyword_publish = $this->request->getVar('keyword_publish');
+        if ($keyword_publish) {
+            $berita_publish_search = $keyword_publish;
+        } else {
+            $berita_publish_search = '';
+        }
+
         $list_status = $this->masterStatusModel->getListStatus();
         $list_satker = $this->masterSatkerModel->getAllSatker();
-
-
+        $itemsCount = 10;
+        $this->masterBeritaModelSemua = new MasterBeritaModel();
+        $this->masterBeritaModelUpload = new MasterBeritaModel();
+        $this->masterBeritaModelReview = new MasterBeritaModel();
+        $this->masterBeritaModelSiapPublish = new MasterBeritaModel();
         $data = [
             'title' => 'Review Berita',
             'menu' => 'Berita',
             'subMenu' => 'Review Berita',
-            'berita_semua' => $list_berita_all,
-            'berita_upload' => $list_berita_upload,
-            'berita_review' => $list_berita_review,
-            'berita_publish' => $list_berita_publish,
-            'berita_siap_publish' => $list_berita_siap_publish,
+            'berita_semua' => $this->masterBeritaModelSemua->getReviewBerita($berita_semua_search)->paginate($itemsCount, 'semua'),
+            'berita_upload' => $this->masterBeritaModelUpload->getReviewBeritaUpload($berita_ready_search)->paginate($itemsCount, 'siap'),
+            'berita_review' => $this->masterBeritaModelReview->getReviewBeritaReview($berita_review_search)->paginate($itemsCount, 'review'),
+            'berita_siap_publish' => $this->masterBeritaModelSiapPublish->getReviewBeritaSiapPublish($berita_publish_search)->paginate($itemsCount, 'siap_publish'),
+            'pager1' => $this->masterBeritaModelSemua->getReviewBeritaPager()->pager,
+            'pager2' => $this->masterBeritaModelUpload->getReviewBeritaUploadPager()->pager,
+            'pager3' => $this->masterBeritaModelReview->getReviewBeritaReviewPager()->pager,
+            'pager4' => $this->masterBeritaModelSiapPublish->getReviewBeritaSiapPublishPager()->pager,
+            'berita_publish' => $this->masterBeritaModel->getAllBeritaPublish(),
             'list_status' => $list_status,
-            'list_satker' => $list_satker
+            'list_satker' => $list_satker,
+            'keyword_semua' => $keyword_semua,
+            'keyword_ready' => $keyword_ready,
+            'keyword_review' => $keyword_review,
+            'keyword_publish' => $keyword_publish,
         ];
         // dd($data);
         return view('Berita/reviewBerita', $data);
@@ -347,7 +325,9 @@ class masterBerita extends BaseController
             'file_review' => null,
             'image_upload' => $data_berita['image_upload']
         ]);
-
+        session()->setFlashdata('pesan', 'Berhasil! dokumen siap direview');
+        session()->setFlashdata('pesan_text', 'Silahkan download dan upload hasil review');
+        session()->setFlashdata('icon', 'success');
         return redirect()->to('/reviewBerita');
     }
 
@@ -395,79 +375,86 @@ class masterBerita extends BaseController
 
     public function uploadHasiReview()
     {
-
-        $check_foto1 = $this->request->getVar('check_foto1');
-        $nama_foto1 = $this->request->getVar('nama_foto1');
-        $check_foto2 = $this->request->getVar('check_foto2');
-        $nama_foto2 = $this->request->getVar('nama_foto2');
-        $check_foto3 = $this->request->getVar('check_foto3');
-        $nama_foto3 = $this->request->getVar('nama_foto3');
-        $foto_publish = [];
-        if ($check_foto1 == null) {
-            if ($nama_foto1 != null) {
-                unlink('berkas/foto/' . $nama_foto1);
-            }
-        } elseif ($check_foto1 == 'on') {
-            $foto_publish[] = $nama_foto1;
-        }
-        if ($check_foto2 == null) {
-            if ($nama_foto2 != null) {
-                unlink('berkas/foto/' . $nama_foto2);
-            }
-        } elseif ($check_foto2 == 'on') {
-            $foto_publish[] = $nama_foto2;
-        }
-        if ($check_foto3 == null) {
-            if ($nama_foto3 != null) {
-                unlink('berkas/foto/' . $nama_foto3);
-            }
-        } elseif ($check_foto3 == 'on') {
-            $foto_publish[] = $nama_foto3;
-        }
-
-        if ($foto_publish != NULL) {
-            $all_image = array('image' => $foto_publish);
-            $json_image = json_encode($all_image);
-        } else {
-            $json_image = '';
-        }
-
-
-        $id_berita = $this->request->getVar('id_berita_review');
-        $data_berita = $this->masterBeritaModel->getBeritaById($id_berita);
-        $data_user = session('data_user');
-
-
-        date_default_timezone_set('Asia/Jakarta');
-        $tanggal = date('d-m-Y');
-        $jam = date('H-i-s');
-
         $file_berita = $this->request->getFile('file_berita');
+        $id_berita = $this->request->getVar('id_berita_review');
+        if ($file_berita->getError() != 4) {
+            $judul_berita = $this->request->getVar('judul_berita');
+            $check_foto1 = $this->request->getVar('check_foto1');
+            $nama_foto1 = $this->request->getVar('nama_foto1');
+            $check_foto2 = $this->request->getVar('check_foto2');
+            $nama_foto2 = $this->request->getVar('nama_foto2');
+            $check_foto3 = $this->request->getVar('check_foto3');
+            $nama_foto3 = $this->request->getVar('nama_foto3');
+            $foto_publish = [];
+            if ($check_foto1 == null) {
+                if ($nama_foto1 != null) {
+                    unlink('berkas/foto/' . $nama_foto1);
+                }
+            } elseif ($check_foto1 == 'on') {
+                $foto_publish[] = $nama_foto1;
+            }
+            if ($check_foto2 == null) {
+                if ($nama_foto2 != null) {
+                    unlink('berkas/foto/' . $nama_foto2);
+                }
+            } elseif ($check_foto2 == 'on') {
+                $foto_publish[] = $nama_foto2;
+            }
+            if ($check_foto3 == null) {
+                if ($nama_foto3 != null) {
+                    unlink('berkas/foto/' . $nama_foto3);
+                }
+            } elseif ($check_foto3 == 'on') {
+                $foto_publish[] = $nama_foto3;
+            }
 
-        $ekstensi_file = $file_berita->getExtension();
-        $nama_file = ($data_berita['satker_kd'] . '_' .  $data_user['username'] . '_'   . $tanggal . '_' . $jam . '.' . $ekstensi_file);
-        $file_berita->move('berkas/final', $nama_file);
+            if ($foto_publish != NULL) {
+                $all_image = array('image' => $foto_publish);
+                $json_image = json_encode($all_image);
+            } else {
+                $json_image = '';
+            }
 
 
-        $this->masterBeritaModel->save([
-            'id' => $id_berita,
-            'user_id' => $data_berita['user_id'],
-            'judul_berita' => $data_berita['judul_berita'],
-            'penulis' => $data_berita['penulis'],
-            'satker_kd' => $data_berita['satker_kd'],
-            'tgl_upload' => $data_berita['tgl_upload'],
-            'status_kd' => 3,
-            'tgl_publish' => null,
-            'link_publish' => '',
-            'editor' => $data_user['username'],
-            'tgl_mulai_review' => $data_berita['tgl_mulai_review'],
-            'tgl_selesai_review' => date("Y-m-d h:i:s"),
-            'file_draft' => $data_berita['file_draft'],
-            'file_review' => $nama_file,
-            'image_upload' => $json_image
-        ]);
 
-        return redirect()->to('/reviewBerita');
+            $data_berita = $this->masterBeritaModel->getBeritaById($id_berita);
+            $data_user = session('data_user');
+
+
+            date_default_timezone_set('Asia/Jakarta');
+            $tanggal = date('d-m-Y');
+            $jam = date('H-i-s');
+
+
+
+            $ekstensi_file = $file_berita->getExtension();
+            $nama_file = ($data_berita['satker_kd'] . '_' .  $data_user['username'] . '_'   . $tanggal . '_' . $jam . '.' . $ekstensi_file);
+            $file_berita->move('berkas/final', $nama_file);
+
+
+            $this->masterBeritaModel->save([
+                'id' => $id_berita,
+                'user_id' => $data_berita['user_id'],
+                'judul_berita' => $judul_berita,
+                'penulis' => $data_berita['penulis'],
+                'satker_kd' => $data_berita['satker_kd'],
+                'tgl_upload' => $data_berita['tgl_upload'],
+                'status_kd' => 3,
+                'tgl_publish' => null,
+                'link_publish' => '',
+                'editor' => $data_user['username'],
+                'tgl_mulai_review' => $data_berita['tgl_mulai_review'],
+                'tgl_selesai_review' => date("Y-m-d h:i:s"),
+                'file_draft' => $data_berita['file_draft'],
+                'file_review' => $nama_file,
+                'image_upload' => $json_image
+            ]);
+            return redirect()->to('/reviewBerita');
+        } else {
+            session()->setFlashdata('pesan', 'File Berita Review Kosong!');
+            session()->setFlashdata('icon', 'error');
+            return redirect()->to('/finalReview/' . $id_berita);
+        }
     }
 
     public function sendLinkBerita()
@@ -494,6 +481,8 @@ class masterBerita extends BaseController
             'file_review' => $data_berita['file_review'],
             'image_upload' => $data_berita['image_upload']
         ]);
+        session()->setFlashdata('pesan', 'Berita berhasil terpublikasi');
+        session()->setFlashdata('icon', 'success');
         return redirect()->to('/publishBerita');
     }
 
@@ -501,7 +490,13 @@ class masterBerita extends BaseController
 
     public function publishBerita()
     {
-        $list_berita_siap_publish = $this->masterBeritaModel->getAllBeritaSiapPublish();
+        $keyword = $this->request->getVar('keyword');
+        if ($keyword) {
+            $berita_search = $keyword;
+        } else {
+            $berita_search = '';
+        }
+        $this->masterBeritaModelSiapPublish = new MasterBeritaModel();
         $list_status = $this->masterStatusModel->getListStatus();
         $list_satker = $this->masterSatkerModel->getAllSatker();
         $list_berita_publish = $this->masterBeritaModel->getAllBeritaPublish();
@@ -509,10 +504,12 @@ class masterBerita extends BaseController
             'title' => 'Publish Berita',
             'menu' => 'Berita',
             'subMenu' => 'Publish Berita',
-            'berita_siap_publish' => $list_berita_siap_publish,
+            'berita_siap_publish' => $this->masterBeritaModelSiapPublish->getReviewBeritaSiapPublish($berita_search)->paginate(10, 'siap_publish'),
+            'pager' => $this->masterBeritaModelSiapPublish->getReviewBeritaSiapPublishPager()->pager,
             'list_status' => $list_status,
             'list_satker' => $list_satker,
             'berita_publish' => $list_berita_publish,
+            'keyword' => $keyword
 
         ];
         return view('Berita/publishBerita', $data);

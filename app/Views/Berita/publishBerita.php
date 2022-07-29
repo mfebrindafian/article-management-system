@@ -2,7 +2,7 @@
 
 <?= $this->section('content'); ?>
 
-<div class="content-wrapper">
+<div class="content-wrapper d-none">
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container">
@@ -25,99 +25,104 @@
     <div class="content pb-5">
         <div class="container">
             <div class="row mt-4">
-                <div class="col-lg-3">
-                    <form action="" method="POST" class=" input-group input-group-md float-right">
-                        <input type="search" name="table_search" class="form-control" style="padding: 6px 20px 6px 20px;" placeholder="Search" />
+                <div class="col-lg-4">
+                    <form action="" method="get" class="input-group input-group-md float-right">
+                        <input type="search" name="keyword" class="form-control rounded" style="padding: 6px 20px 6px 20px;" placeholder="Search" value="<?= $keyword ? $keyword : ""; ?>" />
+                        <button type="submit" class="ml-4 tombol-tambah"><i class="fas fa-search"></i></button>
                     </form>
                 </div>
-                <div class="col-lg-6"></div>
+                <div class="col-lg-5"></div>
                 <div class="col-lg-3 mb-3"></div>
 
             </div>
 
-            <div id="rowPublished" class="row mt-4">
-                <?php if ($berita_siap_publish != null) : ?>
-                    <?php foreach ($berita_siap_publish as $berita) : ?>
-                        <div class="col-lg-6 mb-4">
-                            <div class="bg-white rounded shadow p-3">
-                                <div class="row">
-                                    <?php $image_upload = $berita['image_upload']; ?>
-                                    <?php $data = json_decode($image_upload); ?>
-                                    <?php if ($data != null) {
-                                        $foto_pilih = $data->image;
-                                    } else {
-                                        $foto_pilih[0] = 'default.jpg';
-                                    } ?>
+            <div id="rowPublished" class="mt-4">
+                <div class="row isi-publish">
+                    <?php if ($berita_siap_publish != null) : ?>
+                        <?php foreach ($berita_siap_publish as $berita) : ?>
+                            <div class="col-lg-6 mb-4">
+                                <div class="bg-white rounded shadow p-3">
+                                    <div class="row">
+                                        <?php $image_upload = $berita['image_upload']; ?>
+                                        <?php $data = json_decode($image_upload); ?>
+                                        <?php if ($data != null) {
+                                            $foto_pilih = $data->image;
+                                        } else {
+                                            $foto_pilih[0] = 'default.jpg';
+                                        } ?>
 
-                                    <div class="col-4 border-0 bg-transparent">
-                                        <div class="gambar-container shadow pistures">
-                                            <img src="<?= base_url('/berkas/foto/' . $foto_pilih[0]) ?>">
-                                        </div>
-                                    </div>
-                                    <div class="col-8 d-flex flex-column justify-content-between">
-                                        <div class="mt-2 d-flex flex-column">
-                                            <a href="<?= base_url('/detailBerita/' . $berita['id']); ?>"><strong class="judul-berita"><?= $berita['judul_berita']; ?></strong></a>
-                                            <small><?= $berita['penulis']; ?> | [<?= $berita['satker_kd']; ?>] <?php foreach ($list_satker as $satker) {
-                                                                                                                    if ($satker['kd_satker'] == $berita['satker_kd']) {
-                                                                                                                        echo $satker['satker'];
-                                                                                                                    }
-                                                                                                                } ?></small>
-                                            <div class="mt-2">
-                                                <span class="ready-publish">Ready to publish</span>
+                                        <div class="col-4 border-0 bg-transparent">
+                                            <div class="gambar-container shadow pistures">
+                                                <img src="<?= base_url('/berkas/foto/' . $foto_pilih[0]) ?>">
                                             </div>
                                         </div>
+                                        <div class="col-8 d-flex flex-column justify-content-between">
+                                            <div class="mt-2 d-flex flex-column">
+                                                <h5 class="garis-bawah" title="<?= $berita['judul_berita']; ?>"><strong><a href="<?= base_url('/detailBerita/' . $berita['id']); ?>" class="judul-berita" style="color: black;"><?= $berita['judul_berita']; ?></a></strong></h5>
+                                                <small><?= $berita['penulis']; ?> | [<?= $berita['satker_kd']; ?>] <?php foreach ($list_satker as $satker) {
+                                                                                                                        if ($satker['kd_satker'] == $berita['satker_kd']) {
+                                                                                                                            echo $satker['satker'];
+                                                                                                                        }
+                                                                                                                    } ?></small>
+                                                <div class="mt-2">
+                                                    <span class="ready-publish">Ready to publish</span>
+                                                </div>
+                                            </div>
 
-                                        <div class="row">
-                                            <?php if ($berita['status_kd'] != "1") : ?>
-                                                <div class="col-sm-4 d-flex align-items-center">
-                                                    <small class="text-gray judul-berita">Direview oleh <strong><?= $berita['editor'] ?></strong></small>
-                                                </div>
-                                            <?php endif; ?>
-                                            <?php if ($berita['status_kd'] == "1") : ?>
-                                                <div class="col-sm-4"></div>
-                                            <?php endif; ?>
-                                            <?php if ($berita['status_kd'] == "1") : ?>
+                                            <div class="row">
+                                                <?php if ($berita['status_kd'] != "1") : ?>
+                                                    <div class="col-sm-4 d-flex align-items-center">
+                                                        <small class="text-gray judul-berita">Direview oleh <strong><?= $berita['editor'] ?></strong></small>
+                                                    </div>
+                                                <?php endif; ?>
+                                                <?php if ($berita['status_kd'] == "1") : ?>
+                                                    <div class="col-sm-4"></div>
+                                                <?php endif; ?>
+                                                <?php if ($berita['status_kd'] == "1") : ?>
+                                                    <div class="col-sm-8 pt-2 d-flex justify-content-end">
+                                                        <button id="btn-review" class="tombol-tambah float-right ripple" data-toggle="modal" data-target="#modal-review" data-judul_berita="<?= $berita['judul_berita'] ?>" data-id_berita="<?= $berita['id'] ?>">Review</button>
+                                                    </div>
+                                                <?php endif; ?>
                                                 <div class="col-sm-8 pt-2 d-flex justify-content-end">
-                                                    <button id="btn-review" class="tombol-tambah float-right ripple" data-toggle="modal" data-target="#modal-review" data-judul_berita="<?= $berita['judul_berita'] ?>" data-id_berita="<?= $berita['id'] ?>">Review</button>
+                                                    <a href="<?= base_url('/detailBerita/' . $berita['id']); ?>" class="edit float-right ripple">Detail</a>
                                                 </div>
-                                            <?php endif; ?>
-                                            <?php if ($berita['status_kd'] == "2") : ?>
-                                                <div class="col-sm-8 pt-2 d-flex justify-content-end">
-                                                    <a href="<?= base_url('/downloadBerita/' . $berita['id']); ?>" class="edit float-right ripple mr-3">Download</a>
-                                                    <a href="<?= base_url('/finalReview/' . $berita['id']); ?>" class="tombol-tambah float-right ripple">Publish</a>
-                                                </div>
-                                            <?php endif; ?>
-                                            <?php if ($berita['status_kd'] == "3" && $berita['link_publish'] != '') : ?>
-                                                <div class="col-sm-8 pt-2 d-flex justify-content-end">
-                                                    <a href="<?= $berita['link_publish'] ?>" target="_blank" class="edit float-right ripple mr-3">Visit</a>
-                                                </div>
-                                            <?php endif; ?>
+                                                <?php if ($berita['status_kd'] == "3" && $berita['link_publish'] != '') : ?>
+                                                    <div class="col-sm-8 pt-2 d-flex justify-content-end">
+                                                        <a href="<?= $berita['link_publish'] ?>" target="_blank" class="edit float-right ripple mr-3">Visit</a>
+                                                    </div>
+                                                <?php endif; ?>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <?php if ($berita['status_kd'] == "3" && $berita['link_publish'] == '') : ?>
-                                    <hr class="mt-4">
-                                    <form action="<?= base_url('/sendLinkBerita'); ?>" method="post" class="row ">
-                                        <div class="col-12 pb-0 mb-0">
-                                            <div class="row">
-                                                <div class="col-12 ">
-                                                    <div class="form-group mb-0">
-                                                        <div class="row">
-                                                            <input type="hidden" name="id_berita_link" value="<?= $berita['id']; ?>">
-                                                            <div class="col-9"><input type="link" class="form-control" id="link" name="link_berita" placeholder="Masukkan link berita" required /></div>
-                                                            <div class="col-3"> <button type="submit" class="tombol-tambah float-right ripple h-100">Simpan</button></div>
+                                    <?php if ($berita['status_kd'] == "3" && $berita['link_publish'] == '') : ?>
+                                        <hr class="mt-4">
+                                        <form action="<?= base_url('/sendLinkBerita'); ?>" method="post" class="row ">
+                                            <div class="col-12 pb-0 mb-0">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                        <div class="form-group mb-0">
+                                                            <div class="row">
+                                                                <input type="hidden" name="id_berita_link" value="<?= $berita['id']; ?>">
+                                                                <div class="col-9"><input type="link" class="form-control" id="link" name="link_berita" placeholder="Masukkan link berita" required /></div>
+                                                                <div class="col-3"> <button type="submit" class="tombol-tambah float-right ripple h-100">Simpan</button></div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </form>
-                                <?php endif; ?>
+                                        </form>
+                                    <?php endif; ?>
+                                </div>
                             </div>
-                        </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
 
+                <div class="row mt-4">
+                    <div class="col-12 text-center">
+                        <?= $pager->links('siap_publish', 'custom_simple'); ?>
+                    </div>
+                </div>
             </div>
             <hr class="mt-5">
             <div class="row mt-4 mb-3">
@@ -139,13 +144,13 @@
                                 <thead class="bg-light">
                                     <tr>
                                         <th>#</th>
-                                        <th style="min-width: 200px;">Judul</th>
+                                        <th>Judul</th>
+                                        <th>Status</th>
                                         <th>Penulis</th>
                                         <th>Satker</th>
-                                        <th>Status</th>
                                         <th>Publish</th>
                                         <th>Editor</th>
-                                        <th>Link</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -159,6 +164,9 @@
                                                     <p class="text-muted mb-0"><?= $berita['judul_berita']; ?></p>
                                                 </td>
                                                 <td>
+                                                    <span class="published">Published</span>
+                                                </td>
+                                                <td>
                                                     <p class="text-muted mb-0"><?= $berita['penulis']; ?></p>
                                                 </td>
                                                 <td>
@@ -170,12 +178,12 @@
                                                                                                                 } ?></p>
 
                                                 </td>
-                                                <td>
-                                                    <span class="published">Published</span>
-                                                </td>
                                                 <td><?= $berita['tgl_publish']; ?></td>
                                                 <td><?= $berita['editor']; ?></td>
-                                                <td><a target="_blank" href="<?= $berita['link_publish']; ?>">visit</a></td>
+                                                <td class="aksi">
+                                                    <a target="_blank" href="<?= $berita['link_publish']; ?>" class="mr-2"><i class="fas fa-globe"></i></a>
+                                                    <a href="<?= base_url('/detailBerita/' . $berita['id']); ?>" style="color: #e89300;"><i class="fas fa-eye"></i></a>
+                                                </td>
                                             </tr>
 
                                         <?php endforeach; ?>
@@ -189,6 +197,18 @@
         </div>
     </div>
 </div>
+<script src="<?= base_url('/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
+<script>
+    $(document).ready(function() {
+        <?php if (session()->getFlashdata('pesan')) { ?>
+            Swal.fire({
+                title: "<?= session()->getFlashdata('pesan') ?>",
+                icon: "<?= session()->getFlashdata('icon') ?>",
+                showConfirmButton: true,
+            });
+        <?php } ?>
+    });
+</script>
 <script type="text/javascript">
     $('#tabelData').DataTable({
         "paging": true,
@@ -219,4 +239,8 @@
         ).draw();
     })
 </script>
+<script>
+    const link = '<?= base_url('/images/empty.gif') ?>';
+</script>
+<script src="<?= base_url('/js/portalberita.js') ?>"></script>
 <?= $this->endSection(); ?>

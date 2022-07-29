@@ -1,5 +1,5 @@
 <?php $pager->setSurroundCount(3) ?>
-<div class="col-md-6">
+<div class="col-md-12">
     <!--Pagination 2-->
     <nav class="Pager2 float-right" aria-label="pagination example">
         <ul class="pagination justify-content-center">

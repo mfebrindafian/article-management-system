@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="<?= base_url('/plugins/toastr/toastr.min.css') ?>" />
     <link rel="stylesheet" href="<?= base_url('/plugins/fontawesome-free/css/all.min.css') ?>" />
     <link rel="icon" type="image/x-icon" href="<?= base_url('/images/bps.png') ?>">
-    <title>Portal Berita | Login</title>
+    <title>SIPBetul | Login</title>
 
     <style>
         html,
@@ -138,9 +138,17 @@
             outline: 0 none;
         }
 
+        .login-box {
+            width: 400px;
+        }
+
         @media only screen and (max-width: 576px) {
             .test2 {
                 display: none;
+            }
+
+            .login-box {
+                width: 350px;
             }
         }
 
@@ -188,10 +196,10 @@
 <body class="">
     <div class="min-vh-100 min-vw-100 d-flex justify-content-center align-items-center">
 
-        <div class="row bg-white rounded overflow-hidden shadow-lg">
+        <div class="row bg-white rounded overflow-hidden shadow-lg login-box">
             <div class="col-sm-12 d-flex justify-content-center align-items-center flex-column py-5 px-5">
                 <div class="title mb-4 mx-5">
-                    <h4 class="mb-4 fw-bold">Login Portal Berita</h4>
+                    <h4 class="mb-4 fw-bold">Login SIPBetul</h4>
                 </div>
                 <form class="mb-4" action="<?= base_url('/login') ?>" method="post">
                     <div class="form-group">
@@ -220,8 +228,9 @@
     <script src="<?= base_url('/plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
     <!-- jQuery -->
     <script src="<?= base_url('/plugins/jquery/jquery.min.js') ?>"></script>
-    <script src="<?= base_url('/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
     <!-- Toastr -->
+    <script src="<?= base_url('/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
+
     <script src="<?= base_url('/plugins/toastr/toastr.min.js') ?>"></script>
     <script>
         $(document).on('click', "#togglePassword", function() {

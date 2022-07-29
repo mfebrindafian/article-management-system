@@ -122,7 +122,7 @@
     <!-- RENDER DARI HALAMAN LAIN -->
 
     <?= $this->renderSection('content'); ?>
-    <footer class="main-footer">
+    <footer class="main-footer d-none">
       <strong>Copyright &copy; Magang 2022. </strong>
       All rights reserved.
       <div class="float-right d-none d-sm-inline-block">
@@ -131,7 +131,40 @@
     </footer>
   </div>
 
+  <div id="loader" class="w-100 d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="book">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
 
+  <script>
+    function ready() {
+      var $loader = $('#loader');
+      $('#loader').addClass('fadeout')
+      setTimeout(function() {
+        $loader.remove();
+      }, 300);
+
+      var $content = $('.content-wrapper');
+      $('.content-wrapper').addClass('fadein')
+      setTimeout(function() {
+        $content.removeClass('d-none');
+      }, 300);
+
+      var $footer = $('.main-footer');
+      $('.main-footer').addClass('fadein')
+      setTimeout(function() {
+        $footer.removeClass('d-none');
+      }, 300);
+    }
+    $(document).ready(function() {
+      ready()
+    })
+  </script>
   <!-- jQuery UI 1.11.4 -->
   <script src="<?= base_url('/plugins/jquery-ui/jquery-ui.min.js') ?>"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

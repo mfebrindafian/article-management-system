@@ -2,7 +2,7 @@
 
 <?= $this->section('content'); ?>
 
-<div class="content-wrapper">
+<div class="content-wrapper d-none">
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container">

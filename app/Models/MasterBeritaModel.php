@@ -93,4 +93,88 @@ class MasterBeritaModel extends Model
             ->get()
             ->getResultArray();
     }
+
+
+    // BAGIAN REVIEW
+    public function getReviewBerita($key)
+    {
+        return $this
+            ->table('mst_berita')
+            ->where('status_kd !=', '3')
+            ->like('judul_berita', $key)
+            ->orderBy('id', 'DESC');
+    }
+
+    public function getReviewBeritaUpload($key)
+    {
+        return $this
+            ->table('mst_berita')
+            ->where('status_kd', '1')
+            ->like('judul_berita', $key)
+            ->orderBy('id', 'DESC');
+    }
+    public function getReviewBeritaReview($key)
+    {
+        return $this
+            ->table('mst_berita')
+            ->where('status_kd', '2')
+            ->like('judul_berita', $key)
+            ->orderBy('id', 'DESC');
+    }
+    public function getReviewBeritaPublish()
+    {
+        return $this
+            ->table('mst_berita')
+            ->where('status_kd', '3')
+            ->where('link_publish !=', '')
+            ->orderBy('id', 'DESC');
+    }
+    public function getReviewBeritaSiapPublish($key)
+    {
+        return $this
+            ->table('mst_berita')
+            ->where('status_kd', '3')
+            ->where('link_publish', '')
+            ->like('judul_berita', $key)
+            ->orderBy('id', 'DESC');
+    }
+
+    public function getReviewBeritaPager()
+    {
+        return $this
+            ->table('mst_berita')
+            ->where('status_kd !=', '3')
+            ->orderBy('id', 'DESC');
+    }
+
+    public function getReviewBeritaUploadPager()
+    {
+        return $this
+            ->table('mst_berita')
+            ->where('status_kd', '1')
+            ->orderBy('id', 'DESC');
+    }
+    public function getReviewBeritaReviewPager()
+    {
+        return $this
+            ->table('mst_berita')
+            ->where('status_kd', '2')
+            ->orderBy('id', 'DESC');
+    }
+    public function getReviewBeritaPublishPager()
+    {
+        return $this
+            ->table('mst_berita')
+            ->where('status_kd', '3')
+            ->where('link_publish !=', '')
+            ->orderBy('id', 'DESC');
+    }
+    public function getReviewBeritaSiapPublishPager()
+    {
+        return $this
+            ->table('mst_berita')
+            ->where('status_kd', '3')
+            ->where('link_publish', '')
+            ->orderBy('id', 'DESC');
+    }
 }

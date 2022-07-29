@@ -1,7 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<div class="content-wrapper">
+<div class="content-wrapper d-none">
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container">
@@ -12,7 +12,6 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?= base_url('/dashboard') ?>">Home</a></li>
-                        <li class="breadcrumb-item"><a href="<?= base_url('/reviewBerita') ?>">Review Berita</a></li>
                         <li class="breadcrumb-item active">Detail Berita</li>
                     </ol>
                 </div><!-- /.col -->
@@ -62,26 +61,26 @@
                                     <div class="col-12 overflow-hidden" style="max-height: 400px;">
                                         <img src="<?= base_url('/berkas/foto/' . $foto_awal[0]) ?>" class="product-image" alt="Product Image">
                                     </div>
-                                    <div class="col-12 product-image-thumbs">
+                                    <div class="col-12 product-image-thumbs d-flex justify-content-between">
                                         <?php if ($foto_1 != null) : ?>
-                                            <div class="d-flex flex-column">
+                                            <div class="d-flex flex-column align-items-center">
                                                 <div class="product-image-thumb active" style="height: 90px; cursor: pointer; overflow:hidden;"><img src="<?= base_url('/berkas/foto/' . $foto_1) ?>" alt="Product Image">
                                                 </div>
                                                 <a href="<?= base_url('/downloadFoto/' . $foto_1); ?>">Download</a>
                                             </div>
                                         <?php endif; ?>
                                         <?php if ($foto_2 != null) : ?>
-                                            <div class="d-flex flex-column">
+                                            <div class="d-flex flex-column align-items-center">
                                                 <div class="product-image-thumb" style="height: 90px; cursor: pointer; overflow:hidden;"><img src="<?= base_url('/berkas/foto/' . $foto_2) ?>" alt="Product Image">
                                                 </div>
                                                 <a href="<?= base_url('/downloadFoto/' . $foto_2); ?>">Download</a>
                                             </div>
                                         <?php endif; ?>
                                         <?php if ($foto_3 != null) : ?>
-                                            <div class="d-flex flex-column">
+                                            <div class="d-flex flex-column align-items-center">
                                                 <div class="product-image-thumb" style="height: 90px; cursor: pointer; overflow:hidden;"><img src="<?= base_url('/berkas/foto/' . $foto_3) ?>" alt="Product Image">
                                                 </div>
-                                                <a href="<?= base_url('/downloadFoto/' . $foto_3); ?>">Download</a>
+                                                <a class="" href="<?= base_url('/downloadFoto/' . $foto_3); ?>">Download</a>
                                             </div>
                                         <?php endif; ?>
 
@@ -127,7 +126,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <?php if ($berita['link_publish'] != '') : ?>
-                                                <a href="<?= $berita['link_publish']; ?>" class="float-right mr-4 mb-3">Kunjungi</a>
+                                                <a target="_blank" href="<?= $berita['link_publish']; ?>" class="float-right mr-4 mb-3">Kunjungi</a>
                                             <?php endif; ?>
                                         </div>
                                     </div>

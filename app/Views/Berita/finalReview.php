@@ -1,7 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<div class="content-wrapper">
+<div class="content-wrapper d-none">
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container">
@@ -12,7 +12,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?= base_url('/dashboard') ?>">Home</a></li>
-                        <li class="breadcrumb-item"><a href="<?= base_url('/entryBerita') ?>">Entry Berita</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('/reviewBerita') ?>">Review Berita</a></li>
                         <li class="breadcrumb-item active">Final Review</li>
                     </ol>
                 </div><!-- /.col -->
@@ -29,11 +29,14 @@
                     <div class="card py-5">
                         <div class="row">
                             <?php if ($berita != null) : ?>
-                                <form action="<?= base_url('/uploadHasiReview'); ?>" method="post" enctype="multipart/form-data" class="col-md-12 px-5">
+                                <form id="form-tambah" action="<?= base_url('/uploadHasiReview'); ?>" method="post" enctype="multipart/form-data" class="col-md-12 px-5">
                                     <div class="mt-2 d-flex flex-column">
-                                        <textarea name="judul_berita" rows="1"><?= $berita['judul_berita']; ?></textarea>
-
-                                        <small><?= $berita['penulis']; ?>| [<?= $berita['satker_kd']; ?>] <?php foreach ($list_satker as $satker) {
+                                        <textarea name="judul" id="judul-berita-top" disabled rows="1"><?= $berita['judul_berita']; ?></textarea>
+                                        <div>
+                                            <button type="button" id="enableEdit" class="btn btn-info btn-xs tombol" style="background-color: #3c4b64; border:none;"><i class="fas fa-pen"></i></button>
+                                        </div>
+                                        <input type="text" class="d-none" name="judul_berita" id="judul-berita" value="<?= $berita['judul_berita']; ?> required">
+                                        <small><?= $berita['penulis']; ?> | [<?= $berita['satker_kd']; ?>] <?php foreach ($list_satker as $satker) {
                                                                                                                 if ($satker['kd_satker'] == $berita['satker_kd']) {
                                                                                                                     echo $satker['satker'];
                                                                                                                 }
@@ -137,7 +140,9 @@
                                                     <input type="file" class="form-control d-none" id="file_berita" name="file_berita" accept=".doc, .docx" required />
                                                 </div>
 
-                                                <div class="col-md-4"></div>
+                                                <div class="col-md-4 d-flex align-items-center pilih-files">
+
+                                                </div>
                                             </div>
 
                                             <div class="row">
@@ -182,6 +187,7 @@
 <script src="<?= base_url('/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
 <!-- GALERY IMAGE -->
 <script src="<?= base_url('/js/viewer.min.js') ?>"></script>
+<script src="<?= base_url('/js/jquery.validate.min.js') ?>"></script>
 <script>
     var viewer = new Viewer(document.getElementById('galley'), {
         url: 'data-original',
@@ -216,30 +222,6 @@
 </script>
 
 <script>
-    var chooseBtn = document.getElementById('chooseBtn');
-    var hiddenBtn = document.getElementById('file_berita');
-
-    hiddenBtn.addEventListener('change', function() {
-        if (hiddenBtn.files.length > 0) {
-            chooseBtn.innerText = hiddenBtn.files[0].name;
-        } else {
-            chooseBtn.innerText = 'Choose';
-        }
-    });
-
-
-
-    $(document).on('change', '#file_berita', function() {
-        Swal.fire({
-            title: "File Terpilih!",
-            text: "Pastikan anda mengupload file yang benar!",
-            icon: "warning",
-            showConfirmButton: true,
-        });
-    });
-</script>
-
-<script>
     $(document).on('change', 'input[type="checkbox"]', function() {
         if ($(this).prop('checked')) {
             $(this).parent().addClass('terpilih')
@@ -250,11 +232,112 @@
         }
     })
 
-    $('textarea').each(function() {
+    $('#judul-berita-top').each(function() {
         this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
     }).on('input', function() {
         this.style.height = 'auto';
         this.style.height = (this.scrollHeight) + 'px';
+    });
+</script>
+
+<script>
+    $(document).on('keyup', '#judul-berita-top', function() {
+        $('#judul-berita').val($(this).val())
+    })
+    $(document).on('click', '#enableEdit', function() {
+        $('#judul-berita-top').focus()
+        $('#enableEdit').children().toggleClass('fa-times')
+        $('#enableEdit').toggleClass('bg-danger')
+        $('#judul-berita-top').prop('disabled', function(i, v) {
+            return !v;
+        }).focus();
+    })
+</script>
+
+<script>
+    var hiddenBtn = document.getElementById('file_berita');
+    var chooseBtn = document.getElementById('chooseBtn');
+    hiddenBtn.addEventListener('change', function() {
+        if (hiddenBtn.files.length > 0) {
+            chooseBtn.innerText = hiddenBtn.files[0].name;
+        } else {
+            chooseBtn.innerText = 'Upload Hasil Review';
+        }
+    });
+
+    $(document).on('input', '#file_berita', function() {
+        $('#file_berita').parent().next().html('');
+        if (this.files[0].size > 250000) {
+            $('#file_berita').parent().next().html('<small class="text-red">Ukuran File Melebihi 250Kb!</small>');
+            this.value = '';
+            return false;
+        } else {
+            Swal.fire({
+                title: "File Terpilih!",
+                text: "Pastikan anda mengupload file yang benar!",
+                icon: "success",
+                showConfirmButton: true,
+            });
+        }
+        var pathFile = this.value;
+        var ekstensiOk = /(\.docx|\.doc)$/i;
+        if (!ekstensiOk.exec(pathFile)) {
+            $('#file_berita').parent().next().html('<small class="text-red">Yang anda input bukan file word!</small>');
+            this.value = '';
+            return false;
+        } else {
+            Swal.fire({
+                title: "File Terpilih!",
+                text: "Pastikan anda mengupload file yang benar!",
+                icon: "success",
+                showConfirmButton: true,
+            });
+        }
+    });
+
+    $(document).ready(function() {
+        <?php if (session()->getFlashdata('pesan')) { ?>
+            Swal.fire({
+                title: "<?= session()->getFlashdata('pesan') ?>",
+                icon: "<?= session()->getFlashdata('icon') ?>",
+                showConfirmButton: true,
+            });
+        <?php } ?>
+    });
+
+    jQuery.validator.setDefaults({
+        errorElement: 'span',
+        errorPlacement: function(error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function(element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        },
+    });
+
+    $(document).ready(function() {
+        $('#form-tambah').validate({
+            rules: {
+                judul: {
+                    required: true,
+                },
+                file_berita: {
+                    required: true,
+                }
+            },
+            messages: {
+                file_berita: {
+                    required: 'Silahkan pilih word file!',
+                },
+                judul: {
+                    required: 'Judul berita tidak boleh kosong!',
+                }
+            },
+        });
     });
 </script>
 
