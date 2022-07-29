@@ -29,7 +29,10 @@
   <title><?= $title; ?></title>
 </head>
 
+
+
 <body class="hold-transition layout-top-nav">
+
   <div class="wrapper">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
@@ -110,7 +113,15 @@
     <!-- /.navbar -->
 
 
-
+    <div id="loader" class="w-100 d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+      <div class="book">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
 
     <!-- jQuery -->
     <script src="<?= base_url('/plugins/jquery/jquery.min.js') ?>"></script>
@@ -131,15 +142,7 @@
     </footer>
   </div>
 
-  <div id="loader" class="w-100 d-flex justify-content-center align-items-center" style="min-height: 80vh;">
-    <div class="book">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
+
 
   <script>
     function ready() {
