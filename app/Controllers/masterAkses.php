@@ -43,14 +43,7 @@ class masterAkses extends BaseController
         }
 
         $list_user_level = $this->masterAksesUserLevelModel->getUserLevel($user['id']);
-
-
-        $level_id = count($list_user_level);
-        for ($i = 0; $i < count($list_user_level); $i++) {
-            if ($list_user_level[$i]['level_id'] < $level_id) {
-                $level_id = $list_user_level[$i]['level_id'];
-            }
-        }
+        $level_id = $list_user_level[count($list_user_level) - 1]['level_id'];
         $list_menu = $this->masterAksesUserLevelModel->getAksesMenu($level_id, $user['id']);
         $list_submenu = $this->masterAksesUserLevelModel->getAksesSubmenu($level_id, $user['id']);
         if (password_verify($password, $user['password'])) {
