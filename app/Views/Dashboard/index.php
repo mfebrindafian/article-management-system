@@ -128,7 +128,7 @@
               <div id="containerBulan">
                 <div class="card-header border-0">
                   <div class="d-flex justify-content-between mt-2">
-                    <h4><strong>Chart Berita Bulan <?= date('F'); ?></strong></h4>
+                    <h4><strong>Chart Berita Bulan <span id="bulan-ini-indo"></span></strong></h4>
                     <h5 class="float-right"><small>total</small> <strong class="text-cyan" id="total-bulan"></strong></h5>
                   </div>
                 </div>
@@ -342,5 +342,19 @@
   } else if (h >= 18 || h < 4) {
     $('#ucapan').html('Selamat Malam, ')
   }
+</script>
+<script src="<?= base_url('/js/tanggal.js') ?>"></script>
+<script>
+  var date = new Date();
+
+  var currentDate = '<?php
+
+                      use CodeIgniter\I18n\Time;
+
+                      $myTime = Time::today('Asia/Jakarta');
+                      echo $myTime->toLocalizedString('yyyy-MM-dd');
+                      ?>';
+
+  $('#bulan-ini-indo').html(ubahBulan(currentDate))
 </script>
 <?= $this->endSection(); ?>

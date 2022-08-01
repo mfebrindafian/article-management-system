@@ -449,6 +449,9 @@ class masterBerita extends BaseController
                 'file_review' => $nama_file,
                 'image_upload' => $json_image
             ]);
+            session()->setFlashdata('pesan', 'Upload hasil review berhasil!');
+            session()->setFlashdata('pesan_text', 'Berita masuk ketahap siap dipublikasi');
+            session()->setFlashdata('icon', 'success');
             return redirect()->to('/reviewBerita');
         } else {
             session()->setFlashdata('pesan', 'File Berita Review Kosong!');

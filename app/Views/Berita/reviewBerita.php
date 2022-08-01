@@ -349,9 +349,6 @@
                 <div class="row mt-4 mb-3">
                     <div class="col-9">
                         <h4 class="m-0 ">Berita Terpublikasi</h4>
-                        <?php if (session()->getFlashdata('pesan') == true) {
-                            echo session()->getFlashdata('pesan');
-                        } ?>
                     </div>
                     <div class="col-3">
                         <form action="" method="POST" class=" input-group input-group-md">
