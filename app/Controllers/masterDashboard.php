@@ -32,6 +32,7 @@ class masterDashboard extends BaseController
             $no++;
         }
 
+        $jml_bulan_satker = [];
         for ($i = 0; $i < count($total_berita_satker); $i++) {
             if (count($total_berita_satker[$i]) != 0) {
                 for ($a = 0; $a < count($total_berita_satker[$i]); $a++) {
@@ -40,15 +41,17 @@ class masterDashboard extends BaseController
 
                     if ($bulan == date('m')) {
                         $laporan_bulan_satker[$i][] = $total_berita_satker[$i][$a];
+                        $jml_bulan_satker[$i] = count($laporan_bulan_satker[$i]);
+                    } else {
+                        $jml_bulan_satker[$i] = 0;
                     }
-                    $jml_bulan_satker[$i] = count($laporan_bulan_satker[$i]);
                 }
             } else {
                 $jml_bulan_satker[$i] = 0;
             }
         }
 
-
+        $jml_tahun_satker = [];
         for ($i = 0; $i < count($total_berita_satker); $i++) {
             if (count($total_berita_satker[$i]) != 0) {
                 for ($a = 0; $a < count($total_berita_satker[$i]); $a++) {
@@ -56,8 +59,10 @@ class masterDashboard extends BaseController
                     $tahun = $data[0];
                     if ($tahun == date('Y')) {
                         $laporan_tahun_satker[$i][] = $total_berita_satker[$i][$a];
+                        $jml_tahun_satker[$i] = count($laporan_tahun_satker[$i]);
+                    } else {
+                        $jml_tahun_satker[$i] = 0;
                     }
-                    $jml_tahun_satker[$i] = count($laporan_tahun_satker[$i]);
                 }
             } else {
                 $jml_tahun_satker[$i] = 0;
