@@ -85,6 +85,7 @@
                                                         </div>
                                                     <?php endif; ?>
                                                     <div class="col-sm-8 pt-2 d-flex justify-content-end">
+                                                        <a href="<?= base_url('/downloadBeritaFinal/' . $berita['id']); ?>" class="edit float-right ripple mr-3 text-sm">Download File</a>
                                                         <a href="<?= base_url('/detailBerita/' . $berita['id']); ?>" class="edit float-right ripple">Detail</a>
                                                     </div>
                                                     <?php if ($berita['status_kd'] == "3" && $berita['link_publish'] != '') : ?>

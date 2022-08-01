@@ -105,6 +105,7 @@ $routes->post('/updateBerita', 'masterBerita::updateBerita');
 
 $routes->post('/ubahStatusReview', 'masterBerita::ubahStatusReview');
 $routes->get('/downloadBerita/(:segment)', 'masterBerita::downloadBerita/$1');
+$routes->get('/downloadBeritaFinal/(:segment)', 'masterBerita::downloadBeritaFinal/$1');
 
 $routes->post('/uploadHasiReview', 'masterBerita::uploadHasiReview');
 $routes->post('/sendLinkBerita', 'masterBerita::sendLinkBerita');

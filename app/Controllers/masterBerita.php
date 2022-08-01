@@ -334,22 +334,15 @@ class masterBerita extends BaseController
     public function downloadBerita($id_berita)
     {
         $data_berita = $this->masterBeritaModel->getBeritaById($id_berita);
-        // $image_upload = $data_berita['image_upload'];
-        // $data = json_decode($image_upload);
-        // if ($data != null) {
-        //     $foto_all = $data->image;
-        // }
-
-        // if ($foto_all != null) {
-        //     foreach ($foto_all as $foto) {
-        //         return $this->response->download('berkas/foto/' . $foto, null);
-        //     }
-        // }
-
         $file_draft = $data_berita['file_draft'];
         return $this->response->download('berkas/draft/' . $file_draft, null);
     }
-
+    public function downloadBeritaFinal($id_berita)
+    {
+        $data_berita = $this->masterBeritaModel->getBeritaById($id_berita);
+        $file_review = $data_berita['file_review'];
+        return $this->response->download('berkas/final/' . $file_review, null);
+    }
 
     public function downloadFoto($nama_foto)
     {

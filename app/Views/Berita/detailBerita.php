@@ -116,12 +116,17 @@
                                             <div class="col-12">
                                                 <strong class="">Penulis</strong>
                                                 <p class="text-muted"><?= $berita['penulis']; ?></p>
-                                                <!-- <strong>Satuan Kerja</strong>
-                                            <p class="text-muted">[1500] BPS Provinsi Jambi</p>
-                                            <strong>Editor</strong>
-                                            <p class="text-muted">Budi</p> -->
                                                 <strong>Tanggal Publikasi</strong>
                                                 <p class="text-muted"><?= $berita['tgl_publish']; ?></p>
+                                                <p>
+                                                    <strong>Download File :</strong>
+                                                </p>
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <a href="<?= base_url('/downloadBeritaFinal/' . $berita['id']); ?>" style="max-width: 150px; display: flex; justify-content: center;" class="tombol-tambah ripple mr-3 text-sm">Download File</a>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
 
