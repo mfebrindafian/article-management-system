@@ -130,24 +130,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <?php if ($berita['status_kd'] == "3" && $berita['link_publish'] == '') : ?>
-                                            <hr class="mt-4">
-                                            <form action="<?= base_url('/sendLinkBerita'); ?>" method="post" class="row ">
-                                                <div class="col-12 pb-0 mb-0">
-                                                    <div class="row">
-                                                        <div class="col-12 ">
-                                                            <div class="form-group mb-0">
-                                                                <div class="row">
-                                                                    <input type="hidden" name="id_berita_link" value="<?= $berita['id']; ?>">
-                                                                    <div class="col-9"><input type="link" class="form-control" id="link" name="link_berita" placeholder="Masukkan link berita" required /></div>
-                                                                    <div class="col-3"> <button type="submit" class="tombol-tambah float-right ripple h-100">Simpan</button></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        <?php endif; ?>
+
                                     </div>
                                 </div>
                             <?php endforeach; ?>
