@@ -100,7 +100,7 @@ class MasterBeritaModel extends Model
     {
         return $this
             ->table('mst_berita')
-            ->where('status_kd !=', '3')
+            ->where('link_publish', '')
             ->like('judul_berita', $key)
             ->orderBy('id', 'DESC');
     }
