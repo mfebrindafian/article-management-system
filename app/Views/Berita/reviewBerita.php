@@ -101,6 +101,20 @@
 
                                                     </div>
                                                 </div>
+                                                <?php if ($berita['status_kd'] == "2" && $berita['tgl_selesai_review'] != null) : ?>
+                                                    <div class="mt-2">
+
+                                                        <span class="rejected">Berita Ditolak oleh publisher!</span>
+                                                    </div>
+                                                <?php endif; ?>
+                                                <?php if ($berita['status_kd'] == "2") : ?>
+                                                    <div class="row">
+                                                        <div class="col-sm-4"></div>
+                                                        <div class="col-sm-8 d-flex justify-content-end">
+                                                            <button id="btn-reject" data-toggle="modal" data-target="#modal-reject" data-id_berita="<?= $berita['id']; ?>" data-judul_berita="<?= $berita['judul_berita']; ?>" class="cancel">Reject</button>
+                                                        </div>
+                                                    </div>
+                                                <?php endif; ?>
 
                                                 <div class="row">
                                                     <?php if ($berita['status_kd'] != "1") : ?>
@@ -234,6 +248,7 @@
                                                     <div class="mt-2"><span class="reviewing">Reviewing</span>
                                                     </div>
                                                 </div>
+
 
                                                 <div class="row">
                                                     <div class="col-sm-4"></div>
@@ -443,7 +458,7 @@
     <!-- MODAL Reject -->
     <div class="modal fade" id="modal-reject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document" style="top: 13%;">
-            <form action="" method="post" class="modal-content">
+            <form action="<?= base_url('/rejectBeritaByReviewer'); ?>" method="post" class="modal-content">
                 <div class="modal-header border-0">
                     <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-exclamation mr-3" style="color: #eb3455;"></i> Reject Berita</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -451,7 +466,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" name="id_berita" id="id_berita_reject">
+                    <input type="hidden" name="id_berita_reject" id="id_berita_reject">
                     Yakin Ingin Menolak Berita Ini?
                     <br>
                     <strong id="judul_berita_reject"></strong>

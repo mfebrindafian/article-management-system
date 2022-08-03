@@ -72,8 +72,10 @@
                                                             echo '<span class="reviewing">Reviewing</span>';
                                                         } elseif ($berita['status_kd'] == "3" && $berita['link_publish'] == '') {
                                                             echo '<span class="ready-publish">Ready to publish</span>';
-                                                        } else {
+                                                        } elseif ($berita['status_kd'] == "3") {
                                                             echo '<span class="published">Published</span>';
+                                                        } else {
+                                                            echo '<span class="rejected">Rejected</span>';
                                                         } ?>
                                                     </td>
                                                     <td>

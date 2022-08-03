@@ -101,6 +101,7 @@ class MasterBeritaModel extends Model
         return $this
             ->table('mst_berita')
             ->where('link_publish', '')
+            ->where('status_kd !=', 4)
             ->like('judul_berita', $key)
             ->orderBy('id', 'DESC');
     }

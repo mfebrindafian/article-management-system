@@ -298,7 +298,7 @@ class masterBerita extends BaseController
             'keyword_review' => $keyword_review,
             'keyword_publish' => $keyword_publish,
         ];
-        // dd($data);
+        //dd($data);
         return view('Berita/reviewBerita', $data);
     }
     public function ubahStatusReview()
@@ -329,6 +329,64 @@ class masterBerita extends BaseController
         session()->setFlashdata('pesan_text', 'Silahkan download dan upload hasil review');
         session()->setFlashdata('icon', 'success');
         return redirect()->to('/reviewBerita');
+    }
+
+    public function rejectBeritaByReviewer()
+    {
+        $id_berita = $this->request->getVar('id_berita_reject');
+
+        $data_berita = $this->masterBeritaModel->getBeritaById($id_berita);
+
+        $data_user = session('data_user');
+
+        $this->masterBeritaModel->save([
+            'id' => $id_berita,
+            'user_id' => $data_berita['user_id'],
+            'judul_berita' => $data_berita['judul_berita'],
+            'penulis' => $data_berita['penulis'],
+            'satker_kd' => $data_berita['satker_kd'],
+            'tgl_upload' => $data_berita['tgl_upload'],
+            'status_kd' => 4,
+            'tgl_publish' => null,
+            'link_publish' => '',
+            'editor' => $data_user['username'],
+            'tgl_mulai_review' => $data_berita['tgl_mulai_review'],
+            'tgl_selesai_review' => date("Y-m-d h:i:s"),
+            'file_draft' => $data_berita['file_draft'],
+            'file_review' => null,
+            'image_upload' => $data_berita['image_upload']
+        ]);
+        session()->setFlashdata('pesan', 'Berhasil! dokumen telah di tolak');
+        session()->setFlashdata('icon', 'success');
+        return redirect()->to('/reviewBerita');
+    }
+
+    public function rejectBeritaByPublisher()
+    {
+        $id_berita = $this->request->getVar('id_berita_reject');
+
+        $data_berita = $this->masterBeritaModel->getBeritaById($id_berita);
+
+        $this->masterBeritaModel->save([
+            'id' => $id_berita,
+            'user_id' => $data_berita['user_id'],
+            'judul_berita' => $data_berita['judul_berita'],
+            'penulis' => $data_berita['penulis'],
+            'satker_kd' => $data_berita['satker_kd'],
+            'tgl_upload' => $data_berita['tgl_upload'],
+            'status_kd' => 2,
+            'tgl_publish' => null,
+            'link_publish' => '',
+            'editor' => $data_berita['editor'],
+            'tgl_mulai_review' => $data_berita['tgl_mulai_review'],
+            'tgl_selesai_review' => $data_berita['tgl_selesai_review'],
+            'file_draft' => $data_berita['file_draft'],
+            'file_review' =>  $data_berita['file_review'],
+            'image_upload' => $data_berita['image_upload']
+        ]);
+        session()->setFlashdata('pesan', 'Berhasil! dokumen telah di tolak');
+        session()->setFlashdata('icon', 'success');
+        return redirect()->to('/publishBerita');
     }
 
     public function downloadBerita($id_berita)
@@ -365,6 +423,8 @@ class masterBerita extends BaseController
 
         return view('Berita/finalReview', $data);
     }
+
+
 
     public function uploadHasiReview()
     {
