@@ -98,15 +98,15 @@
                                                         } else {
                                                             echo '<span class="published">Published</span>';
                                                         } ?>
+                                                        <?php if ($berita['status_kd'] == "2" && $berita['tgl_selesai_review'] != null) : ?>
+
+                                                            <span class="rejected">Berita Ditolak oleh publisher!</span>
+
+                                                        <?php endif; ?>
 
                                                     </div>
                                                 </div>
-                                                <?php if ($berita['status_kd'] == "2" && $berita['tgl_selesai_review'] != null) : ?>
-                                                    <div class="mt-2">
 
-                                                        <span class="rejected">Berita Ditolak oleh publisher!</span>
-                                                    </div>
-                                                <?php endif; ?>
                                                 <?php if ($berita['status_kd'] == "2") : ?>
                                                     <div class="row">
                                                         <div class="col-sm-4"></div>
