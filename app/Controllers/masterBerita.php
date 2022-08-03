@@ -298,7 +298,7 @@ class masterBerita extends BaseController
             'keyword_review' => $keyword_review,
             'keyword_publish' => $keyword_publish,
         ];
-        //dd($data);
+        // dd($data);
         return view('Berita/reviewBerita', $data);
     }
     public function ubahStatusReview()
@@ -582,5 +582,15 @@ class masterBerita extends BaseController
             'list_status' => $list_status,
         ];
         return view('Berita/detailBerita', $data);
+    }
+
+    public function reviewUlang()
+    {
+        $data = [
+            'title' => 'Final Review',
+            'menu' => 'Berita',
+            'subMenu' => 'Review Berita',
+        ];
+        return view('Berita/reviewUlang', $data);
     }
 }

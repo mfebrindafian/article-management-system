@@ -3,23 +3,13 @@
 
 <head>
   <meta charset="UTF-8" />
-  <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="<?= base_url('/plugins/fontawesome-free/css/all.min.css') ?>" />
-  <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url('/dist/css/adminlte.min.css') ?>" />
-  <!-- overlayScrollbars -->
   <link rel="stylesheet" href="<?= base_url('/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') ?>" />
-  <!-- SweetAlert2 -->
   <link rel="stylesheet" href="<?= base_url('/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') ?>">
-  <!-- Toastr -->
   <link rel="stylesheet" href="<?= base_url('/plugins/toastr/toastr.min.css') ?>" />
-  <!-- datatables -->
   <link rel="stylesheet" href="<?= base_url('/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') ?>">
-
-
-  <!-- custom css -->
   <link rel=" stylesheet" href="<?= base_url('/css/custom.css') ?>" />
   <link rel="stylesheet" href="<?= base_url('/css/trix.css') ?>" />
   <link rel="stylesheet" href="<?= base_url('/css/viewer.min.css') ?>">
@@ -29,15 +19,11 @@
   <title><?= $title; ?></title>
 </head>
 
-
-
 <body class="hold-transition layout-top-nav">
 
   <div class="wrapper">
-    <!-- Navbar -->
     <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
       <div class="container px-0">
-        <!-- Brand Logo -->
         <a href="<?= base_url('/dashboard') ?>" class="ml-0 brand-link d-flex justify-content-center align-content-center" style="border: none">
           <span class="brand-text font-weight-light ml-0"><img src="<?= base_url('images/BPS.png') ?>" alt="Logo BPS" style="width: 40px;" /></span>
         </a>
@@ -47,7 +33,6 @@
         </button>
 
         <div class="collapse navbar-collapse order-3" id="navbarCollapse">
-          <!-- Left navbar links -->
           <ul class="navbar-nav">
             <?php $list_menu = session('list_menu') ?>
             <?php $angle = '#' ?>
@@ -82,13 +67,9 @@
           </ul>
         </div>
 
-        <!-- Right navbar links -->
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-          <!-- Profile Dropdown Menu -->
           <li class="nav-item dropdown">
-
             <a href="#" class="nav-link" data-toggle="dropdown"><?= session('fullname'); ?><i class="right fas fa-angle-down" style="margin-left: 10px"></i> </a>
-
             <div class="dropdown-menu dropdown-menu-md">
               <a href="<?= base_url('/profile') ?>" class="dropdown-item">
                 <i class="fas fa-user mr-2"></i> Profile
@@ -110,8 +91,6 @@
         </ul>
       </div>
     </nav>
-    <!-- /.navbar -->
-
 
     <div id="loader" class="w-100 d-flex justify-content-center align-items-center" style="min-height: 80vh;">
       <div class="book">
@@ -122,15 +101,10 @@
         <div></div>
       </div>
     </div>
-
-    <!-- jQuery -->
     <script src="<?= base_url('/plugins/jquery/jquery.min.js') ?>"></script>
     <script src="<?= base_url('/plugins/datatables/jquery.dataTables.min.js') ?>"></script>
     <script src="<?= base_url('/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') ?>"></script>
     <script src="<?= base_url('/plugins/datatables-responsive/js/dataTables.responsive.min.js') ?>"></script>
-
-
-    <!-- RENDER DARI HALAMAN LAIN -->
 
     <?= $this->renderSection('content'); ?>
     <footer class="main-footer d-none">
@@ -141,8 +115,6 @@
       </div>
     </footer>
   </div>
-
-
 
   <script>
     function ready() {
@@ -168,21 +140,14 @@
       ready()
     })
   </script>
-  <!-- jQuery UI 1.11.4 -->
   <script src="<?= base_url('/plugins/jquery-ui/jquery-ui.min.js') ?>"></script>
-  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
   <script>
     $.widget.bridge('uibutton', $.ui.button);
   </script>
-  <!-- Bootstrap 4 -->
   <script src="<?= base_url('/plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
-  <!-- ChartJS -->
   <script src="<?= base_url('/plugins/chart.js/Chart.min.js') ?>"></script>
-  <!-- overlayScrollbars -->
   <script src="<?= base_url('/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') ?>"></script>
-  <!-- AdminLTE App -->
   <script src="<?= base_url('/dist/js/adminlte.js') ?>"></script>
-  <!-- AdminLTE for demo purposes -->
 </body>
 
 </html>
