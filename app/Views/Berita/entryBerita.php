@@ -89,7 +89,7 @@
 
                                                     <td><?= $berita['tgl_publish']; ?></td>
                                                     <td><?= $berita['editor']; ?></td>
-                                                    <td><a href="<?= $berita['link_publish']; ?>"><?= $berita['link_publish']; ?></a></td>
+                                                    <td style="max-width: 300px;"><a href="<?= $berita['link_publish']; ?>"><?= $berita['link_publish']; ?></a></td>
                                                     <td>
                                                         <?php if ($berita['status_kd'] == 1 && $berita['user_id'] == session('user_id')) : ?>
                                                             <a href="<?= base_url('/editBerita/' . $berita['id']) ?>" class="btn btn-link btn-sm btn-rounded edit">
@@ -121,10 +121,10 @@
             "paging": true,
             "lengthChange": false,
             "searching": true,
+            "responsive": true,
             'ordering': false,
             "info": true,
             "autoWidth": false,
-            "responsive": true,
             "pageLength": 10
 
         });

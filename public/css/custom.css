@@ -402,6 +402,23 @@
      background-color: #d9e5ff;
      color: #335fbd;
 }
+
+.cancel {
+     display: flex;
+     align-items: center;
+     font-weight: semibold;
+     padding: 6px 21px 6px 21px;
+     height: 33px;
+     border-radius: 5px;
+     color: #941209;
+     border: none;
+     background: none;
+}
+
+.cancel:hover {
+     background-color: #fcd0cc;
+     color: #941209;
+}
 .filter-berita {
      font-weight: semibold;
      color: #333333;
@@ -438,6 +455,22 @@
 
 .tombol-tambah:hover {
      background-color: #5384ed;
+     color: white;
+}
+
+.tombol-reject {
+     cursor: pointer;
+     padding: 6px 20px 6px 20px;
+     background-color: #eb3455;
+     font-size: 14px;
+     font-weight: semibold;
+     color: white;
+     border-radius: 4px;
+     border: none;
+}
+
+.tombol-reject:hover {
+     background-color: #cc2342;
      color: white;
 }
 

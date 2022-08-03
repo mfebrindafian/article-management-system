@@ -36,7 +36,7 @@
                                             <div>
                                                 <button type="button" id="enableEdit" class="btn btn-info btn-xs tombol" style="background-color: #3c4b64; border:none;"><i class="fas fa-pen"></i></button>
                                             </div>
-                                            <input type="text" class="d-none" name="judul_berita" id="judul-berita" value="<?= $berita['judul_berita']; ?> required">
+                                            <input type="text" class="d-none" name="judul_berita" id="judul-berita" value="<?= $berita['judul_berita']; ?>" required>
                                             <small><?= $berita['penulis']; ?> | [<?= $berita['satker_kd']; ?>] <?php foreach ($list_satker as $satker) {
                                                                                                                     if ($satker['kd_satker'] == $berita['satker_kd']) {
                                                                                                                         echo $satker['satker'];
@@ -64,7 +64,7 @@
                                             <div class="col-sm-12 text-center px-5">
                                                 <div class="row mb-2 ">
                                                     <div class="col-12 text-center">
-                                                        <strong>Pilih Foto</strong>
+                                                        <strong>Ceklis Foto yang akan di publish (opsional)</strong>
                                                     </div>
                                                 </div>
                                                 <div class="row">

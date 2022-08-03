@@ -195,8 +195,13 @@
                                                 </div>
 
                                                 <div class="row">
-                                                    <div class="col-sm-4"></div>
-                                                    <div class="col-sm-8 pt-2 d-flex justify-content-end">
+                                                    <div class="col-sm-4 pt-2 d-flex justify-content-start">
+                                                        <button id="btn-cancel" data-target="#modal-cancel" data-toggle="modal" data-id_berita="<?= $berita['id'] ?>" data-judul_berita="<?= $berita['judul_berita'] ?>" class="cancel">Cancel</button>
+                                                    </div>
+                                                    <div class="col-sm-4 ">
+
+                                                    </div>
+                                                    <div class="col-sm-4 pt-2 d-flex justify-content-end">
                                                         <button id="btn-review" class="tombol-tambah float-right ripple" data-toggle="modal" data-target="#modal-review" data-judul_berita="<?= $berita['judul_berita'] ?>" data-id_berita="<?= $berita['id'] ?>">Review</button>
                                                     </div>
                                                 </div>
@@ -248,11 +253,18 @@
                                                 </div>
 
                                                 <div class="row">
+                                                    <div class="col-sm-4"></div>
+                                                    <div class="col-sm-8 d-flex justify-content-end">
+                                                        <button id="btn-reject" data-toggle="modal" data-target="#modal-reject" data-id_berita="<?= $berita['id']; ?>" data-judul_berita="<?= $berita['judul_berita']; ?>" class="cancel">Reject</button>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
                                                     <div class="col-sm-4 d-flex align-items-center">
                                                         <small class="text-gray judul-berita">Direview oleh <strong><?= $berita['editor'] ?></strong></small>
                                                     </div>
                                                     <div class="col-sm-8 pt-2 d-flex justify-content-end">
                                                         <a href="<?= base_url('/downloadBerita/' . $berita['id']); ?>" class="edit float-right ripple mr-3 text-sm">Download File</a>
+
                                                         <a href="<?= base_url('/finalReview/' . $berita['id']); ?>" class="tombol-tambah float-right ripple">Publish</a>
                                                     </div>
                                                 </div>
@@ -402,7 +414,7 @@
 
                                                     <td><?= $berita['tgl_publish']; ?></td>
                                                     <td><?= $berita['editor']; ?></td>
-                                                    <td class="text-center">
+                                                    <td class="text-center" style="max-width: 300px;">
                                                         <a target="_blank" href="<?= $berita['link_publish']; ?>" class="mr-2"><i class="fas fa-globe"></i></a>
                                                     </td>
                                                 </tr>
@@ -437,8 +449,57 @@
                     <p id="judul_berita"></p>
                 </div>
                 <div class="modal-footer border-0">
-                    <button type="submit" class="tombol-tambah float-right ripple h-100" data-dismiss="modal" style="background-color: gray;">Batal</button>
+                    <button class="tombol-tambah float-right ripple h-100" data-dismiss="modal" style="background-color: gray;">Batal</button>
                     <button type="submit" class="tombol-tambah float-right ripple h-100">Oke</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- MODAL Reject -->
+    <div class="modal fade" id="modal-reject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="top: 13%;">
+            <form action="" method="post" class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-exclamation mr-3" style="color: #eb3455;"></i> Reject Berita</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id_berita" id="id_berita_reject">
+                    Yakin Ingin Menolak Berita Ini?
+                    <br>
+                    <strong id="judul_berita_reject"></strong>
+                </div>
+                <div class="modal-footer border-0">
+                    <button class="tombol-tambah float-right ripple h-100" data-dismiss="modal" style="background-color: gray;">Batal</button>
+                    <button type="submit" class="tombol-reject float-right ripple h-100">Reject</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL Cacnel -->
+    <div class="modal fade" id="modal-cancel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="top: 13%;">
+            <form action="" method="post" class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-exclamation mr-3" style="color: #eb3455;"></i> Cancel Berita</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id_berita" id="id_berita_cancel">
+                    Yakin Ingin Membatalkan Berita Ini?
+                    <br>
+                    <strong id="judul_berita_cancel"></strong>
+                </div>
+                <div class="modal-footer border-0">
+                    <button class="tombol-tambah float-right ripple h-100" data-dismiss="modal" style="background-color: gray;">Batal</button>
+                    <button type="submit" class="tombol-reject float-right ripple h-100">Ya</button>
                 </div>
             </form>
         </div>
@@ -502,9 +563,19 @@
 
 
     <script>
+        $(document).on('click', '#btn-reject', function() {
+            $('#id_berita_reject').val($(this).data('id_berita'));
+            $('#judul_berita_reject').text($(this).data('judul_berita'));
+        })
+
         $(document).on('click', '#btn-review', function() {
             $('#id_berita').val($(this).data('id_berita'));
             $('#judul_berita').text($(this).data('judul_berita'));
+        })
+
+        $(document).on('click', '#btn-cancel', function() {
+            $('#id_berita_cancel').val($(this).data('id_berita'));
+            $('#judul_berita_cancel').text($(this).data('judul_berita'));
         })
     </script>
     <script>
