@@ -360,6 +360,33 @@ class masterBerita extends BaseController
         session()->setFlashdata('icon', 'success');
         return redirect()->to('/reviewBerita');
     }
+    public function cancelBerita()
+    {
+        $id_berita = $this->request->getVar('id_berita_cancel');
+
+        $data_berita = $this->masterBeritaModel->getBeritaById($id_berita);
+
+        $this->masterBeritaModel->save([
+            'id' => $id_berita,
+            'user_id' => $data_berita['user_id'],
+            'judul_berita' => $data_berita['judul_berita'],
+            'penulis' => $data_berita['penulis'],
+            'satker_kd' => $data_berita['satker_kd'],
+            'tgl_upload' => $data_berita['tgl_upload'],
+            'status_kd' => 2,
+            'tgl_publish' => null,
+            'link_publish' => '',
+            'editor' => $data_berita['editor'],
+            'tgl_mulai_review' => $data_berita['tgl_mulai_review'],
+            'tgl_selesai_review' => null,
+            'file_draft' => $data_berita['file_draft'],
+            'file_review' =>  $data_berita['file_review'],
+            'image_upload' => $data_berita['image_upload']
+        ]);
+        session()->setFlashdata('pesan', 'Berhasil! dokumen telah di batalkan');
+        session()->setFlashdata('icon', 'success');
+        return redirect()->to('/reviewBerita');
+    }
 
     public function rejectBeritaByPublisher()
     {
@@ -583,14 +610,33 @@ class masterBerita extends BaseController
         ];
         return view('Berita/detailBerita', $data);
     }
-
-    public function reviewUlang()
+    public function detailBeritaReviewer($id_berita)
     {
+        $data_berita = $this->masterBeritaModel->getBeritaById($id_berita);
+        $list_status = $this->masterStatusModel->getListStatus();
+        $data = [
+            'title' => 'Detail Berita',
+            'menu' => 'Berita',
+            'subMenu' => 'Entry Berita',
+            'berita' => $data_berita,
+            'list_status' => $list_status,
+        ];
+        return view('Berita/detailBeritaReviewer', $data);
+    }
+
+    public function reviewUlang($id_berita)
+    {
+        $data_berita = $this->masterBeritaModel->getBeritaById($id_berita);
+        $list_satker = $this->masterSatkerModel->getAllSatker();
         $data = [
             'title' => 'Final Review',
             'menu' => 'Berita',
-            'subMenu' => 'Review Berita',
+            'subMenu' => 'Final Review',
+            'berita' => $data_berita,
+            'list_satker' => $list_satker
+
         ];
-        return view('Berita/reviewUlang', $data);
+
+        return view('Berita/finalReview', $data);
     }
 }

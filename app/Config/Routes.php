@@ -92,6 +92,7 @@ $routes->get('/entryBerita', 'masterBerita::entryBerita');
 $routes->get('/reviewBerita', 'masterBerita::reviewBerita');
 $routes->get('/publishBerita', 'masterBerita::publishBerita');
 $routes->get('/detailBerita/(:segment)', 'masterBerita::detailBerita/$1');
+$routes->get('/detailBeritaReviewer/(:segment)', 'masterBerita::detailBeritaReviewer/$1');
 
 $routes->get('/downloadFoto/(:segment)', 'masterBerita::downloadFoto/$1');
 $routes->get('/finalReview/(:segment)', 'masterBerita::finalReview/$1');
@@ -106,6 +107,7 @@ $routes->post('/updateBerita', 'masterBerita::updateBerita');
 
 $routes->post('/ubahStatusReview', 'masterBerita::ubahStatusReview');
 $routes->post('/rejectBeritaByReviewer', 'masterBerita::rejectBeritaByReviewer');
+$routes->post('/cancelBerita', 'masterBerita::cancelBerita');
 $routes->get('/downloadBerita/(:segment)', 'masterBerita::downloadBerita/$1');
 $routes->get('/downloadBeritaFinal/(:segment)', 'masterBerita::downloadBeritaFinal/$1');
 
