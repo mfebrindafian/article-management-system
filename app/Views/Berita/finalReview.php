@@ -375,24 +375,24 @@
 
 
             if ($('#foto1').prop('checked')) {
-                $('#foto_berita1').prop('disabled', true)
+
                 $('#foto_berita1').prev().addClass('d-none')
             } else {
-                $('#foto_berita1').prop('disabled', false)
+
                 $('#foto_berita1').prev().removeClass('d-none')
             }
             if ($('#foto2').prop('checked')) {
-                $('#foto_berita2').prop('disabled', true)
+
                 $('#foto_berita2').prev().addClass('d-none')
             } else {
-                $('#foto_berita2').prop('disabled', false)
+
                 $('#foto_berita2').prev().removeClass('d-none')
             }
             if ($('#foto3').prop('checked')) {
-                $('#foto_berita3').prop('disabled', true)
+
                 $('#foto_berita3').prev().addClass('d-none')
             } else {
-                $('#foto_berita3').prop('disabled', false)
+
                 $('#foto_berita3').prev().removeClass('d-none')
             }
         })
