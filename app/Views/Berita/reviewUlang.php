@@ -194,24 +194,23 @@
                                             </div>
                                             <div class="row mt-2 mb-4 ">
                                                 <div class="col-12 text-center">
-                                                    <strong>Lihat file berita lama dan upload hasil review baru(opsional)</strong>
+                                                    <strong class="text-gray">File berita lama</strong>
                                                 </div>
                                             </div>
                                             <div class="row ">
                                                 <div class="col-md-4"></div>
                                                 <div class="col-md-4">
-                                                    <a href="#" style="width: 100%; background-color: #fff0d6; color: #946410;" class="choose-btn float-right ripple text-center"><strong>download</strong></a>
+                                                    <a href="#" style="width: 100%; background-color: #fff0d6; color: #946410;" class="choose-btn float-right ripple text-center"><strong>Download</strong></a>
                                                 </div>
-
-                                                <div class="col-md-4">
-
+                                                <div class="col-md-4"> </div>
+                                            </div>
+                                            <div class="row mt-5 mb-4 ">
+                                                <div class="col-12 text-center">
+                                                    <strong>Upload hasil review baru (opsional)</strong>
                                                 </div>
                                             </div>
                                             <div class="row mt-4">
-                                                <div class="col-md-4">
-
-                                                </div>
-
+                                                <div class="col-md-4"> </div>
                                                 <div class="col-md-4">
                                                     <label style="width: 100%;" class="choose-btn ripple text-center" id="chooseBtn" for="file_berita">Upload Hasil Review</label>
                                                     <input type="file" class="form-control d-none" id="file_berita" name="file_berita" accept=".doc, .docx" />
