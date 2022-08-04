@@ -153,19 +153,21 @@
                                                     <div class="col-md-4 px-5">
                                                         <label style="width:100%;" class="choose-btn-opsional fa-w-1 ripple mt-1 text-center" id="chooseBtn2" for="foto_berita1">Foto 1</label>
                                                         <input type="file" class="form-control d-none  foto" id="foto_berita1" name="foto_berita1" accept=".jpg, .jpeg, .png" />
-                                                        <i class="fas fa-times position-absolute text-primary cursor"></i>
+                                                        <span class="position-absolute d-none" href="#"><i class="fas fa-times  text-danger pe-auto"></i></span>
                                                     </div>
 
 
                                                     <div class="col-md-4 px-5">
                                                         <label style="width:100%;" class="choose-btn-opsional fa-w-1 ripple mt-1 text-center" id="chooseBtn3" for="foto_berita2">Foto 2</label>
                                                         <input type="file" class="form-control d-none  foto" id="foto_berita2" name="foto_berita2" accept=".jpg, .jpeg, .png" />
+                                                        <span class="position-absolute d-none" href="#"><i class="fas fa-times  text-danger pe-auto"></i></span>
                                                     </div>
 
 
                                                     <div class="col-md-4 px-5">
                                                         <label style="width:100%;" class="choose-btn-opsional fa-w-1 ripple mt-1 text-center" id="chooseBtn4" for="foto_berita3">Foto 3</label>
                                                         <input type="file" class="form-control d-none  foto" id="foto_berita3" name="foto_berita3" accept=".jpg, .jpeg, .png" />
+                                                        <span class="position-absolute d-none" href="#"><i class="fas fa-times  text-danger pe-auto"></i></span>
                                                     </div>
 
                                                 </div>
@@ -394,20 +396,44 @@
                 $('#foto_berita3').prev().removeClass('d-none')
             }
         })
+
+
+        $(document).on('change', '.row-foto input[type="file"]', function() {
+            if ($(this).val() != null) {
+                $(this).next().removeClass('d-none')
+                $('#foto' + $(this).attr('id').slice(-1)).parent().addClass('d-none')
+            }
+        })
+        $(document).on('click', '.row-foto span', function() {
+            $(this).prev().val(null)
+            $('#foto' + $(this).prev().attr('id').slice(-1)).parent().removeClass('d-none')
+            $(this).prev().prev().html('Foto ' + $(this).prev().attr('id').slice(-1))
+            $(this).addClass('d-none')
+        })
     </script>
     <script>
         $(document).on('click', '#btn-submit', function() {
-            // console.log($('.row-foto').find('input[type="file"]').val())
-            console.log($('.row-foto').find('input[type="file"]').filter((i, el) => el.value.trim() === '').length)
+            let chekbox = $('input[type="checkbox"]').length
+            let cheklisFoto = $('input:checkbox:not(":checked")').length;
+            let uploadFoto = $('.row-foto').find('input[type="file"]').filter((i, el) => el.value.trim() === '').length;
+            let total = chekbox + 3;
+            let pesan;
+            if (total == (cheklisFoto + uploadFoto)) {
+                pesan = 'Anda tidak memilih atau mengupload foto'
+            } else if (cheklisFoto == $('input[type="checkbox"]').length) {
+                pesan = 'Anda tidak memilih foto dari penulis'
+            }
+
+            console.log(pesan);
             if ($('#file_berita').val() == '') {
                 $('#file_berita').parent().next().html('<small class="text-red">Silahkan pilih word file!</small>');
                 return
             }
             if ($('input[type="checkbox"]').length > 0) {
-                if ($('input:checkbox:not(":checked")').length == $('input[type="checkbox"]').length && $('input[type="checkbox"]').length > 0) {
+                if ((cheklisFoto == $('input[type="checkbox"]').length && $('input[type="checkbox"]').length > 0) || (total == 6 && $('input[type="checkbox"]').length > 0)) {
                     Swal.fire({
-                        title: "Foto tidak terpilih",
-                        text: 'Yakin ingin melanjutkan tanpa memilih foto?',
+                        title: "Yakin ingin melanjutkan?",
+                        text: pesan,
                         icon: "question",
                         showCancelButton: true,
                         showConfirmButton: true,
