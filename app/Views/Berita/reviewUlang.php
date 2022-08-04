@@ -28,7 +28,7 @@
                         <div class="card py-5">
                             <div class="row">
                                 <?php if ($berita != null) : ?>
-                                    <form action="<?= base_url('/uploadHasiReview'); ?>" method="post" enctype="multipart/form-data" class="col-md-12 px-5">
+                                    <form action="<?= base_url('/uploadHasiReviewUlang'); ?>" method="post" enctype="multipart/form-data" class="col-md-12 px-5">
                                         <div class="mt-2 d-flex flex-column">
                                             <textarea name="judul" id="judul-berita-top" disabled><?= $berita['judul_berita']; ?></textarea>
                                             <div>
@@ -200,7 +200,8 @@
                                             <div class="row ">
                                                 <div class="col-md-4"></div>
                                                 <div class="col-md-4">
-                                                    <a href="#" style="width: 100%; background-color: #fff0d6; color: #946410;" class="choose-btn float-right ripple text-center"><strong>Download</strong></a>
+                                                    <input type="hidden" name="file_lama" value="<?= $berita['file_review']; ?>">
+                                                    <a href="<?= base_url('/downloadBeritaFinal/' . $berita['id']); ?>" style="width: 100%; background-color: #fff0d6; color: #946410;" class="choose-btn float-right ripple text-center"><strong>Download</strong></a>
                                                 </div>
                                                 <div class="col-md-4"> </div>
                                             </div>
