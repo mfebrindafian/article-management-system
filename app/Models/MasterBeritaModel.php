@@ -41,6 +41,17 @@ class MasterBeritaModel extends Model
             ->getResultArray();
     }
 
+    public function getAllBeritaDashboard()
+    {
+        return $this
+            ->table('mst_berita')
+            ->select('*')
+            ->where('link_publish !=', '')
+            ->get()
+            ->getResultArray();
+    }
+
+
     public function getAllBeritaUpload()
     {
         return $this

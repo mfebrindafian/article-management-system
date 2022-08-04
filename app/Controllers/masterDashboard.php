@@ -70,7 +70,7 @@ class masterDashboard extends BaseController
         }
         // dd($jml_tahun_satker);
 
-        $list_berita_all = $this->masterBeritaModel->getAllBerita();
+        $list_berita_all = $this->masterBeritaModel->getAllBeritaDashboard();
         $list_berita_publish = [];
 
 
@@ -90,7 +90,7 @@ class masterDashboard extends BaseController
             'tahun_satker' => $jml_tahun_satker,
             'berita_publish' => $list_berita_publish,
         ];
-        //dd($data);
+        // dd($data);
 
         return view('Dashboard/index', $data);
     }
