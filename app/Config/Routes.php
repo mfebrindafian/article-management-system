@@ -95,6 +95,7 @@ $routes->get('/detailBerita/(:segment)', 'masterBerita::detailBerita/$1');
 
 $routes->get('/downloadFoto/(:segment)', 'masterBerita::downloadFoto/$1');
 $routes->get('/finalReview/(:segment)', 'masterBerita::finalReview/$1');
+$routes->get('/reviewUlang/(:segment)', 'masterBerita::reviewUlang/$1');
 $routes->get('/tambahBerita', 'masterBerita::tambahBerita');
 $routes->get('/editBerita/(:segment)', 'masterBerita::editBerita/$1');
 

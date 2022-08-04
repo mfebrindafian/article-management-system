@@ -82,7 +82,7 @@
                                             </div>
                                             <div class="col-8 d-flex flex-column justify-content-between">
                                                 <div class="mt-2 d-flex flex-column">
-                                                    <h5><strong class="judul-berita"><?= $berita['judul_berita']; ?></strong></h5>
+                                                    <h5 title="<?= $berita['judul_berita'] ?>"><strong class="judul-berita"><?= $berita['judul_berita']; ?></strong></h5>
                                                     <small><?= $berita['penulis']; ?> | [<?= $berita['satker_kd']; ?>] <?php foreach ($list_satker as $satker) {
                                                                                                                             if ($satker['kd_satker'] == $berita['satker_kd']) {
                                                                                                                                 echo $satker['satker'];
@@ -107,18 +107,10 @@
                                                     </div>
                                                 </div>
 
-                                                <?php if ($berita['status_kd'] == "2") : ?>
-                                                    <div class="row">
-                                                        <div class="col-sm-4"></div>
-                                                        <div class="col-sm-8 d-flex justify-content-end">
-                                                            <button id="btn-reject" data-toggle="modal" data-target="#modal-reject" data-id_berita="<?= $berita['id']; ?>" data-judul_berita="<?= $berita['judul_berita']; ?>" class="cancel">Reject</button>
-                                                        </div>
-                                                    </div>
-                                                <?php endif; ?>
-
                                                 <div class="row">
+
                                                     <?php if ($berita['status_kd'] != "1") : ?>
-                                                        <div class="col-sm-4 d-flex align-items-center">
+                                                        <div class="col-sm-3 d-flex align-items-center">
                                                             <small class="text-gray judul-berita">Direview oleh <strong><?= $berita['editor'] ?></strong></small>
                                                         </div>
                                                     <?php endif; ?>
@@ -131,8 +123,17 @@
                                                         </div>
                                                     <?php endif; ?>
                                                     <?php if ($berita['status_kd'] == "2") : ?>
-                                                        <div class="col-sm-8 pt-2 d-flex justify-content-end">
-                                                            <a href="<?= base_url('/downloadBerita/' . $berita['id']); ?>" class="edit float-right ripple mr-3 text-sm">Download File</a>
+                                                        <div class="col-sm-9 pt-2 d-flex justify-content-end">
+                                                            <div class="dropdown">
+                                                                <a class="btn pb-0 dropdown-toggle tiga-titik text-sm text-gray mr-2" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
+                                                                    <i class="fas fa-ellipsis-v"></i>
+                                                                </a>
+
+                                                                <div class="dropdown-menu border-0 shadow mt-3" aria-labelledby="dropdownMenuLink">
+                                                                    <button id="btn-reject" data-toggle="modal" data-target="#modal-reject" data-id_berita="<?= $berita['id']; ?>" data-judul_berita="<?= $berita['judul_berita']; ?>" class="dropdown-item text-danger">Reject</button>
+                                                                </div>
+                                                            </div>
+                                                            <a href="<?= base_url('/downloadBerita/' . $berita['id']); ?>" class="download float-right ripple mr-2 text-sm text-truncate">Download File</a>
                                                             <a href="<?= base_url('/finalReview/' . $berita['id']); ?>" class="tombol-tambah float-right ripple">Publish</a>
                                                         </div>
                                                     <?php endif; ?>
@@ -180,7 +181,7 @@
                                             </div>
                                             <div class="col-8 d-flex flex-column justify-content-between">
                                                 <div class="mt-2 d-flex flex-column">
-                                                    <h5><strong class="judul-berita"><?= $berita['judul_berita']; ?></strong></h5>
+                                                    <h5 title="<?= $berita['judul_berita'] ?>"><strong class="judul-berita"><?= $berita['judul_berita']; ?></strong></h5>
                                                     <small><?= $berita['penulis']; ?> | [<?= $berita['satker_kd']; ?>] <?php foreach ($list_satker as $satker) {
                                                                                                                             if ($satker['kd_satker'] == $berita['satker_kd']) {
                                                                                                                                 echo $satker['satker'];
@@ -239,7 +240,7 @@
                                             </div>
                                             <div class="col-8 d-flex flex-column justify-content-between">
                                                 <div class="mt-2 d-flex flex-column">
-                                                    <h5><strong class="judul-berita"><?= $berita['judul_berita']; ?></strong></h5>
+                                                    <h5 title="<?= $berita['judul_berita'] ?>"><strong class="judul-berita"><?= $berita['judul_berita']; ?></strong></h5>
                                                     <small><?= $berita['penulis']; ?> | [<?= $berita['satker_kd']; ?>] <?php foreach ($list_satker as $satker) {
                                                                                                                             if ($satker['kd_satker'] == $berita['satker_kd']) {
                                                                                                                                 echo $satker['satker'];
@@ -251,18 +252,20 @@
 
 
                                                 <div class="row">
-                                                    <div class="col-sm-4"></div>
-                                                    <div class="col-sm-8 d-flex justify-content-end">
-                                                        <button id="btn-reject" data-toggle="modal" data-target="#modal-reject" data-id_berita="<?= $berita['id']; ?>" data-judul_berita="<?= $berita['judul_berita']; ?>" class="cancel">Reject</button>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-sm-4 d-flex align-items-center">
+                                                    <div class="col-sm-3 d-flex align-items-center">
                                                         <small class="text-gray judul-berita">Direview oleh <strong><?= $berita['editor'] ?></strong></small>
                                                     </div>
-                                                    <div class="col-sm-8 pt-2 d-flex justify-content-end">
-                                                        <a href="<?= base_url('/downloadBerita/' . $berita['id']); ?>" class="edit float-right ripple mr-3 text-sm">Download File</a>
+                                                    <div class="col-sm-9 pt-2 d-flex justify-content-end">
+                                                        <div class="dropdown">
+                                                            <a class="btn pb-0 dropdown-toggle tiga-titik text-sm text-gray mr-2" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
+                                                                <i class="fas fa-ellipsis-v"></i>
+                                                            </a>
 
+                                                            <div class="dropdown-menu border-0 shadow mt-3" aria-labelledby="dropdownMenuLink">
+                                                                <button id="btn-reject" data-toggle="modal" data-target="#modal-reject" data-id_berita="<?= $berita['id']; ?>" data-judul_berita="<?= $berita['judul_berita']; ?>" class="dropdown-item text-danger">Reject</button>
+                                                            </div>
+                                                        </div>
+                                                        <a href="<?= base_url('/downloadBerita/' . $berita['id']); ?>" class="download float-right ripple mr-2 text-sm text-truncate">Download File</a>
                                                         <a href="<?= base_url('/finalReview/' . $berita['id']); ?>" class="tombol-tambah float-right ripple">Publish</a>
                                                     </div>
                                                 </div>
@@ -301,7 +304,7 @@
                                             </div>
                                             <div class="col-8 d-flex flex-column justify-content-between">
                                                 <div class="mt-2 d-flex flex-column">
-                                                    <h5><strong class="judul-berita"><?= $berita['judul_berita']; ?></strong></h5>
+                                                    <h5 title="<?= $berita['judul_berita'] ?>"><strong class="judul-berita"><?= $berita['judul_berita']; ?></strong></h5>
                                                     <small><?= $berita['penulis']; ?> | [<?= $berita['satker_kd']; ?>] <?php foreach ($list_satker as $satker) {
                                                                                                                             if ($satker['kd_satker'] == $berita['satker_kd']) {
                                                                                                                                 echo $satker['satker'];

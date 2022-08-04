@@ -411,6 +411,22 @@
   background-color: #d9e5ff;
   color: #335fbd;
 }
+.download {
+     display: flex;
+     align-items: center;
+     font-weight: semibold;
+     padding: 3px 13px 3px 13px;
+     height: 33px;
+     border-radius: 5px;
+     background-color: #d9e5ff;
+     color: #1d23d1;
+     border: none;
+}
+
+.download:hover {
+     background-color: #ccdcff;
+     color: #335fbd;
+}
 
 .cancel {
   display: flex;
@@ -814,4 +830,8 @@ textarea {
   100% {
     opacity: 0;
   }
+}
+
+.tiga-titik:after {
+     content: none;
 }

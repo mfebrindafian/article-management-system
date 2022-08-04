@@ -41,12 +41,12 @@
                                             <input type="text" class="form-control " id="judul" name="judul" placeholder="Ketikkan judul berita" />
                                             <div class="invalid-feedback"></div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="">
                                             <label class="text-gray-dark" style="font-size: 14px;">File Berita</label><br>
                                             <div class="row">
-                                                <div class="col-4">
+                                                <div class="col-4 form-group">
                                                     <label style="width: 100%;" class="choose-btn fa-w-1 ripple mt-1 text-center" id="chooseBtn" for="file_berita">Pilih word file</label>
-                                                    <input type="file" class="form-control d-none file" id="file_berita" name="file_berita" accept=".doc, .docx" required />
+                                                    <input type="file" class="form-control file" style="opacity: 0; width: 0; height: 0;" id="file_berita" name="file_berita" accept=".doc, .docx" required />
                                                 </div>
                                                 <div class="col-3 d-flex align-items-center pilih-files">
 
