@@ -484,7 +484,7 @@ class masterBerita extends BaseController
                 $check_foto1 = null;
                 if ($check_foto1 == null) {
                     if ($nama_foto1 != null) {
-                        // unlink('berkas/foto/' . $nama_foto1);
+                        unlink('berkas/foto/' . $nama_foto1);
                     }
                 }
                 $ekstensi_foto = $foto_berita1->getExtension();
@@ -501,7 +501,7 @@ class masterBerita extends BaseController
                 $check_foto2 = null;
                 if ($check_foto2 == null) {
                     if ($nama_foto2 != null) {
-                        // unlink('berkas/foto/' . $nama_foto2);
+                        unlink('berkas/foto/' . $nama_foto2);
                     }
                 }
                 $ekstensi_foto = $foto_berita2->getExtension();
@@ -518,7 +518,7 @@ class masterBerita extends BaseController
                 $check_foto3 = null;
                 if ($check_foto3 == null) {
                     if ($nama_foto3 != null) {
-                        // unlink('berkas/foto/' . $nama_foto3);
+                        unlink('berkas/foto/' . $nama_foto3);
                     }
                 }
                 $ekstensi_foto = $foto_berita3->getExtension();
@@ -529,7 +529,7 @@ class masterBerita extends BaseController
                 $foto_publish[] = $nama_foto3;
             }
 
-            dd($foto_publish);
+
 
             if ($foto_publish != NULL) {
                 $all_image = array('image' => $foto_publish);
@@ -538,16 +538,8 @@ class masterBerita extends BaseController
                 $json_image = '';
             }
 
-
-
             $data_berita = $this->masterBeritaModel->getBeritaById($id_berita);
             $data_user = session('data_user');
-
-
-            date_default_timezone_set('Asia/Jakarta');
-            $tanggal = date('d-m-Y');
-            $jam = date('H-i-s');
-
 
 
             $ekstensi_file = $file_berita->getExtension();
