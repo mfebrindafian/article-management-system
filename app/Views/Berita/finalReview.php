@@ -394,6 +394,7 @@
                 $('#file_berita').parent().next().html('<small class="text-red">Silahkan pilih word file!</small>');
                 return
             }
+            console.log($('input[type="checkbox"]').length)
             if ($('input[type="checkbox"]').length > 0) {
                 if ($('input:checkbox:not(":checked")').length == $('input[type="checkbox"]').length && $('input[type="checkbox"]').length > 0) {
                     Swal.fire({
@@ -407,9 +408,9 @@
                         }
                     });
                     $('.submit-button-diswal').attr('onclick', 'submitHasil()')
-                } else {
-                    $('#paling-submit').click()
                 }
+            } else if ($('input[type="checkbox"]').length == 0) {
+                submitHasil()
             }
         });
 
