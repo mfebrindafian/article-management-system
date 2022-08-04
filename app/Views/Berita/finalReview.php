@@ -149,10 +149,11 @@
                                                         <strong>Upload foto baru (opsional)</strong>
                                                     </div>
                                                 </div>
-                                                <div class="row">
+                                                <div class="row row-foto">
                                                     <div class="col-md-4 px-5">
                                                         <label style="width:100%;" class="choose-btn-opsional fa-w-1 ripple mt-1 text-center" id="chooseBtn2" for="foto_berita1">Foto 1</label>
                                                         <input type="file" class="form-control d-none  foto" id="foto_berita1" name="foto_berita1" accept=".jpg, .jpeg, .png" />
+                                                        <i class="fas fa-times position-absolute text-primary cursor"></i>
                                                     </div>
 
 
@@ -191,7 +192,7 @@
 
                                             <div class="row">
                                                 <div class="col-md-12 text-center">
-                                                    <button id="paling-submit" class="d-none" type="submit">sss</button>
+                                                    <button id="paling-submit" class="d-none" type="submit">submit</button>
                                                     <span id="btn-submit" data-toggle="modal" data-target="#modal-confirm" class="tombol-tambah ripple shadow">Simpan</span>
                                                 </div>
                                             </div>
@@ -266,39 +267,6 @@
     </script>
 
     <script>
-        $(document).on('change', 'input[type="checkbox"]', function() {
-            if ($(this).prop('checked')) {
-                $(this).parent().addClass('terpilih')
-                $(this).prev().prev().removeClass('d-none')
-            } else {
-                $(this).parent().removeClass('terpilih')
-                $(this).prev().prev().addClass('d-none')
-            }
-
-
-            if ($('#foto1').prop('checked')) {
-                $('#foto_berita1').prop('disabled', true)
-                $('#foto_berita1').prev().addClass('d-none')
-            } else {
-                $('#foto_berita1').prop('disabled', false)
-                $('#foto_berita1').prev().removeClass('d-none')
-            }
-            if ($('#foto2').prop('checked')) {
-                $('#foto_berita2').prop('disabled', true)
-                $('#foto_berita2').prev().addClass('d-none')
-            } else {
-                $('#foto_berita2').prop('disabled', false)
-                $('#foto_berita2').prev().removeClass('d-none')
-            }
-            if ($('#foto3').prop('checked')) {
-                $('#foto_berita3').prop('disabled', true)
-                $('#foto_berita3').prev().addClass('d-none')
-            } else {
-                $('#foto_berita3').prop('disabled', false)
-                $('#foto_berita3').prev().removeClass('d-none')
-            }
-        })
-
         $('#judul-berita-top').each(function() {
             this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
         }).on('input', function() {
@@ -388,13 +356,53 @@
             });
         });
     </script>
+
+
+
+
+    <!-- FOTO FOTOAN -->
+    <script>
+        $(document).on('change', 'input[type="checkbox"]', function() {
+            if ($(this).prop('checked')) {
+                $(this).parent().addClass('terpilih')
+                $(this).prev().prev().removeClass('d-none')
+            } else {
+                $(this).parent().removeClass('terpilih')
+                $(this).prev().prev().addClass('d-none')
+            }
+
+
+            if ($('#foto1').prop('checked')) {
+                $('#foto_berita1').prop('disabled', true)
+                $('#foto_berita1').prev().addClass('d-none')
+            } else {
+                $('#foto_berita1').prop('disabled', false)
+                $('#foto_berita1').prev().removeClass('d-none')
+            }
+            if ($('#foto2').prop('checked')) {
+                $('#foto_berita2').prop('disabled', true)
+                $('#foto_berita2').prev().addClass('d-none')
+            } else {
+                $('#foto_berita2').prop('disabled', false)
+                $('#foto_berita2').prev().removeClass('d-none')
+            }
+            if ($('#foto3').prop('checked')) {
+                $('#foto_berita3').prop('disabled', true)
+                $('#foto_berita3').prev().addClass('d-none')
+            } else {
+                $('#foto_berita3').prop('disabled', false)
+                $('#foto_berita3').prev().removeClass('d-none')
+            }
+        })
+    </script>
     <script>
         $(document).on('click', '#btn-submit', function() {
+            // console.log($('.row-foto').find('input[type="file"]').val())
+            console.log($('.row-foto').find('input[type="file"]').filter((i, el) => el.value.trim() === '').length)
             if ($('#file_berita').val() == '') {
                 $('#file_berita').parent().next().html('<small class="text-red">Silahkan pilih word file!</small>');
                 return
             }
-            console.log($('input[type="checkbox"]').length)
             if ($('input[type="checkbox"]').length > 0) {
                 if ($('input:checkbox:not(":checked")').length == $('input[type="checkbox"]').length && $('input[type="checkbox"]').length > 0) {
                     Swal.fire({
@@ -408,6 +416,8 @@
                         }
                     });
                     $('.submit-button-diswal').attr('onclick', 'submitHasil()')
+                } else {
+                    submitHasil()
                 }
             } else if ($('input[type="checkbox"]').length == 0) {
                 submitHasil()
