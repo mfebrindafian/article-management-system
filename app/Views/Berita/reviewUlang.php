@@ -149,7 +149,7 @@
                                                         <strong>Upload foto baru (opsional)</strong>
                                                     </div>
                                                 </div>
-                                                <div class="row row-foto">
+                                                <div class="row row-foto px-5">
                                                     <div class="col-md-4 px-5">
                                                         <label style="width:100%;" class="choose-btn-opsional fa-w-1 ripple mt-1 text-center" id="chooseBtn2" for="foto_berita1">Foto 1</label>
                                                         <input type="file" class="form-control d-none  foto" id="foto_berita1" name="foto_berita1" accept=".jpg, .jpeg, .png" />
