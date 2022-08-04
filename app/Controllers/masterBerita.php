@@ -637,6 +637,6 @@ class masterBerita extends BaseController
 
         ];
 
-        return view('Berita/finalReview', $data);
+        return view('Berita/reviewUlang', $data);
     }
 }
