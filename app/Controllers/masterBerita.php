@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\MasterSatkerModel;
 use App\Models\MasterBeritaModel;
 use App\Models\MasterStatusModel;
+use App\Models\MasterUserModel;
 use CodeIgniter\HTTP\Request;
 use CodeIgniter\Session\Session;
 use PhpParser\Node\Expr\New_;
@@ -15,12 +16,14 @@ class masterBerita extends BaseController
     protected $masterSatkerModel;
     protected $masterBeritaModel;
     protected $masterStatusModel;
+    protected $masterUserModel;
 
     public function __construct()
     {
         $this->masterSatkerModel = new masterSatkerModel();
         $this->masterBeritaModel = new masterBeritaModel();
         $this->masterStatusModel = new masterStatusModel();
+        $this->masterUserModel = new masterUserModel();
     }
 
     public function entryBerita()
