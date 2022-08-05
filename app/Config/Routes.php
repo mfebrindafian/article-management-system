@@ -112,6 +112,7 @@ $routes->get('/downloadBerita/(:segment)', 'masterBerita::downloadBerita/$1');
 $routes->get('/downloadBeritaFinal/(:segment)', 'masterBerita::downloadBeritaFinal/$1');
 
 $routes->post('/uploadHasiReview', 'masterBerita::uploadHasiReview');
+$routes->post('/uploadHasiReviewUlang', 'masterBerita::uploadHasiReviewUlang');
 $routes->post('/sendLinkBerita', 'masterBerita::sendLinkBerita');
 $routes->post('/editLinkBerita', 'masterBerita::editLinkBerita');
 $routes->post('/rejectBeritaByPublisher', 'masterBerita::rejectBeritaByPublisher');
