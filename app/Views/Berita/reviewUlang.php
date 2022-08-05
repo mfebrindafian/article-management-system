@@ -207,7 +207,11 @@
                                             </div>
                                             <div class="row mt-5 mb-4 ">
                                                 <div class="col-12 text-center">
-                                                    <strong>Upload hasil review baru (opsional)</strong>
+                                                    <strong>Upload hasil review baru <?php if ($berita['status_kd'] == "2" && $berita['tgl_selesai_review'] != null) {
+                                                                                            echo '(wajib)';
+                                                                                        } else {
+                                                                                            echo '(opsional)';
+                                                                                        } ?></strong>
                                                 </div>
                                             </div>
                                             <div class="row mt-4">
