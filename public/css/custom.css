@@ -208,7 +208,7 @@
      align-items: center;
      color: #80772d;
      background-color: #f5eda9;
-     border-radius: 5px;
+     border-radius: 4px;
 }
 
 .tempat-file {
@@ -355,7 +355,7 @@
      font-weight: bold;
      padding: 5px 10px 5px 10px;
      color: #214594;
-     border-radius: 5px;
+     border-radius: 4px;
      background-color: #e0eaff;
 }
 
@@ -364,7 +364,7 @@
      font-weight: bold;
      padding: 5px 10px 5px 10px;
      color: #7d0935;
-     border-radius: 5px;
+     border-radius: 4px;
      background-color: #ffd1e3;
 }
 
@@ -373,7 +373,7 @@
      font-weight: bold;
      padding: 5px 10px 5px 10px;
      color: #3b3b3b;
-     border-radius: 5px;
+     border-radius: 4px;
      background-color: #d6d6d6;
 }
 
@@ -383,7 +383,7 @@
      font-weight: bold;
      padding: 5px 10px 5px 10px;
      color: #e89300;
-     border-radius: 5px;
+     border-radius: 4px;
      background-color: #fff0d6;
 }
 .published {
@@ -391,7 +391,7 @@
      font-weight: bold;
      padding: 5px 10px 5px 10px;
      color: #219438;
-     border-radius: 5px;
+     border-radius: 4px;
      background-color: #e3ffe9;
 }
 
@@ -401,7 +401,7 @@
      font-weight: semibold;
      padding: 3px 13px 3px 13px;
      height: 33px;
-     border-radius: 5px;
+     border-radius: 4px;
      color: #1d23d1;
      border: none;
      background: none;
@@ -411,16 +411,67 @@
      background-color: #d9e5ff;
      color: #335fbd;
 }
+.detail {
+     display: flex;
+     align-items: center;
+     font-weight: semibold;
+     padding: 3px 13px 3px 13px;
+     height: 33px;
+     border-radius: 4px;
+     color: #1d23d1;
+     border: none;
+     background: none;
+     background-color: #d9e5ff;
+}
+
+.detail:hover {
+     background-color: #cadafc;
+     color: #335fbd;
+}
+.kunjungi {
+     display: flex;
+     align-items: center;
+     font-weight: bold;
+     padding: 3px 13px 3px 13px;
+     height: 33px;
+     border-radius: 4px;
+     color: #141414;
+     border: none;
+     background: none;
+     background-color: #d4d4d4;
+}
+
+.kunjungi:hover {
+     background-color: #c7c7c7;
+     color: black;
+}
+.edit-link {
+     display: flex;
+     align-items: center;
+     font-weight: bold;
+     padding: 3px 13px 3px 13px;
+     height: 33px;
+     border-radius: 4px;
+     color: #613500;
+     border: none;
+     background: none;
+     background-color: #ffe5c4;
+}
+
+.edit-link:hover {
+     background-color: #fcdab1;
+     color: #5c3200;
+}
 .download {
      display: flex;
      align-items: center;
      font-weight: semibold;
      padding: 3px 13px 3px 13px;
      height: 33px;
-     border-radius: 5px;
-     background-color: #d9e5ff;
+     border-radius: 4px;
      color: #1d23d1;
      border: none;
+     background: none;
 }
 
 .download:hover {
@@ -434,21 +485,37 @@
      font-weight: semibold;
      padding: 6px 21px 6px 21px;
      height: 33px;
-     border-radius: 5px;
-     color: #941209;
+     border-radius: 4px;
+     color: #b5a214;
      border: none;
-     background: none;
+     background-color: #ffefc2;
 }
 
 .cancel:hover {
+     background-color: #ffebb3;
+     color: #b5a214;
+}
+.reject {
+     display: flex;
+     align-items: center;
+     font-weight: semibold;
+     padding: 6px 21px 6px 21px;
+     height: 33px;
+     border-radius: 4px;
+     color: #941209;
+     border: none;
      background-color: #fcd0cc;
+}
+
+.reject:hover {
+     background-color: #f2bfbb;
      color: #941209;
 }
 .filter-berita {
      font-weight: semibold;
      color: #333333;
      padding: 3px 13px 3px 13px;
-     border-radius: 5px;
+     border-radius: 4px;
 }
 
 .berita-active {
@@ -582,14 +649,15 @@
 
 .gambar-container {
      width: 100%;
-     height: 200px;
+     min-height: 200px;
+     height: 100%;
      overflow: hidden;
      object-fit: cover;
      cursor: pointer;
 }
 
 .gambar-container:hover {
-     border-radius: 5px;
+     border-radius: 4px;
      transition-duration: 0.7s;
 }
 
@@ -682,7 +750,7 @@
      height: 90px;
      overflow: hidden;
      cursor: pointer;
-     border-radius: 5px;
+     border-radius: 4px;
 }
 
 .terpilih {

@@ -104,14 +104,16 @@
 
                                                     </div>
                                                 </div>
-
-                                                <div class="row">
-
-                                                    <?php if ($berita['status_kd'] != "1") : ?>
-                                                        <div class="col-sm-3 d-flex align-items-center">
+                                                <?php if ($berita['status_kd'] != "1") : ?>
+                                                    <div class="row mt-3 mb-4">
+                                                        <div class="col-sm-12 d-flex align-items-center">
                                                             <small class="text-gray judul-berita">Direview oleh <strong><?= $berita['editor'] ?></strong></small>
                                                         </div>
-                                                    <?php endif; ?>
+                                                    </div>
+                                                <?php endif; ?>
+                                                <div class="row">
+
+
                                                     <?php if ($berita['status_kd'] == "1") : ?>
                                                         <div class="col-sm-4"></div>
                                                     <?php endif; ?>
@@ -121,38 +123,22 @@
                                                         </div>
                                                     <?php endif; ?>
                                                     <?php if ($berita['status_kd'] == "2") : ?>
-                                                        <div class="col-sm-9 pt-2 d-flex justify-content-end">
-                                                            <div class="dropdown">
-                                                                <a class="btn pb-0 dropdown-toggle tiga-titik text-sm text-gray mr-2" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
-                                                                    <i class="fas fa-ellipsis-v"></i>
-                                                                </a>
-
-                                                                <div class="dropdown-menu border-0 shadow mt-3" aria-labelledby="dropdownMenuLink">
-                                                                    <button id="btn-reject" data-toggle="modal" data-target="#modal-reject" data-id_berita="<?= $berita['id']; ?>" data-judul_berita="<?= $berita['judul_berita']; ?>" class="dropdown-item text-danger">Reject</button>
-                                                                </div>
-                                                            </div>
+                                                        <div class="col-sm-12 pt-2 d-flex justify-content-end">
                                                             <a href="<?= base_url('/downloadBerita/' . $berita['id']); ?>" class="download float-right ripple mr-2 text-sm text-truncate">Download File</a>
+                                                            <button id="btn-reject" data-toggle="modal" data-target="#modal-reject" data-id_berita="<?= $berita['id']; ?>" data-judul_berita="<?= $berita['judul_berita']; ?>" class="mr-2 reject text-sm text-danger">Reject</button>
                                                             <?php if ($berita['status_kd'] == "2" && $berita['file_review'] == null) : ?>
                                                                 <a href="<?= base_url('/finalReview/' . $berita['id']); ?>" class="tombol-tambah float-right ripple">Publish</a>
                                                             <?php endif; ?>
                                                             <?php if ($berita['status_kd'] == "2" && $berita['file_review'] != null) : ?>
-                                                                <a href="<?= base_url('/reviewUlang/' . $berita['id']); ?>" class="tombol-tambah float-right ripple">Publish</a>
+                                                                <a href="<?= base_url('/reviewUlang/' . $berita['id']); ?>" class="tombol-tambah float-right ripple text-truncate">Publish Ulang</a>
                                                             <?php endif; ?>
                                                         </div>
                                                     <?php endif; ?>
                                                     <?php if ($berita['status_kd'] == "3" && $berita['link_publish'] == '') : ?>
-                                                        <div class="col-sm-9 pt-2 d-flex justify-content-end">
-                                                            <div class="dropdown">
-                                                                <a class="btn pb-0 dropdown-toggle tiga-titik text-sm text-gray mr-1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
-                                                                    <i class="fas fa-ellipsis-v"></i>
-                                                                </a>
+                                                        <div class="col-sm-12 pt-2 d-flex justify-content-end">
 
-                                                                <div class="dropdown-menu border-0 shadow mt-3" aria-labelledby="dropdownMenuLink">
-                                                                    <button id="btn-cancel" data-target="#modal-cancel" data-toggle="modal" data-id_berita="<?= $berita['id'] ?>" data-judul_berita="<?= $berita['judul_berita'] ?>" class="dropdown-item text-warning">Cancel</button>
-
-                                                                </div>
-                                                            </div>
-                                                            <a href="<?= base_url('/detailBeritaReviewer/' . $berita['id']); ?>" class="tombol-tambah float-right ripple">Detail</a>
+                                                            <button id="btn-cancel" data-target="#modal-cancel" data-toggle="modal" data-id_berita="<?= $berita['id'] ?>" data-judul_berita="<?= $berita['judul_berita'] ?>" class="mr-2 cancel text-sm text-danger">Cancel</button>
+                                                            <a href="<?= base_url('/detailBeritaReviewer/' . $berita['id']); ?>" class="detail float-right ripple">Detail</a>
                                                         </div>
                                                     <?php endif; ?>
                                                 </div>
@@ -262,28 +248,22 @@
                                                         <?php endif; ?>
                                                     </div>
                                                 </div>
-
-
-                                                <div class="row">
-                                                    <div class="col-sm-3 d-flex align-items-center">
+                                                <div class="row mt-3 mb-4">
+                                                    <div class="col-sm-12 d-flex align-items-center">
                                                         <small class="text-gray judul-berita">Direview oleh <strong><?= $berita['editor'] ?></strong></small>
                                                     </div>
-                                                    <div class="col-sm-9 pt-2 d-flex justify-content-end">
-                                                        <div class="dropdown">
-                                                            <a class="btn pb-0 dropdown-toggle tiga-titik text-sm text-gray mr-2" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
-                                                                <i class="fas fa-ellipsis-v"></i>
-                                                            </a>
+                                                </div>
 
-                                                            <div class="dropdown-menu border-0 shadow mt-3" aria-labelledby="dropdownMenuLink">
-                                                                <button id="btn-reject" data-toggle="modal" data-target="#modal-reject" data-id_berita="<?= $berita['id']; ?>" data-judul_berita="<?= $berita['judul_berita']; ?>" class="dropdown-item text-danger">Reject</button>
-                                                            </div>
-                                                        </div>
+                                                <div class="row">
+
+                                                    <div class="col-sm-12 pt-2 d-flex justify-content-end">
                                                         <a href="<?= base_url('/downloadBerita/' . $berita['id']); ?>" class="download float-right ripple mr-2 text-sm text-truncate">Download File</a>
+                                                        <button id="btn-reject" data-toggle="modal" data-target="#modal-reject" data-id_berita="<?= $berita['id']; ?>" data-judul_berita="<?= $berita['judul_berita']; ?>" class="mr-2 reject text-sm text-danger">Reject</button>
                                                         <?php if ($berita['status_kd'] == "2" && $berita['file_review'] == null) : ?>
-                                                            <a href="<?= base_url('/finalReview/' . $berita['id']); ?>" class="tombol-tambah float-right ripple">Publish</a>
+                                                            <a href="<?= base_url('/finalReview/' . $berita['id']); ?>" class="tombol-tambah text-sm float-right ripple">Publish</a>
                                                         <?php endif; ?>
                                                         <?php if ($berita['status_kd'] == "2" && $berita['file_review'] != null) : ?>
-                                                            <a href="<?= base_url('/reviewUlang/' . $berita['id']); ?>" class="tombol-tambah float-right ripple">Publish</a>
+                                                            <a href="<?= base_url('/reviewUlang/' . $berita['id']); ?>" class="tombol-tambah text-sm float-right ripple text-truncate">Publish Ulang</a>
                                                         <?php endif; ?>
                                                     </div>
                                                 </div>
@@ -332,23 +312,16 @@
                                                         <span class="ready-publish">Ready to publish</span>
                                                     </div>
                                                 </div>
-
-                                                <div class="row">
-                                                    <div class="col-sm-3 d-flex align-items-center">
+                                                <div class="row mt-3 mb-4">
+                                                    <div class="col-sm-12 d-flex align-items-center">
                                                         <small class="text-gray judul-berita">Direview oleh <strong><?= $berita['editor'] ?></strong></small>
                                                     </div>
-                                                    <div class="col-sm-9 pt-2 d-flex justify-content-end">
-                                                        <div class="dropdown">
-                                                            <a class="btn pb-0 dropdown-toggle tiga-titik text-sm text-gray mr-1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
-                                                                <i class="fas fa-ellipsis-v"></i>
-                                                            </a>
+                                                </div>
+                                                <div class="row">
 
-                                                            <div class="dropdown-menu border-0 shadow mt-3" aria-labelledby="dropdownMenuLink">
-                                                                <button id="btn-cancel" data-target="#modal-cancel" data-toggle="modal" data-id_berita="<?= $berita['id'] ?>" data-judul_berita="<?= $berita['judul_berita'] ?>" class="dropdown-item text-warning">Cancel</button>
-
-                                                            </div>
-                                                        </div>
-                                                        <a href="<?= base_url('/detailBeritaReviewer/' . $berita['id']); ?>" class="edit float-right ripple">Detail</a>
+                                                    <div class="col-sm-12 pt-2 d-flex justify-content-end">
+                                                        <button id="btn-cancel" data-target="#modal-cancel" data-toggle="modal" data-id_berita="<?= $berita['id'] ?>" data-judul_berita="<?= $berita['judul_berita'] ?>" class="mr-2 cancel text-sm text-danger">Cancel</button>
+                                                        <a href="<?= base_url('/detailBeritaReviewer/' . $berita['id']); ?>" class="detail float-right ripple">Detail</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -424,7 +397,7 @@
                                                     <td><?= $berita['tgl_publish']; ?></td>
                                                     <td><?= $berita['editor']; ?></td>
                                                     <td class="text-center" style="max-width: 300px;">
-                                                        <a target="_blank" href="<?= $berita['link_publish']; ?>" class="mr-2"><i class="fas fa-globe"></i></a>
+                                                        <a target="_blank" href="<?= $berita['link_publish']; ?>" class="mr-2 kunjungi ripple" style=" font-size: 12px;">Kunjungi</a>
                                                     </td>
                                                 </tr>
 

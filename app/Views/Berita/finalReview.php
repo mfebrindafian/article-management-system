@@ -423,8 +423,6 @@
             } else if (cheklisFoto == $('input[type="checkbox"]').length) {
                 pesan = 'Anda tidak memilih foto dari penulis'
             }
-
-            console.log(pesan);
             if ($('#file_berita').val() == '') {
                 $('#file_berita').parent().next().html('<small class="text-red">Silahkan pilih word file!</small>');
                 return

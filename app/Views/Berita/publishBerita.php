@@ -69,33 +69,18 @@
                                                         <span class="ready-publish">Ready to publish</span>
                                                     </div>
                                                 </div>
-
-                                                <div class="row">
+                                                <div class="row mt-3 mb-4">
                                                     <?php if ($berita['status_kd'] != "1") : ?>
-                                                        <div class="col-sm-3 d-flex align-items-center">
+                                                        <div class="col-sm-12 d-flex align-items-center">
                                                             <small class="text-gray judul-berita">Direview oleh <strong><?= $berita['editor'] ?></strong></small>
                                                         </div>
                                                     <?php endif; ?>
-                                                    <?php if ($berita['status_kd'] == "1") : ?>
-                                                        <div class="col-sm-4"></div>
-                                                    <?php endif; ?>
-                                                    <?php if ($berita['status_kd'] == "1") : ?>
-                                                        <div class="col-sm-8 pt-2 d-flex justify-content-end">
-                                                            <button id="btn-review" class="tombol-tambah float-right ripple" data-toggle="modal" data-target="#modal-review" data-judul_berita="<?= $berita['judul_berita'] ?>" data-id_berita="<?= $berita['id'] ?>">Review</button>
-                                                        </div>
-                                                    <?php endif; ?>
-                                                    <div class="col-sm-9 pt-2 d-flex justify-content-end">
-                                                        <div class="dropdown">
-                                                            <a class="btn pb-0 dropdown-toggle tiga-titik text-sm text-gray mr-1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
-                                                                <i class="fas fa-ellipsis-v"></i>
-                                                            </a>
-
-                                                            <div class="dropdown-menu border-0 shadow mt-3" aria-labelledby="dropdownMenuLink">
-                                                                <button id="btn-reject" data-toggle="modal" data-target="#modal-reject" data-id_berita="<?= $berita['id']; ?>" data-judul_berita="<?= $berita['judul_berita']; ?>" class="dropdown-item text-danger">Reject</button>
-                                                            </div>
-                                                        </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 pt-2 d-flex justify-content-end">
                                                         <a href="<?= base_url('/downloadBeritaFinal/' . $berita['id']); ?>" class="download float-right ripple mr-2 text-sm text-nowrap">Download File</a>
-                                                        <a href="<?= base_url('/detailBerita/' . $berita['id']); ?>" class="edit float-right ripple">Detail</a>
+                                                        <button id="btn-reject" data-toggle="modal" data-target="#modal-reject" data-id_berita="<?= $berita['id']; ?>" data-judul_berita="<?= $berita['judul_berita']; ?>" class="mr-2 reject text-sm text-danger">Reject</button>
+                                                        <a href="<?= base_url('/detailBerita/' . $berita['id']); ?>" class="detail float-right ripple">Detail</a>
                                                     </div>
                                                     <?php if ($berita['status_kd'] == "3" && $berita['link_publish'] != '') : ?>
                                                         <div class="col-sm-8 pt-2 d-flex justify-content-end">
@@ -161,7 +146,7 @@
                                             <th>Satker</th>
                                             <th>Publish</th>
                                             <th>Editor</th>
-                                            <th>Aksi</th>
+                                            <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -191,9 +176,10 @@
                                                     </td>
                                                     <td><?= $berita['tgl_publish']; ?></td>
                                                     <td><?= $berita['editor']; ?></td>
-                                                    <td class="aksi">
-                                                        <a target="_blank" href="<?= $berita['link_publish']; ?>" class="mr-2"><i class="fas fa-globe"></i></a>
-                                                        <a href="<?= base_url('/detailBerita/' . $berita['id']); ?>" style="color: #e89300;"><i class="fas fa-eye"></i></a>
+                                                    <td class="aksi d-flex align-items-center justify-content-center">
+                                                        <a target="_blank" href="<?= $berita['link_publish']; ?>" class="mr-2 kunjungi ripple" style=" font-size: 12px;">Kunjungi</a>
+                                                        <a href="<?= base_url('/detailBerita/' . $berita['id']); ?>" class="detail mr-2 ripple text-bold" style="font-size: 12px; padding: 7px 14px; 7px 10px">Detail</a>
+                                                        <button id="btn-edit" data-toggle="modal" data-target="#modal-edit" data-id_berita="<?= $berita['id']; ?>" data-link_berita="<?= $berita['link_publish']; ?>" data-judul_berita="<?= $berita['judul_berita']; ?>" class="edit-link ripple" style=" font-size: 12px;">Edit Link</button>
                                                     </td>
                                                 </tr>
 
@@ -234,10 +220,41 @@
         </div>
     </div>
 
+
+    <!-- MODAL edit -->
+    <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="top: 13%;">
+            <form action="<?= base_url('/editLinkBerita'); ?>" method="post" class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="exampleModalLabel"> Edit Link</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id_berita_edit" id="id_berita_edit">
+                    <p>Edit link untuk: <strong id="judul_berita_edit"></strong></p>
+
+                    <div class="col-12"><input type="link" class="form-control" id="link_edit" name="link_berita" placeholder="Masukkan link berita" required /></div>
+                    <br>
+                </div>
+                <div class="modal-footer border-0">
+                    <button class="tombol-tambah float-right ripple h-100" data-dismiss="modal" style="background-color: gray;">Batal</button>
+                    <button type="submit" class="tombol-tambah float-right ripple h-100">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
         $(document).on('click', '#btn-reject', function() {
             $('#id_berita_reject').val($(this).data('id_berita'));
             $('#judul_berita_reject').text($(this).data('judul_berita'));
+        })
+        $(document).on('click', '#btn-edit', function() {
+            $('#id_berita_edit').val($(this).data('id_berita'));
+            $('#link_edit').val($(this).data('link_berita'));
+            $('#judul_berita_edit').text($(this).data('judul_berita'));
         })
     </script>
     <script src="<?= base_url('/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
@@ -257,7 +274,7 @@
             "paging": true,
             "lengthChange": false,
             "searching": true,
-            'ordering': false,
+            'ordering': true,
             "info": true,
             "autoWidth": false,
             "responsive": true,

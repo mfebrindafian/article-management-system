@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Models\MasterSatkerModel;
 use App\Models\MasterBeritaModel;
 use App\Models\MasterStatusModel;
-use App\Models\MasterUserModel;
 use CodeIgniter\HTTP\Request;
 use CodeIgniter\Session\Session;
 use PhpParser\Node\Expr\New_;
@@ -16,14 +15,12 @@ class masterBerita extends BaseController
     protected $masterSatkerModel;
     protected $masterBeritaModel;
     protected $masterStatusModel;
-    protected $masterUserModel;
 
     public function __construct()
     {
         $this->masterSatkerModel = new masterSatkerModel();
         $this->masterBeritaModel = new masterBeritaModel();
         $this->masterStatusModel = new masterStatusModel();
-        $this->masterUserModel = new masterUserModel();
     }
 
     public function entryBerita()
@@ -460,13 +457,6 @@ class masterBerita extends BaseController
     {
         $file_berita = $this->request->getFile('file_berita');
         $id_berita = $this->request->getVar('id_berita_review');
-        $berita_terpilih = $this->masterBeritaModel->getBeritaById($id_berita);
-        $user_terpilih = $this->masterUserModel->getProfilUser($berita_terpilih['user_id']);
-        date_default_timezone_set('Asia/Jakarta');
-        $tanggal = date('d-m-Y');
-        $jam = date('H-i-s');
-
-
         if ($file_berita->getError() != 4) {
             $judul_berita = $this->request->getVar('judul_berita');
             $check_foto1 = $this->request->getVar('check_foto1');
@@ -476,60 +466,27 @@ class masterBerita extends BaseController
             $check_foto3 = $this->request->getVar('check_foto3');
             $nama_foto3 = $this->request->getVar('nama_foto3');
             $foto_publish = [];
-
-
-
-            $foto_berita1 = $this->request->getFile('foto_berita1');
-            if ($foto_berita1->getError() != 4) {
-                $check_foto1 = null;
-                if ($check_foto1 == null) {
-                    if ($nama_foto1 != null) {
-                        unlink('berkas/foto/' . $nama_foto1);
-                    }
+            if ($check_foto1 == null) {
+                if ($nama_foto1 != null) {
+                    unlink('berkas/foto/' . $nama_foto1);
                 }
-                $ekstensi_foto = $foto_berita1->getExtension();
-                $nama_foto_1 = ($berita_terpilih['satker_kd'] . '_' . $user_terpilih['username'] . '_'   . $tanggal . '_' . $jam . '_foto-ke-1.' . $ekstensi_foto);
-                $foto_berita1->move('berkas/foto', $nama_foto_1);
-                $foto_publish[] = $nama_foto_1;
             } elseif ($check_foto1 == 'on') {
                 $foto_publish[] = $nama_foto1;
             }
-
-
-            $foto_berita2 = $this->request->getFile('foto_berita2');
-            if ($foto_berita2->getError() != 4) {
-                $check_foto2 = null;
-                if ($check_foto2 == null) {
-                    if ($nama_foto2 != null) {
-                        unlink('berkas/foto/' . $nama_foto2);
-                    }
+            if ($check_foto2 == null) {
+                if ($nama_foto2 != null) {
+                    unlink('berkas/foto/' . $nama_foto2);
                 }
-                $ekstensi_foto = $foto_berita2->getExtension();
-                $nama_foto_2 = ($berita_terpilih['satker_kd'] . '_' . $user_terpilih['username'] . '_'   . $tanggal . '_' . $jam . '_foto-ke-2.' . $ekstensi_foto);
-                $foto_berita2->move('berkas/foto', $nama_foto_2);
-                $foto_publish[] = $nama_foto_2;
             } elseif ($check_foto2 == 'on') {
                 $foto_publish[] = $nama_foto2;
             }
-
-
-            $foto_berita3 = $this->request->getFile('foto_berita3');
-            if ($foto_berita3->getError() != 4) {
-                $check_foto3 = null;
-                if ($check_foto3 == null) {
-                    if ($nama_foto3 != null) {
-                        unlink('berkas/foto/' . $nama_foto3);
-                    }
+            if ($check_foto3 == null) {
+                if ($nama_foto3 != null) {
+                    unlink('berkas/foto/' . $nama_foto3);
                 }
-                $ekstensi_foto = $foto_berita3->getExtension();
-                $nama_foto_3 = ($berita_terpilih['satker_kd'] . '_' . $user_terpilih['username'] . '_'   . $tanggal . '_' . $jam . '_foto-ke-3.' . $ekstensi_foto);
-                $foto_berita3->move('berkas/foto', $nama_foto_3);
-                $foto_publish[] = $nama_foto_3;
             } elseif ($check_foto3 == 'on') {
                 $foto_publish[] = $nama_foto3;
             }
-
-
 
             if ($foto_publish != NULL) {
                 $all_image = array('image' => $foto_publish);
@@ -538,8 +495,16 @@ class masterBerita extends BaseController
                 $json_image = '';
             }
 
+
+
             $data_berita = $this->masterBeritaModel->getBeritaById($id_berita);
             $data_user = session('data_user');
+
+
+            date_default_timezone_set('Asia/Jakarta');
+            $tanggal = date('d-m-Y');
+            $jam = date('H-i-s');
+
 
 
             $ekstensi_file = $file_berita->getExtension();
@@ -600,6 +565,36 @@ class masterBerita extends BaseController
             'image_upload' => $data_berita['image_upload']
         ]);
         session()->setFlashdata('pesan', 'Berita berhasil terpublikasi');
+        session()->setFlashdata('icon', 'success');
+        return redirect()->to('/publishBerita');
+    }
+
+    public function editLinkBerita()
+    {
+        $id_berita = $this->request->getVar('id_berita_edit');
+
+        $link_berita = $this->request->getVar('link_berita');
+        $data_berita = $this->masterBeritaModel->getBeritaById($id_berita);
+
+
+        $this->masterBeritaModel->save([
+            'id' => $id_berita,
+            'user_id' => $data_berita['user_id'],
+            'judul_berita' => $data_berita['judul_berita'],
+            'penulis' => $data_berita['penulis'],
+            'satker_kd' => $data_berita['satker_kd'],
+            'tgl_upload' => $data_berita['tgl_upload'],
+            'status_kd' => $data_berita['status_kd'],
+            'tgl_publish' => $data_berita['tgl_publish'],
+            'link_publish' => $link_berita,
+            'editor' => $data_berita['editor'],
+            'tgl_mulai_review' => $data_berita['tgl_mulai_review'],
+            'tgl_selesai_review' => $data_berita['tgl_selesai_review'],
+            'file_draft' => $data_berita['file_draft'],
+            'file_review' => $data_berita['file_review'],
+            'image_upload' => $data_berita['image_upload']
+        ]);
+        session()->setFlashdata('pesan', 'Link berita berhasil di update');
         session()->setFlashdata('icon', 'success');
         return redirect()->to('/publishBerita');
     }

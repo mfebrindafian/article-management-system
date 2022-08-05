@@ -194,7 +194,7 @@
                                             </div>
                                             <div class="row mt-2 mb-4 ">
                                                 <div class="col-12 text-center">
-                                                    <strong class="text-gray">File berita lama</strong>
+                                                    <strong class="text-gray">File berita sudah di review</strong>
                                                 </div>
                                             </div>
                                             <div class="row ">
@@ -437,6 +437,7 @@
             $(this).addClass('d-none')
         })
     </script>
+
     <script>
         $(document).on('click', '#btn-submit', function() {
             let chekbox = $('input[type="checkbox"]').length
@@ -449,6 +450,13 @@
             } else if (cheklisFoto == $('input[type="checkbox"]').length) {
                 pesan = 'Anda tidak memilih foto dari penulis'
             }
+            <?php if ($berita['status_kd'] == "2" && $berita['tgl_selesai_review'] != null) : ?>
+                if ($('#file_berita').val() == '') {
+                    $('#file_berita').parent().next().html('<small class="text-red">Silahkan pilih word file!</small>');
+                    return
+                }
+            <?php endif; ?>
+
             if ($('input[type="checkbox"]').length > 0) {
                 if ((cheklisFoto == $('input[type="checkbox"]').length && $('input[type="checkbox"]').length > 0) || (total == 6 && $('input[type="checkbox"]').length > 0)) {
                     Swal.fire({
