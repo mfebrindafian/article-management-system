@@ -89,7 +89,7 @@
                                                         <?php endforeach; ?>
                                                     </td>
 
-                                                    <td><?= $berita['tgl_publish']; ?></td>
+                                                    <td id="tgl-tabel" class="text-nowrap"><?= $berita['tgl_publish']; ?></td>
                                                     <td><?= $berita['editor']; ?></td>
                                                     <td style="max-width: 300px;"><a href="<?= $berita['link_publish']; ?>"><?= $berita['link_publish']; ?></a></td>
                                                     <td>
@@ -124,7 +124,7 @@
             "lengthChange": false,
             "searching": true,
             "responsive": true,
-            'ordering': false,
+            'ordering': true,
             "info": true,
             "autoWidth": false,
             "pageLength": 10
@@ -162,5 +162,17 @@
             <?php } ?>
         });
     </script>
+
+    <!-- <script src="<?= base_url('/js/tanggal.js') ?>"></script>
+    <script>
+        $(document).ready(function() {
+            let tglTabel = document.querySelectorAll('#tgl-tabel')
+            for (i = 0; i <= tglTabel.length; i++) {
+                if (tglTabel[i].innerHTML != '') {
+                    tglTabel[i].innerHTML = ubahFormatTanggal3(tglTabel[i].textContent);
+                }
+            }
+        })
+    </script> -->
     <?= $this->endSection(); ?>
 <?php endif; ?>

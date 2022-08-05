@@ -174,7 +174,7 @@
                                                                                                                     } ?></p>
 
                                                     </td>
-                                                    <td><?= $berita['tgl_publish']; ?></td>
+                                                    <td id="tgl-tabel" class="text-nowrap"><?= $berita['tgl_publish']; ?></td>
                                                     <td><?= $berita['editor']; ?></td>
                                                     <td class="aksi d-flex align-items-center justify-content-center">
                                                         <a target="_blank" href="<?= $berita['link_publish']; ?>" class="mr-2 kunjungi ripple" style=" font-size: 12px;">Kunjungi</a>
@@ -303,5 +303,14 @@
         const link = '<?= base_url('/images/empty.gif') ?>';
     </script>
     <script src="<?= base_url('/js/portalberita.js') ?>"></script>
+    <!-- <script src="<?= base_url('/js/tanggal.js') ?>"></script>
+    <script>
+        $(document).ready(function() {
+            let tglTabel = document.querySelectorAll('#tgl-tabel')
+            for (i = 0; i <= tglTabel.length; i++) {
+                tglTabel[i].innerHTML = ubahFormatTanggal3(tglTabel[i].textContent);
+            }
+        })
+    </script> -->
     <?= $this->endSection(); ?>
 <?php endif ?>

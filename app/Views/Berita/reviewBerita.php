@@ -394,7 +394,7 @@
 
                                                     </td>
 
-                                                    <td><?= $berita['tgl_publish']; ?></td>
+                                                    <td id="tgl-tabel" class="text-nowrap"><?= $berita['tgl_publish']; ?></td>
                                                     <td><?= $berita['editor']; ?></td>
                                                     <td class="text-center" style="max-width: 300px;">
                                                         <a target="_blank" href="<?= $berita['link_publish']; ?>" class="mr-2 kunjungi ripple" style=" font-size: 12px;">Kunjungi</a>
@@ -569,7 +569,7 @@
             "paging": true,
             "lengthChange": false,
             "searching": true,
-            'ordering': false,
+            'ordering': true,
             "info": true,
             "autoWidth": false,
             "responsive": true,
@@ -594,6 +594,14 @@
             ).draw();
         })
     </script>
-
+    <!-- <script src="<?= base_url('/js/tanggal.js') ?>"></script>
+    <script>
+        $(document).ready(function() {
+            let tglTabel = document.querySelectorAll('#tgl-tabel')
+            for (i = 0; i <= tglTabel.length; i++) {
+                tglTabel[i].innerHTML = ubahFormatTanggal3(tglTabel[i].textContent);
+            }
+        })
+    </script> -->
     <?= $this->endSection(); ?>
 <?php endif; ?>
