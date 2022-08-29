@@ -85,6 +85,9 @@
      font-size: 15px;
 }
 
+tbody tr:hover {
+     background: #f5f5f5;
+}
 .sembunyi {
      display: none;
 }
@@ -517,7 +520,17 @@
      padding: 3px 13px 3px 13px;
      border-radius: 4px;
 }
-
+.excel-active {
+     background-color: #e89300;
+     color: white;
+     font-weight: semibold;
+     padding: 3px 13px 3px 13px;
+     border-radius: 4px;
+}
+.excel-active:hover {
+     background-color: #c78410;
+     color: white;
+}
 .berita-active {
      background-color: #4174e0;
      color: white;
@@ -525,8 +538,15 @@
      padding: 3px 13px 3px 13px;
      border-radius: 4px;
 }
+
 .berita-active:hover {
      color: white;
+}
+.berita-active:disabled {
+     color: white;
+}
+.berita-active:active {
+     background-color: #6996f5;
 }
 
 .filter-berita:hover {
@@ -905,4 +925,50 @@ textarea {
 
 .row-foto span {
      cursor: pointer;
+}
+
+/**
+  * Basic
+  *
+  * @author jh3y - jheytompkins.com
+*/
+.basic:before {
+     content: '';
+     display: block;
+     height: 18px;
+     width: 18px;
+     -webkit-animation: spin 0.5s infinite linear;
+     animation: spin 0.5s infinite linear;
+     border: 4px #bfd8ff solid;
+     border-left-color: #ffffff;
+     border-radius: 100%;
+}
+
+@-webkit-keyframes spin {
+     to {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+     }
+}
+
+@keyframes spin {
+     to {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+     }
+}
+
+.tercapai {
+     background: #deffea;
+     font-weight: bold;
+     color: #008c33;
+}
+.tidak-tercapai {
+     background: #ffe8eb;
+     font-weight: bold;
+     color: #d4001c;
+}
+
+.maksimal {
+     max-width: 58px;
 }

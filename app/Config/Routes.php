@@ -116,6 +116,9 @@ $routes->post('/uploadHasiReviewUlang', 'masterBerita::uploadHasiReviewUlang');
 $routes->post('/sendLinkBerita', 'masterBerita::sendLinkBerita');
 $routes->post('/editLinkBerita', 'masterBerita::editLinkBerita');
 $routes->post('/rejectBeritaByPublisher', 'masterBerita::rejectBeritaByPublisher');
+
+$routes->get('/monitoring/(:segment)', 'masterBerita::monitoring/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
