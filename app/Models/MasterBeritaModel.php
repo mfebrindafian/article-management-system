@@ -101,6 +101,7 @@ class MasterBeritaModel extends Model
             ->table('mst_berita')
             ->select('*')
             ->where('satker_kd', $satker_kd)
+            ->where('status_kd !=', 4)
             ->get()
             ->getResultArray();
     }
