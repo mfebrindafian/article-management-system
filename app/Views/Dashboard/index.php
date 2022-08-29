@@ -2,25 +2,24 @@
 
 <?= $this->section('content'); ?>
 <div class="content-wrapper d-none">
-  <!-- Content Header (Page header) -->
   <div class="content-header">
     <div class="container">
       <div class="row mb-2">
         <div class="col-sm-6">
           <h1 class="m-0"><strong><small id="ucapan"></small> <?= session('fullname'); ?></strong></h1>
-        </div><!-- /.col -->
+        </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">...</a></li>
             <li class="breadcrumb-item active">Home</li>
           </ol>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- /.content-header -->
 
-  <!-- Main content -->
+
+
   <div class="content">
     <div class="container">
       <div class="row">
@@ -113,7 +112,50 @@
 
       <div class="row mt-4">
         <div class="col-md-12">
-          <div class=" mb-3">
+          <div class="card px-5 ">
+            <div class="row my-4 overflow-auto">
+              <div class="col-12 ">
+                <div class="row mb-2">
+                  <div class="col-md-6">
+                    <h4 class="mb-4"><strong> Monitoring berita </strong><br><small class="minggu-apa">minggu ini</small></h4>
+
+                  </div>
+                  <div class="col-md-6">
+                    <div class="float-md-right">
+                      <button class="btn btn-link btn-sm btn-rounded ripple berita-active shadow mr-2 sebelum">
+                        Sebelumnya
+                      </button>
+                      <button disabled class="btn btn-link btn-sm btn-rounded ripple berita-active shadow mr-2 hari-ini">
+                        Setelahnya
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <table class="table align-middle mb-0 bg-white " id="tabelData">
+                  <thead class="bg-light">
+                    <tr class="text-bold">
+                      <td class="border ">Satker</td>
+                      <td class="border text-center" style="width: 90px;">Sen</td>
+                      <td class="border text-center" style="width: 90px;">Sel</td>
+                      <td class="border text-center" style="width: 90px;">Rab</td>
+                      <td class="border text-center" style="width: 90px;">Kam</td>
+                      <td class="border text-center" style="width: 90px;">Jum</td>
+                      <td class="border text-center" style="width: 90px;">Total</td>
+                    </tr>
+                  </thead>
+                  <tbody class="rekap-body">
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-12">
+          <div class="mb-3">
             <div class="card px-5">
               <div class="row my-4">
                 <div class="col-12">
@@ -353,6 +395,27 @@
 </script>
 <script src="<?= base_url('/js/tanggal.js') ?>"></script>
 <script>
+  var _0x16ef = ["\x67\x65\x74", "\x3C\x3F\x3D\x20\x62\x61\x73\x65\x5F\x75\x72\x6C\x28\x27\x2F\x6D\x6F\x6E\x69\x74\x6F\x72\x69\x6E\x67\x27\x29\x20\x3F\x3E", "\x70\x61\x72\x73\x65\x4A\x53\x4F\x4E", "\x61\x6A\x61\x78"];
+
+  function render(_0xe434x2) {
+    $[_0x16ef[3]]({
+      type: _0x16ef[0],
+      url: "<?= base_url('/monitoring') ?>" + _0xe434x2,
+      success: function(_0xe434x3) {
+        let _0xe434x4 = jQuery[_0x16ef[2]](_0xe434x3);
+        gantiPekan(_0xe434x4)
+      }
+    })
+  }
+  var jadwalLink = '<?= base_url('/js/jadwal.json') ?>';
+</script>
+<script src="<?= base_url('/plugins/datatables-buttons/js/dataTables.buttons.min.js') ?>"></script>
+<script src="<?= base_url('/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') ?>"></script>
+<script src="<?= base_url('/plugins/jszip/jszip.min.js') ?>"></script>
+<script src="<?= base_url('/plugins/datatables-buttons/js/buttons.html5.min.js') ?>"></script>
+<script src="<?= base_url('/js/index.js') ?>"></script>
+
+<script>
   var date = new Date();
 
   var currentDate = '<?php
@@ -364,5 +427,64 @@
                       ?>';
 
   $('#bulan-ini-indo').html(ubahBulan(currentDate))
+
+  <?php if (session('level_id') == 3 || session('level_id') == 1) : ?>
+
+    function renderTabel() {
+      $('#tabelData')
+        .DataTable({
+          paging: false,
+          lengthChange: false,
+          searching: false,
+          responsive: false,
+          destroy: true,
+          ordering: false,
+          info: false,
+          autoWidth: false,
+          buttons: {
+            buttons: [{
+              extend: 'excel',
+              filename: 'Monitoring - berita - tanggal - ' + minggu[0].toISOString().slice(0, 10) + ' Hingga ' + minggu[4].toISOString().slice(0, 10),
+              title: 'Monitoring-berita-tanggal-' + minggu[0].toISOString().slice(0, 10) + ' Hingga ' + minggu[4].toISOString().slice(0, 10),
+              className: 'btn btn-link btn-sm btn-rounded border-warning ripple excel-active maksimal shadow',
+            }, ],
+          },
+        })
+        .buttons()
+        .container()
+        .appendTo('.float-md-right');
+    }
+
+    setTimeout(function() {
+      renderTabel();
+    }, 500);
+  <?php endif; ?>
+  $('.sebelum').on('click', function() {
+    mingguApaa((gap = -7));
+    jadwal();
+    <?php if (session('level_id') == 3 || session('level_id') == 1) : ?>
+      $('#tabelData').DataTable().clear();
+      $('#tabelData').DataTable().destroy();
+      setTimeout(function() {
+        renderTabel();
+      }, 500);
+    <?php endif; ?>
+  });
+
+  $('.hari-ini').on('click', function() {
+    mingguApaa((gap = 7));
+    jadwal();
+    <?php if (session('level_id') == 3 || session('level_id') == 1) : ?>
+      $('#tabelData').DataTable().clear();
+      $('#tabelData').DataTable().destroy();
+      setTimeout(function() {
+        renderTabel();
+      }, 500);
+    <?php endif; ?>
+  });
 </script>
+
+
+
+
 <?= $this->endSection(); ?>

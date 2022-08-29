@@ -824,4 +824,33 @@ class masterBerita extends BaseController
 
         return view('Berita/reviewUlang', $data);
     }
+
+    public function monitoring($rentangTanggal)
+    {
+        $var = explode('&', $rentangTanggal);
+
+        $list_satker = $this->masterSatkerModel->getAllSatker();
+
+        foreach ($list_satker as $satker) {
+
+            for ($i = 0; $i < 5; $i++) {
+                $berita = $this->masterBeritaModel->getBeritaByTgl($satker['kd_satker'], $var[$i]);
+                if ($berita != null) {
+                    $hari_berita[$i] = count($berita);
+                } else {
+                    $hari_berita[$i] = 0;
+                }
+            }
+
+            $monitor_berita[] = array(
+                '0' => $satker['satker'],
+                '1' => $hari_berita[0],
+                '2' => $hari_berita[1],
+                '3' => $hari_berita[2],
+                '4' => $hari_berita[3],
+                '5' => $hari_berita[4]
+            );
+        }
+        echo json_encode($monitor_berita);
+    }
 }

@@ -178,6 +178,12 @@
 
         <script src="<?= base_url('/js/jquery.validate.min.js') ?>"></script>
         <script src="<?= base_url('/js/validasi.js') ?>"></script>
+        <script>
+            $(document).on('submit', 'form', function() {
+                $(this).find('button[type="submit"]').attr('disabled', 'true')
+                $(this).find('button[type="submit"]').html(' <div class="container d-flex align-items-center basic"> <span class="ml-2">Update</span></div>')
+            })
+        </script>
 
     <?php endif; ?>
     <?= $this->endSection(); ?>

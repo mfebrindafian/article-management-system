@@ -190,4 +190,15 @@ class MasterBeritaModel extends Model
             ->where('link_publish', '')
             ->orderBy('id', 'DESC');
     }
+
+    public function getBeritaByTgl($satker_kd, $tgl_upload)
+    {
+        return $this
+            ->table('mst_berita')
+            ->where('satker_kd', $satker_kd)
+            ->where('status_kd !=', 4)
+            ->where('DATE(tgl_upload)', $tgl_upload)
+            ->get()
+            ->getResultArray();
+    }
 }

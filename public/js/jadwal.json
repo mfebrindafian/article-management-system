@@ -1,0 +1,21 @@
+[
+     ["BPS Provinsi Jambi", 0, 0, 0, 0, 0],
+     ["Bagian Umum", true, 0, 0, 0, 0],
+     ["Fungsi Statistik Sosial", 0, true, 0, 0, 0],
+     ["Fungsi Statistik Produksi", 0, 0, true, 0, 0],
+     ["Fungsi Statistik Distribusi", 0, 0, 0, true, 0],
+     ["Fungsi Neraca Wilayah dan Analisis Statistik", 0, 0, 0, 0, true],
+     ["Fungsi Integrasi Pengolahan dan Diseminasi Statistik", 0, 0, 0, 0, true],
+     ["BPS Kabupaten Kerinci", true, 0, 0, 0, true],
+     ["BPS Kabupaten Merangin", 0, true, 0, true, 0],
+     ["BPS Kabupaten Sarolangun", true, 0, true, 0, 0],
+     ["BPS Kabupaten Batang Hari", 0, true, 0, 0, true],
+     ["BPS Kabupaten Muaro Jambi", 0, 0, true, true, 0],
+     ["BPS Kabupaten Tanjung Jabung Timur", true, 0, 0, 0, true],
+     ["BPS Kabupaten Tanjung Jabung Barat", 0, true, true, 0, 0],
+     ["BPS Kabupaten Tebo", true, 0, true, 0, 0],
+     ["BPS Kabupaten Bungo", 0, 0, 0, true, true],
+     ["BPS Kota Jambi", 0, true, 0, true, 0],
+     ["BPS Kota Sungai Penuh", 1, 0, 1, 0, 0],
+     ["Eksternal BPS", true, true, 0, 0, 0]
+]

@@ -10,8 +10,8 @@
   <link rel="stylesheet" href="<?= base_url('/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('/plugins/toastr/toastr.min.css') ?>" />
   <link rel="stylesheet" href="<?= base_url('/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') ?>">
-  <link rel=" stylesheet" href="<?= base_url('/css/custom.css') ?>" />
-  <link rel="stylesheet" href="<?= base_url('/css/trix.css') ?>" />
+  <link rel="stylesheet" href="<?= base_url('/css/custom.css') ?>" />
+  <link rel="stylesheet" href="<?= base_url('/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') ?>" />
   <link rel="stylesheet" href="<?= base_url('/css/viewer.min.css') ?>">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />

@@ -125,7 +125,9 @@
                                     <div class="col-12">
                                         <div class="float-right">
                                             <button class="mr-4 cancel-btn ripple" id="btn-reset" type="reset">Reset</button>
-                                            <button type="submit" id="btn-submit" class="tombol-tambah float-right ripple shadow">Simpan</button>
+                                            <button type="submit" id="btn-submit" class="tombol-tambah float-right ripple shadow">
+                                                Simpan
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -148,6 +150,13 @@
                 $('#file_berita').parent().next().html('<small class="text-red">Silahkan pilih word file!</small>');
             }
         });
+    </script>
+
+    <script>
+        $(document).on('submit', 'form', function() {
+            $(this).find('button[type="submit"]').attr('disabled', 'true')
+            $(this).find('button[type="submit"]').html(' <div class="container d-flex align-items-center basic"> <span class="ml-2">Simpan</span></div>')
+        })
     </script>
     <?= $this->endSection(); ?>
 <?php endif; ?>
