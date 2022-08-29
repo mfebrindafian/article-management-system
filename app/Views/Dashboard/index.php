@@ -153,7 +153,6 @@
           </div>
         </div>
       </div>
-
       <div class="row mt-4">
         <div class="col-md-12">
           <div class="mb-3">
@@ -429,27 +428,60 @@
 
   $('#bulan-ini-indo').html(ubahBulan(currentDate))
 
+  <?php if (session('level_id') == 3 || session('level_id') == 1) : ?>
 
+    function renderTabel() {
+      $('#tabelData')
+        .DataTable({
+          paging: false,
+          lengthChange: false,
+          searching: false,
+          responsive: false,
+          destroy: true,
+          ordering: false,
+          info: false,
+          autoWidth: false,
+          buttons: {
+            buttons: [{
+              extend: 'excel',
+              filename: 'Monitoring - berita - tanggal - ' + minggu[0].toISOString().slice(0, 10) + ' Hingga ' + minggu[4].toISOString().slice(0, 10),
+              title: 'Monitoring-berita-tanggal-' + minggu[0].toISOString().slice(0, 10) + ' Hingga ' + minggu[4].toISOString().slice(0, 10),
+              className: 'btn btn-link btn-sm btn-rounded border-warning ripple excel-active maksimal shadow',
+            }, ],
+          },
+        })
+        .buttons()
+        .container()
+        .appendTo('.float-md-right');
+    }
 
-  // $('#tabelData')
-  //   .DataTable({
-  //     paging: false,
-  //     lengthChange: false,
-  //     searching: false,
-  //     responsive: false,
-  //     ordering: false,
-  //     info: false,
-  //     autoWidth: false,
-  //     buttons: {
-  //       buttons: [{
-  //         extend: 'excel',
-  //         className: 'btn btn-link btn-sm btn-rounded border-warning ripple excel-active maksimal shadow',
-  //       }, ],
-  //     },
-  //   })
-  //   .buttons()
-  //   .container()
-  //   .appendTo('.float-md-right');
+    setTimeout(function() {
+      renderTabel();
+    }, 500);
+  <?php endif; ?>
+  $('.sebelum').on('click', function() {
+    mingguApaa((gap = -7));
+    jadwal();
+    <?php if (session('level_id') == 3 || session('level_id') == 1) : ?>
+      $('#tabelData').DataTable().clear();
+      $('#tabelData').DataTable().destroy();
+      setTimeout(function() {
+        renderTabel();
+      }, 500);
+    <?php endif; ?>
+  });
+
+  $('.hari-ini').on('click', function() {
+    mingguApaa((gap = 7));
+    jadwal();
+    <?php if (session('level_id') == 3 || session('level_id') == 1) : ?>
+      $('#tabelData').DataTable().clear();
+      $('#tabelData').DataTable().destroy();
+      setTimeout(function() {
+        renderTabel();
+      }, 500);
+    <?php endif; ?>
+  });
 </script>
 
 
