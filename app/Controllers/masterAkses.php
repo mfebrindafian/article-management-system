@@ -32,7 +32,7 @@ class masterAkses extends BaseController
         $user = $this->masterUserModel->getUser($username);
 
 
-        $pass_default =  password_hash('123456', PASSWORD_DEFAULT);
+        $pass_default =  password_hash('', PASSWORD_DEFAULT);
 
 
 
